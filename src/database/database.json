@@ -1,0 +1,117 @@
+{
+    "civilizations": [
+      {
+        "id": 1,
+        "name": "Egyptien",
+        "majorGods": ["Ra", "Isis", "Osiris"],
+        "units": [
+          {
+            "id": 1,
+            "name": "Sphinx",
+            "type": "Mythological",
+            "attack": 20,
+            "defense": 15
+          },
+          {
+            "id": 2,
+            "name": "Chariot Archer",
+            "type": "Ranged",
+            "attack": 12,
+            "defense": 8
+          },
+          {
+            "id": 3,
+            "name": "War Elephant",
+            "type": "Cavalry",
+            "attack": 30,
+            "defense": 25
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Grec",
+        "majorGods": ["Zeus", "Héra", "Poséidon"],
+        "units": [
+          {
+            "id": 1,
+            "name": "Hoplite",
+            "type": "Infantry",
+            "attack": 15,
+            "defense": 10
+          },
+          {
+            "id": 2,
+            "name": "Centaur",
+            "type": "Mythological",
+            "attack": 25,
+            "defense": 20
+          },
+          {
+            "id": 3,
+            "name": "Mythical Minotaur",
+            "type": "Mythological",
+            "attack": 28,
+            "defense": 22
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Norse",
+        "majorGods": ["Zeus", "Héra", "Poséidon"],
+        "units": [
+          {
+            "id": 1,
+            "name": "Huskarl",
+            "type": "Infantry",
+            "attack": 18,
+            "defense": 12
+          },
+          {
+            "id": 2,
+            "name": "Valkyrie",
+            "type": "Mythological",
+            "attack": 22,
+            "defense": 17
+          },
+          {
+            "id": 3,
+            "name": "Throwing Axeman",
+            "type": "Ranged",
+            "attack": 14,
+            "defense": 9
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Atlante",
+        "majorGods": ["Zeus", "Héra", "Poséidon"],
+        "units": [
+          {
+            "id": 1,
+            "name": "Destroyer",
+            "type": "Infantry",
+            "attack": 20,
+            "defense": 18
+          },
+          {
+            "id": 2,
+            "name": "Promethean",
+            "type": "Mythological",
+            "attack": 24,
+            "defense": 21
+          },
+          {
+            "id": 3,
+            "name": "Turma",
+            "type": "Cavalry",
+            "attack": 16,
+            "defense": 12
+          }
+        ]
+      }
+    ]
+  }
+  
