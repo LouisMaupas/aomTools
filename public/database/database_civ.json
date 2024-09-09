@@ -1,0 +1,25 @@
+{
+    "civilizations": [
+      {
+        "id": 1,
+        "name": "Egyptien",
+        "majorGods": ["Ra", "Isis", "Osiris"]
+      },
+      {
+        "id": 2,
+        "name": "Grec",
+        "majorGods": ["Zeus", "Héra", "Poséidon"]
+      },
+      {
+        "id": 3,
+        "name": "Norse",
+        "majorGods": ["Zeus", "Héra", "Poséidon"]
+      },
+      {
+        "id": 4,
+        "name": "Atlante",
+        "majorGods": ["Zeus", "Héra", "Poséidon"]
+      }
+    ]
+  }
+  

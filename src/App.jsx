@@ -5,6 +5,8 @@ import SelectCiv from './pages/SelectCiv/SelectCiv';
 import useStore from './store/store';
 import './App.css';
 import LearnCounter from './pages/LearnCounter/LearnCounter';
+import CounterTool from './pages/CounterTool/CounterTool';
+import CounterToolSelect from './pages/CounterToolSelect/CounterToolSelect';
 
 const App = () => {
   const { setActiveTab } = useStore();
@@ -31,7 +33,7 @@ const App = () => {
           Select main civ
         </NavLink>
         <NavLink 
-          to="/counter-tool" 
+          to="/counter-tool-select" 
           className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
         >
           Counter Tool
@@ -48,6 +50,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/select-civ" element={<SelectCiv />} />
         <Route path="/learn-counter" element={<LearnCounter />} />
+        <Route path="/counter-tool" element={<CounterTool />} />
+        <Route path="/counter-tool-select" element={<CounterToolSelect />} />
       </Routes>
     </div>
   );

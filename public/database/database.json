@@ -10,21 +10,27 @@
             "name": "Sphinx",
             "type": "Mythological",
             "attack": 20,
-            "defense": 15
+            "defense": 15,
+            "civilization": 1,
+            "countered-by": [1,3,5]
           },
           {
             "id": 2,
             "name": "Chariot Archer",
             "type": "Ranged",
             "attack": 12,
-            "defense": 8
+            "defense": 8,
+            "civilization": 1,
+            "countered-by": [1]
           },
           {
             "id": 3,
             "name": "War Elephant",
             "type": "Cavalry",
             "attack": 30,
-            "defense": 25
+            "defense": 25,
+            "civilization": 1,
+            "countered-by": [8]
           }
         ]
       },
@@ -34,25 +40,31 @@
         "majorGods": ["Zeus", "Héra", "Poséidon"],
         "units": [
           {
-            "id": 1,
+            "id": 4,
             "name": "Hoplite",
             "type": "Infantry",
             "attack": 15,
-            "defense": 10
+            "defense": 10,
+            "civilization": 2,
+            "countered-by": [1,3,5]
           },
           {
-            "id": 2,
+            "id": 5,
             "name": "Centaur",
             "type": "Mythological",
             "attack": 25,
-            "defense": 20
+            "defense": 20,
+            "civilization": 2,
+            "countered-by": [7]
           },
           {
-            "id": 3,
+            "id": 6,
             "name": "Mythical Minotaur",
             "type": "Mythological",
             "attack": 28,
-            "defense": 22
+            "defense": 22,
+            "civilization": 2,
+            "countered-by": [7,8]
           }
         ]
       },
@@ -62,25 +74,31 @@
         "majorGods": ["Zeus", "Héra", "Poséidon"],
         "units": [
           {
-            "id": 1,
+            "id": 7,
             "name": "Huskarl",
             "type": "Infantry",
             "attack": 18,
-            "defense": 12
+            "defense": 12,
+            "civilization": 3,
+            "countered-by": [2]
           },
           {
-            "id": 2,
+            "id": 8,
             "name": "Valkyrie",
             "type": "Mythological",
             "attack": 22,
-            "defense": 17
+            "defense": 17,
+            "civilization": 3,
+            "countered-by": [4]
           },
           {
-            "id": 3,
+            "id": 9,
             "name": "Throwing Axeman",
             "type": "Ranged",
             "attack": 14,
-            "defense": 9
+            "defense": 9,
+            "civilization": 3,
+            "countered-by": [3,5]
           }
         ]
       },
@@ -90,25 +108,31 @@
         "majorGods": ["Zeus", "Héra", "Poséidon"],
         "units": [
           {
-            "id": 1,
+            "id": 10,
             "name": "Destroyer",
             "type": "Infantry",
             "attack": 20,
-            "defense": 18
+            "defense": 18,
+            "civilization": 4,
+            "countered-by": [1]
           },
           {
-            "id": 2,
+            "id": 11,
             "name": "Promethean",
             "type": "Mythological",
             "attack": 24,
-            "defense": 21
+            "defense": 21,
+            "civilization": 4,
+            "countered-by": [4,5]
           },
           {
-            "id": 3,
+            "id": 12,
             "name": "Turma",
             "type": "Cavalry",
             "attack": 16,
-            "defense": 12
+            "defense": 12,
+            "civilization": 4,
+            "countered-by": [1,5]
           }
         ]
       }
