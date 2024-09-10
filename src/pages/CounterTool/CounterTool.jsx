@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Card, Row, Col, Checkbox, Button, AutoComplete, Typography } from "antd";
+import { Card, Row, Col, Checkbox, Button, AutoComplete, Typography, Collapse } from "antd";
 import useCounterToolStore from "../../store/counterTool";
 import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
 
 const { Meta } = Card;
 const { Title, Text } = Typography;
+const { Panel } = Collapse;
 
 const CounterTool = () => {
   const [userAge, setUserAge] = useState(1);
@@ -75,8 +76,71 @@ const CounterTool = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "10px" }}>
       <Title level={2}>Recherche d'unités</Title>
+
+      <Collapse defaultActiveKey={["1"]} style={{ marginBottom: 20 }}>
+        <Panel header="Informations sur les civilisations" key="1">
+          <Card>
+            <Row gutter={16} align="middle">
+              <Col span={12}>
+                <Text strong>Votre civilisation :</Text>
+                <div>{userCivilization || "Inconnue"}</div>
+                <div style={{ marginTop: 10 }}>
+                  <Text>Vous êtes à l'âge : {userAge}</Text>
+                  <Button
+                    type="primary"
+                    block
+                    size="small"
+                    onClick={() => (userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1))}
+                    style={{ marginTop: 5 }}
+                  >
+                    Avancer d'un âge
+                  </Button>
+                </div>
+              </Col>
+
+              <Col span={12}>
+                <Text strong>Civilisations des adversaires :</Text>
+                <ul style={{ paddingLeft: 20, marginTop: 5 }}>
+                  {opponentCivilizations.map((civId, index) => {
+                    const civ = allCivilizations.find((c) => c.id === civId);
+                    return <li key={index}>{civ ? civ.name_fr || civ.name_en : "Inconnu"}</li>;
+                  })}
+                </ul>
+              </Col>
+            </Row>
+
+            <div style={{ marginTop: 10 }}>
+              <Checkbox
+                defaultChecked={displayOnlyUserUnits}
+                onChange={(e) => setDisplayOnlyUserUnits(e.target.checked)}
+                disabled={true}
+              >
+                Afficher seulement les unités de votre civilisation
+              </Checkbox>
+              <Checkbox
+                style={{ marginLeft: 15 }}
+                defaultChecked={displayOnlyUserUnitsAgeOrLess}
+                onChange={(e) => setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)}
+                disabled={true}
+              >
+                Afficher seulement les unités de votre âge ou moins
+              </Checkbox>
+            </div>
+
+            <div style={{ marginTop: 10 }}>
+              <Checkbox
+                defaultChecked={displayOnlyOpponentUnits}
+                onChange={(e) => setDisplayOnlyOpponentUnits(e.target.checked)}
+                disabled={true}
+              >
+                Afficher seulement les unités des adversaires
+              </Checkbox>
+            </div>
+          </Card>
+        </Panel>
+      </Collapse>
 
       <AutoComplete
         style={{ width: "100%", marginBottom: 20 }}
@@ -88,59 +152,6 @@ const CounterTool = () => {
           label: unit.name_fr || unit.name_en,
         }))}
       />
-
-      <Card style={{ marginBottom: 20, borderRadius: "10px" }}>
-        <Text strong>Votre civilisation: {userCivilization || "Inconnue"}</Text>
-        <div style={{ marginTop: 10 }}>
-          <Checkbox
-            defaultChecked={displayOnlyUserUnits}
-            onChange={(e) => setDisplayOnlyUserUnits(e.target.checked)}
-            disabled={true}
-          >
-            Afficher seulement les unités de votre civilisation
-          </Checkbox>
-        </div>
-
-        <div style={{ marginTop: 10 }}>
-          <Text>Vous êtes à l'âge : {userAge}</Text>
-        </div>
-        <Button
-          type="primary"
-          block
-          onClick={() => (userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1))}
-          style={{ marginTop: 10 }}
-        >
-          Avancer d'un âge
-        </Button>
-
-        <div style={{ marginTop: 10 }}>
-          <Checkbox
-            defaultChecked={displayOnlyUserUnitsAgeOrLess}
-            onChange={(e) => setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)}
-            disabled={true}
-          >
-            Afficher seulement les unités de votre âge ou moins
-          </Checkbox>
-        </div>
-      </Card>
-
-      <Card style={{ marginBottom: 20, borderRadius: "10px" }}>
-        <Title level={4}>Civilisations des adversaires</Title>
-        <ul style={{ paddingLeft: 20 }}>
-          {opponentCivilizations.map((civId, index) => {
-            const civ = allCivilizations.find((c) => c.id === civId);
-            return <li key={index}>{civ ? civ.name_fr || civ.name_en : "Inconnu"}</li>;
-          })}
-        </ul>
-
-        <Checkbox
-          defaultChecked={displayOnlyOpponentUnits}
-          onChange={(e) => setDisplayOnlyOpponentUnits(e.target.checked)}
-          disabled={true}
-        >
-          Afficher seulement les unités des adversaires
-        </Checkbox>
-      </Card>
 
       <Row gutter={[16, 16]} className="grid-container">
         {filteredUnits.map((unit) => (
