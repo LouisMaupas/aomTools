@@ -1,13 +1,13 @@
 {
     "civilizations": [
       {
-        "id": 1,
+        "id": 2,
         "name": "Egyptien",
         "name_fr": "Egyptien",
         "name_en": "Egyptian"
       },
       {
-        "id": 2,
+        "id": 1,
         "name": "Grec",
         "name_fr": "Grec",
         "name_en": "Grec"

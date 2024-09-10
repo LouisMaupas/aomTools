@@ -29,14 +29,6 @@ const App = () => {
           Home{" "}
         </NavLink>
         <NavLink
-          to="/select-civ"
-          className={({ isActive }) =>
-            isActive ? "nav-link active" : "nav-link"
-          }
-        >
-          Select main civ{" "}
-        </NavLink>
-        <NavLink
           to="/counter-tool-select"
           className={({ isActive }) =>
             isActive ? "nav-link active" : "nav-link"
@@ -56,7 +48,6 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/select-civ" element={<SelectCiv />} />
         <Route path="/learn-counter" element={<LearnCounter />} />
         <Route path="/counter-tool" element={<CounterTool />} />
         <Route path="/counter-tool-select" element={<CounterToolSelect />} />

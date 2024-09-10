@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {Button} from "antd"
+import { Button, Select, Typography, Row, Col, Card } from "antd";
 import useStore from "../../store/store";
+
+const { Title, Text } = Typography;
+const { Option } = Select;
 
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
@@ -12,6 +15,7 @@ const CounterToolSelect = () => {
     addOpponentCivilization,
     removeOpponentCivilization,
     updateOpponentCivilization,
+    userInfos,
   } = useStore(); 
 
   const navigate = useNavigate();
@@ -30,72 +34,109 @@ const CounterToolSelect = () => {
     fetchCivilizations();
   }, []);
 
+  useEffect(() => {
+    if (userInfos?.civilization) {
+      setUserCivilization(userInfos.civilization);
+    }
+  }, [userInfos, setUserCivilization]);
 
   const handleConfirmSelection = () => {
     if (opponentCivilizations.length === 0 || !userCivilization) {
-      alert(
-        "Veuillez sélectionner au moins une civilisation d'adversaire et la vôtre."
-      );
+      alert("Veuillez sélectionner au moins une civilisation d'adversaire et la vôtre.");
     } else {
       navigate("/counter-tool");
     }
   };
 
   return (
-    <div>
-      <h1>Counter Tool</h1>
+    <div style={{ padding: "20px" }}>
+      <Row justify="center">
+        <Col xs={24} md={20} lg={16}>
+          <Card style={{ textAlign: "center", borderRadius: "10px" }}>
+            <Title level={2}>Sélection des civilisations</Title>
 
-      <Button type="primary" danger onClick={()=> navigate("/counter-tool")}>OSEF GO COUNTER TOOL</Button>
+            <div style={{ marginBottom: "20px" }}>
+              <Text strong>Sélectionnez les civilisations des adversaires :</Text>
+              {opponentCivilizations.map((civilization, index) => (
+                <div key={index} style={{ margin: "10px 0" }}>
+                  <Row gutter={[16, 16]}>
+                    <Col span={18}>
+                      <Select
+                        style={{ width: "100%" }}
+                        value={civilization}
+                        onChange={(value) =>
+                          updateOpponentCivilization(index, value)
+                        }
+                        placeholder={`Adversaire ${index + 1}`}
+                      >
+                        <Option value="">Sélectionner une civilisation</Option>
+                        {civilizations.map((civ) => (
+                          <Option key={civ.id} value={civ.name_fr}>
+                            {civ.name_fr}
+                          </Option>
+                        ))}
+                      </Select>
+                    </Col>
+                    <Col span={6}>
+                      <Button
+                        danger
+                        block
+                        onClick={() => removeOpponentCivilization(index)}
+                      >
+                        Retirer
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              ))}
 
-      <div>
-        <h2>Sélectionnez les civilisations des adversaires</h2>
-        {opponentCivilizations.map((civilization, index) => (
-          <div key={index}>
-            <label>
-              Adversaire {index + 1} :
-              <select
-                value={civilization}
-                onChange={(e) =>
-                  updateOpponentCivilization(index, e.target.value)
-                }
+              <Button
+                type="dashed"
+                block
+                onClick={addOpponentCivilization}
+                style={{ marginTop: "10px" }}
               >
-                <option value="">Sélectionner une civilisation</option>
+                Ajouter un adversaire
+              </Button>
+            </div>
+
+            <div style={{ marginBottom: "20px" }}>
+              <Text strong>Sélectionnez votre civilisation :</Text>
+              <Select
+                style={{ width: "100%", marginTop: "10px" }}
+                value={userCivilization}
+                onChange={(value) => setUserCivilization(value)}
+                placeholder="Sélectionner votre civilisation"
+              >
+                <Option value="">Sélectionner une civilisation</Option>
                 {civilizations.map((civ) => (
-                  <option key={civ.id} value={civ.name_fr}>
+                  <Option key={civ.id} value={civ.name_fr}>
                     {civ.name_fr}
-                  </option>
+                  </Option>
                 ))}
-              </select>
-            </label>
-            <button onClick={() => removeOpponentCivilization(index)}>
-              Retirer
-            </button>
-          </div>
-        ))}
-        <button onClick={addOpponentCivilization}>Ajouter un adversaire</button>
-      </div>
+              </Select>
+            </div>
 
-      <div>
-        <h2>Votre civilisation</h2>
-        <label>
-          Sélectionner votre civilisation :
-          <select
-            value={userCivilization}
-            onChange={(e) => setUserCivilization(e.target.value)}
+            <Button
+              type="primary"
+              block
+              onClick={handleConfirmSelection}
+              style={{ marginTop: "20px" }}
+            >
+              Confirmer et obtenir des conseils
+            </Button>
+          </Card>
+
+          <Button
+            type="link"
+            danger
+            onClick={() => navigate("/counter-tool")}
+            style={{ marginTop: "20px" }}
           >
-            <option value="">Sélectionner une civilisation</option>
-            {civilizations.map((civ) => (
-              <option key={civ.id} value={civ.name_fr}>
-                {civ.name_fr}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      <button onClick={handleConfirmSelection}>
-        Confirmer et obtenir des conseils
-      </button>
+            OSEF, GO COUNTER TOOL
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };
