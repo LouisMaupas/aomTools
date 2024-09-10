@@ -36,14 +36,14 @@ const App = () => {
         >
           Counter Tool{" "}
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/learn-counter"
           className={({ isActive }) =>
             isActive ? "nav-link active" : "nav-link"
           }
         >
           Learn counters
-        </NavLink>
+        </NavLink> */}
       </nav>
 
       <Routes>
