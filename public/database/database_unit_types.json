@@ -1,0 +1,35 @@
+{
+    "unit_types": [
+      {
+        "id": 1,
+        "name_en": "Infantry",
+        "name_fr": "Infantry"
+      },
+      {
+        "id": 2,
+        "name_en": "Archery Range",
+        "name_fr": "Arché"
+      },
+      {
+        "id": 3,
+        "name_en": "Cavalry",
+        "name_fr": "Cavalier"
+      },
+      {
+        "id": 4,
+        "name_en": "Human soldier",
+        "name_fr": "Soldat humain"
+      },
+      {
+        "id": 5,
+        "name_en": "Myth unit",
+        "name_fr": "Unitée mythique"
+      },
+      {
+        "id": 6,
+        "name_en": "Hero",
+        "name_fr": "Hero"
+      }
+    ]
+  }
+  

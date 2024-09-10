@@ -3,22 +3,26 @@
       {
         "id": 1,
         "name": "Egyptien",
-        "majorGods": ["Ra", "Isis", "Osiris"]
+        "name_fr": "Egyptien",
+        "name_en": "Egyptian"
       },
       {
         "id": 2,
         "name": "Grec",
-        "majorGods": ["Zeus", "Héra", "Poséidon"]
+        "name_fr": "Grec",
+        "name_en": "Grec"
       },
       {
         "id": 3,
-        "name": "Norse",
-        "majorGods": ["Zeus", "Héra", "Poséidon"]
+        "name": "Nordique",
+        "name_fr": "Nordique",
+        "name_en": "Norse"
       },
       {
         "id": 4,
         "name": "Atlante",
-        "majorGods": ["Zeus", "Héra", "Poséidon"]
+        "name_fr": "Atlante",
+        "name_en": "Atlante"
       }
     ]
   }

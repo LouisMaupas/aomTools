@@ -1,0 +1,82 @@
+{
+    "minor_gods": [
+      {
+        "id": 1,
+        "name": "Ra",
+        "civilization": 2,
+        "minorGods": []
+      },
+      {
+        "id": 2,
+        "name": "Isis",
+        "civilization": 2,
+        "minorGods": []
+      },
+      {
+        "id": 3,
+        "name": "Set",
+        "civilization": 2,
+        "minorGods": []
+      },
+      {
+        "id": 4,
+        "name": "Zeus",
+        "civilization": 1,
+        "minorGods": []
+      },
+      {
+        "id": 5,
+        "name": "Poseidon",
+        "civilization": 1,
+        "minorGods": []
+      },
+      {
+        "id": 6,
+        "name": "Hades",
+        "civilization": 1,
+        "minorGods": []
+      },
+      {
+        "id": 7,
+        "name": "Odin",
+        "civilization": 3,
+        "minorGods": []
+      },
+      {
+        "id": 8,
+        "name": "Thor",
+        "civilization": 3,
+        "minorGods": []
+      },
+      {
+        "id": 9,
+        "name": "Loki",
+        "civilization": 3,
+        "minorGods": []
+      },
+      {
+        "id": 10,
+        "name": "Freyr",
+        "civilization": 3,
+        "minorGods": []
+      },
+      {
+        "id": 11,
+        "name": "Kronos",
+        "civilization": 4,
+        "minorGods": []
+      },
+      {
+        "id": 12,
+        "name": "Gaia",
+        "civilization": 4,
+        "minorGods": []
+      },
+      {
+        "id": 13,
+        "name": "Oranos",
+        "civilization": 4,
+        "minorGods": []
+      }
+    ]
+}
