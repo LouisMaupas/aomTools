@@ -12,14 +12,14 @@ const CounterToolSelect = () => {
     addOpponentCivilization,
     removeOpponentCivilization,
     updateOpponentCivilization,
-  } = useStore(); // Utiliser Zustand pour récupérer les méthodes
+  } = useStore(); 
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCivilizations = async () => {
       try {
-        const response = await fetch("/database/database_civ.json"); // Charger les données
+        const response = await fetch("/database/database_civ.json"); 
         const data = await response.json();
         setCivilizations(data.civilizations);
       } catch (error) {
@@ -30,7 +30,7 @@ const CounterToolSelect = () => {
     fetchCivilizations();
   }, []);
 
-  // Fonction pour gérer la confirmation et rediriger vers la page suivante
+
   const handleConfirmSelection = () => {
     if (opponentCivilizations.length === 0 || !userCivilization) {
       alert(
@@ -75,14 +75,13 @@ const CounterToolSelect = () => {
         <button onClick={addOpponentCivilization}>Ajouter un adversaire</button>
       </div>
 
-      {/* Section de sélection de la civilisation du joueur */}
       <div>
         <h2>Votre civilisation</h2>
         <label>
           Sélectionner votre civilisation :
           <select
             value={userCivilization}
-            onChange={(e) => setUserCivilization(e.target.value)} // Mettre à jour la civilisation de l'utilisateur
+            onChange={(e) => setUserCivilization(e.target.value)}
           >
             <option value="">Sélectionner une civilisation</option>
             {civilizations.map((civ) => (
@@ -94,7 +93,6 @@ const CounterToolSelect = () => {
         </label>
       </div>
 
-      {/* Bouton pour confirmer les sélections */}
       <button onClick={handleConfirmSelection}>
         Confirmer et obtenir des conseils
       </button>
