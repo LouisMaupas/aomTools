@@ -1,89 +1,130 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Row, Col } from 'antd';
-import useCounterToolStore from '../../store/counterTool';
-import './CounterTool.css'; 
+import React, { useState, useEffect } from "react";
+import { Card, Row, Col, Checkbox, Button } from "antd";
+import useCounterToolStore from "../../store/counterTool"; // Importer le store Zustand
+import "./CounterTool.css";
 
 const { Meta } = Card;
 
 const CounterTool = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [civilizations, setCivilizations] = useState([]);
+  const [userAge, setUserAge] = useState(1);
   const [units, setUnits] = useState([]);
-  const { userCivilization } = useCounterToolStore(); // Récupérer la civilisation de l'utilisateur depuis Zustand
+  const [unitTypes, setUnitTypes] = useState([]);
+  const [allCivilizations, setAllCivilizations] = useState([]);
+  const [displayOnlyUserUnits, setDisplayOnlyUserUnits] = useState(true);
+  const [displayOnlyUserUnitsAgeOrLess, setDisplayOnlyUserUnitsAgeOrLess] =
+    useState(false);
+  const [displayOnlyOpponentUnits, setDisplayOnlyOpponentUnits] =
+    useState(true);
+  const { userCivilization, opponentCivilizations } = useCounterToolStore(); // Récupérer les civilisations via Zustand
 
+  // Charger les données des civilisations, unités et types d'unités
   useEffect(() => {
-    const fetchCivilizations = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('/database/database_civ.json'); // Charger les données depuis le fichier JSON
-        const data = await response.json();
-        setCivilizations(data.civilizations);
+        // Charger les civilisations
+        const civResponse = await fetch("/database/database_civ.json");
+        const civData = await civResponse.json();
+        setAllCivilizations(civData.civilizations);
 
-        // Fusionner toutes les unités des civilisations dans un seul tableau
-        const allUnits = data.civilizations.flatMap((civ) => civ.units);
-        setUnits(allUnits);
+        // Charger les unités
+        const unitResponse = await fetch("/database/database_units.json");
+        const unitData = await unitResponse.json();
+        setUnits(unitData.units);
+
+        // Charger les types d'unités
+        const typesResponse = await fetch("/database/database_unit_types.json");
+        const typesData = await typesResponse.json();
+        setUnitTypes(typesData.unit_types); // Utiliser les types depuis le fichier
       } catch (error) {
-        console.error('Erreur lors du chargement des civilisations:', error);
+        console.error("Erreur lors du chargement des données:", error);
       }
     };
 
-    fetchCivilizations();
+    fetchData();
   }, []);
 
-  // Fonction pour gérer le changement dans la barre de recherche
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  // Obtenir le nom de la civilisation choisie par l'utilisateur
+  const userCivName =
+    allCivilizations.find((civ) => civ.id === userCivilization)?.name ||
+    "Inconnue";
 
-  // Filtrer les unités en fonction de la barre de recherche
-  const filteredUnits = units.filter((unit) =>
-    unit && unit.name?.toLowerCase().includes(searchQuery.toLowerCase()) // Vérification que `unit` et `unit.name` sont définis
-  );
+  // Obtenir les noms des civilisations des adversaires (peut inclure "Inconnu" si non choisi)
+  const opponentCivNames = opponentCivilizations.map((civId) => {
+    const civ = allCivilizations.find((c) => c.id === civId);
+    return civ ? civ.name : "Inconnu";
+  });
 
-  // Fonction pour gérer le clic sur une carte
-  const handleCardClick = (unit) => {
-    if (!unit['countered-by']) {
-      alert('Aucune unité ne contre cette unité.');
-      return;
-    }
-
-    // Trouver les unités qui ont leur ID dans 'countered-by' et appartiennent à la civilisation de l'utilisateur
-    const counterUnits = units.filter((u) =>
-      u && unit['countered-by'].includes(u?.id) && u.civilization === userCivilization // Vérification de `u`
-    );
-
-    // Extraire les noms des unités trouvées
-    const counterUnitNames = counterUnits.map((u) => u?.name).filter(Boolean); // Vérification que name est défini
-
-    // Afficher les unités contrées par celles-ci
-    if (counterUnitNames.length > 0) {
-      alert(`Unités contre cette unité: ${counterUnitNames.join(', ')}`);
-    } else {
-      alert("Aucune unité de votre civilisation ne contre cette unité.");
-    }
+  // Fonction pour obtenir le nom en français du type d'unité
+  const getUnitTypeNames = (typeIds) => {
+    return typeIds
+      .map((typeId) => {
+        const type = unitTypes.find((t) => t.id === typeId);
+        return type ? type.name_fr : "Type inconnu";
+      })
+      .join(", ");
   };
 
   return (
     <div>
       <h1>Recherche d'unités</h1>
-      <input
-        type="text"
-        placeholder="Recherchez une unité..."
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
 
-      {/* Grille de cartes */}
+      {/* Affichage de la civilisation choisie par l'utilisateur */}
+      <div>
+        <h2>Votre civilisation: {userCivName}</h2>
+        <Checkbox
+          defaultChecked={displayOnlyUserUnits}
+          onChange={(e) => setDisplayOnlyUserUnits(e.target.checked)}
+          disabled={true}
+        >
+          Afficher seulement les unités de votre civilisation dans les unités de
+          contre.
+        </Checkbox>
+        <div>Vous êtes à l'age : {userAge}</div>
+        <Button
+          onClick={() =>
+            userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1)
+          }
+        >
+          Avancer d'un age
+        </Button>
+        <Checkbox
+          defaultChecked={displayOnlyUserUnitsAgeOrLess}
+          onChange={(e) => setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)}
+          disabled={true}
+        >
+          Afficher seulement les unités de votre age ou moins dans les unités de
+          contre.
+        </Checkbox>
+      </div>
+
+      {/* Affichage des civilisations des adversaires */}
+      <div>
+        <h3>Civilisations des adversaires:</h3>
+        <ul>
+          {opponentCivNames.map((civName, index) => (
+            <li key={index}>{civName}</li>
+          ))}
+        </ul>
+        <Checkbox
+          defaultChecked={displayOnlyOpponentUnits}
+          onChange={(e) => setDisplayOnlyOpponentUnits(e.target.checked)}
+          disabled={true}
+        >
+          Afficher seulement les unités de(s) (l')opposant(s)
+        </Checkbox>
+      </div>
+
+      {/* Affichage de la liste des unités */}
       <Row gutter={[16, 16]} className="grid-container">
-        {filteredUnits.map((unit) => (
-          <Col key={unit?.id} xs={24} sm={12} md={8} lg={6}>
-            <Card
-              hoverable
-              onClick={() => handleCardClick(unit)}
-              style={{ width: 240 }}
-            >
+        {units.map((unit) => (
+          <Col key={unit.id} xs={24} sm={12} md={8} lg={6}>
+            <Card hoverable style={{ width: 240 }}>
               <Meta
-                title={unit?.name} // Vérification que `unit` est défini
-                description={`Type: ${unit?.type} | Attaque: ${unit?.attack} | Défense: ${unit?.defense}`} // Vérifications sur `unit`
+                title={unit.name_fr || unit.name_en}
+                description={`Type: ${getUnitTypeNames(unit.type)}
+                ${" "}
+                 Age : ${unit.Age}
+                `}
               />
             </Card>
           </Col>
