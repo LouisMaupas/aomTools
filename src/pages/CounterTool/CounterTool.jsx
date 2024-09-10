@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Checkbox, Button } from "antd";
 import useCounterToolStore from "../../store/counterTool";
+import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
 
 const { Meta } = Card;
@@ -16,6 +17,18 @@ const CounterTool = () => {
   const [displayOnlyOpponentUnits, setDisplayOnlyOpponentUnits] =
     useState(true);
   const { userCivilization, opponentCivilizations } = useCounterToolStore(); // Récupérer les civilisations via Zustand
+  const [selectedUnit, setSelectedUnit] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleOpenModal = (unit) => {
+    setSelectedUnit(unit);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setSelectedUnit(null);
+  };
 
   // Charger les données des civilisations, unités et types d'unités
   useEffect(() => {
@@ -117,7 +130,14 @@ const CounterTool = () => {
       {/* Affichage de la liste des unités */}
       <Row gutter={[16, 16]} className="grid-container">
         {units.map((unit) => (
-          <Col key={unit.id} xs={24} sm={12} md={8} lg={6}>
+          <Col
+            key={unit.id}
+            xs={24}
+            sm={12}
+            md={8}
+            lg={6}
+            onClick={() => handleOpenModal(unit)}
+          >
             <Card hoverable style={{ width: 240 }}>
               <Meta
                 title={unit.name_fr || unit.name_en}
@@ -130,6 +150,13 @@ const CounterTool = () => {
           </Col>
         ))}
       </Row>
+      {selectedUnit && (
+        <CounterToolModal
+          unit={selectedUnit}
+          visible={modalVisible}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 };
