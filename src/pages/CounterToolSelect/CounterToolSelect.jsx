@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../store/store"; // Utiliser le store combiné
+import {Button} from "antd"
+import useStore from "../../store/store";
 
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
@@ -44,7 +45,8 @@ const CounterToolSelect = () => {
     <div>
       <h1>Counter Tool</h1>
 
-      {/* Section de sélection des civilisations d'adversaires */}
+      <Button type="primary" danger onClick={()=> navigate("/counter-tool")}>OSEF GO COUNTER TOOL</Button>
+
       <div>
         <h2>Sélectionnez les civilisations des adversaires</h2>
         {opponentCivilizations.map((civilization, index) => (
