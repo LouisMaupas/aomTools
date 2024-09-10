@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Checkbox, Button } from "antd";
-import useCounterToolStore from "../../store/counterTool"; // Importer le store Zustand
+import useCounterToolStore from "../../store/counterTool";
 import "./CounterTool.css";
 
 const { Meta } = Card;
