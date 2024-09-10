@@ -3,32 +3,65 @@
       {
         "id": 1,
         "name_en": "Infantry",
-        "name_fr": "Infantry"
+        "name_fr": "Infantry",
+        "strong_against": [3],
+        "weak_against": [2]
       },
       {
         "id": 2,
         "name_en": "Archery Range",
-        "name_fr": "Arché"
+        "name_fr": "Arché",
+        "strong_against": [1],
+        "weak_against": [3]
       },
       {
         "id": 3,
         "name_en": "Cavalry",
-        "name_fr": "Cavalier"
+        "name_fr": "Cavalier",
+        "strong_against": [2],
+        "weak_against": [1]
       },
       {
         "id": 4,
         "name_en": "Human soldier",
-        "name_fr": "Soldat humain"
+        "name_fr": "Soldat humain",
+        "strong_against": [],
+        "weak_against": [5]
       },
       {
         "id": 5,
         "name_en": "Myth unit",
-        "name_fr": "Unitée mythique"
+        "name_fr": "Unitée mythique",
+        "strong_against": [4,5],
+        "weak_against": [2]
       },
       {
         "id": 6,
         "name_en": "Hero",
-        "name_fr": "Hero"
+        "name_fr": "Hero",
+        "strong_against": [5],
+        "weak_against": []
+      },
+      {
+        "id": 7,
+        "name_en": "Titan",
+        "name_fr": "Titan",
+        "strong_against": [7,8],
+        "weak_against": [6,7]
+      },
+      {
+        "id": 8,
+        "name_en": "Building",
+        "name_fr": "Bâtiment",
+        "strong_against": [],
+        "weak_against": [9]
+      },
+      {
+        "id": 9,
+        "name_en": "Arme de siège",
+        "name_fr": "siege weapon",
+        "strong_against": [8],
+        "weak_against": []
       }
     ]
   }

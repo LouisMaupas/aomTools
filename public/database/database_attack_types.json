@@ -1,0 +1,30 @@
+{
+    "attack_type": [
+      {
+        "id": 1,
+        "name_en": "Hack",
+        "name_fr": "Hack"
+      },
+      {
+        "id": 2,
+        "name_en": "Pierce",
+        "name_fr": "Pierce"
+      },
+      {
+        "id": 3,
+        "name_en": "Cavalry",
+        "name_fr": "Cavalier"
+      },
+      {
+        "id": 4,
+        "name_en": "Divine ",
+        "name_fr": "Divine "
+      },
+      {
+        "id": 5,
+        "name_en": "Crush",
+        "name_fr": "Crush"
+      }
+    ]
+  }
+  

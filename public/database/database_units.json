@@ -7,16 +7,18 @@
         "type": [1, 4],
         "civilization": 2,
         "Age": 2,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [],
-        "attack_125": [3],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 40,
+          "armor_pierce": 15,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 7.5,
+          "pierce": 0,
+          "crush": 0,
+          "attack_125": [3]
+        }
       },
       {
         "id": 2,
@@ -25,16 +27,18 @@
         "type": [1, 4],
         "civilization": 2,
         "Age": 3,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [],
-        "attack_125": [],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 35,
+          "armor_pierce": 10,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 6,
+          "pierce": 0,
+          "crush": 0,
+          "attack_500": [1]
+        }
       },
       {
         "id": 3,
@@ -43,16 +47,18 @@
         "type": [2, 4],
         "civilization": 2,
         "Age": 2,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [],
-        "attack_125": [],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 15,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 6,
+          "crush": 0,
+          "attack_125": [1]
+        }
       },
       {
         "id": 4,
@@ -61,16 +67,18 @@
         "type": [2, 4],
         "civilization": 2,
         "Age": 3,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [],
-        "attack_125": [],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 40,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 5,
+          "crush": 0,
+          "attack_400": [2]
+        }
       },
       {
         "id": 5,
@@ -79,16 +87,18 @@
         "type": [3,4],
         "civilization": 2,
         "Age": 2,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [],
-        "attack_125": [],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 10,
+          "armor_pierce": 40,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 10,
+          "pierce": 0,
+          "crush": 0,
+          "attack_150": [2]
+        }
       },
       {
         "id": 6,
@@ -97,16 +107,18 @@
         "type": [3,4],
         "civilization": 2,
         "Age": 3,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [],
-        "attack_125": [],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 20,
+          "armor_pierce": 10,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 8,
+          "pierce": 0,
+          "crush": 0,
+          "attack_350": [3]
+        }
       },
       {
         "id": 7,
@@ -115,16 +127,19 @@
         "type": [5],
         "civilization": 2,
         "Age": 2,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_200": [5],
-        "attack_125": [],
-        "attack_50": [6],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 60,
+          "armor_pierce": 55,
+          "armor_crush": 80
+        },
+        "attacks":  {
+          "hack": 15,
+          "pierce": 0,
+          "crush": 0,
+          "attack_200": [5],
+          "attack_50": [6]
+        }
       },
       {
         "id": 8,
@@ -133,17 +148,18 @@
         "type": [6],
         "civilization": 2,
         "Age": 1,
-        "counter" : [],
-        "soft_counter": [],
-        "hard_counter": [],
-        "weak_against":[],
-        "soft_weak_against":[],
-        "hard_weak_against":[],
-        "attack_900": [5],
-        "attack_200": [],
-        "attack_125": [],
-        "attack_50": [],
-        "trained_at": []
+        "trained_at": [],
+        "armors":  {
+          "armor_hack": 35,
+          "armor_pierce": 35,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 2.3,
+          "pierce": 4,
+          "crush": 0,
+          "attack_900": [5]
+        }
       }
     ]
   }
