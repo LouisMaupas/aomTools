@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, NavLink, useLocation } from "react-router-dom";
-import { Layout, Menu } from "antd";
-import { HomeOutlined, ToolOutlined, ReadOutlined } from "@ant-design/icons";
+import { Layout, Menu, Drawer, Button } from "antd";
+import { MenuOutlined, HomeOutlined, ToolOutlined } from "@ant-design/icons";
 import Home from "./pages/Home/Home";
 import SelectCiv from "./pages/SelectCiv/SelectCiv";
 import useStore from "./store/store";
@@ -15,35 +15,70 @@ const { Header, Content } = Layout;
 const App = () => {
   const { setActiveTab } = useStore();
   const location = useLocation();
+  const [drawerVisible, setDrawerVisible] = useState(false);
 
   useEffect(() => {
     setActiveTab(location.pathname);
   }, [location.pathname, setActiveTab]);
 
+  const showDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const closeDrawer = () => {
+    setDrawerVisible(false);
+  };
+
+  const handleLogoClick = () => {
+    alert("Clicked!");
+  };
+
+  const handleMenuClick = () => {
+    closeDrawer();
+  };
+
   return (
     <Layout className="app">
       <Header className="header">
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={[location.pathname]}
-          selectedKeys={[location.pathname]}
+        <div className="header-container">
+          <Button
+            type="primary"
+            icon={<MenuOutlined />}
+            onClick={showDrawer}
+            className="menu-button"
+          />
+
+          <div className="logo-container" onClick={handleLogoClick}>
+            <img src="/favicon.png" alt="Logo" className="logo-img" />
+            <span className="logo-text">AOM Tools</span>
+          </div>
+        </div>
+
+        <Drawer
+          title="Navigation"
+          placement="left"
+          onClose={closeDrawer}
+          open={drawerVisible}
         >
-          <Menu.Item key="/" icon={<HomeOutlined />}>
-            <NavLink to="/" exact="true">
-              Home
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="/counter-tool-select" icon={<ToolOutlined />}>
-            <NavLink to="/counter-tool-select">Counter Tool</NavLink>
-          </Menu.Item>
-          <Menu.Item key="/learn-counter" icon={<ReadOutlined />}>
-            <NavLink to="/learn-counter">Learn counters</NavLink>
-          </Menu.Item>
-        </Menu>
+          <Menu
+            mode="vertical"
+            defaultSelectedKeys={[location.pathname]}
+            selectedKeys={[location.pathname]}
+            onClick={handleMenuClick}
+          >
+            <Menu.Item key="/" icon={<HomeOutlined />}>
+              <NavLink to="/" exact="true">
+                Accueil
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item key="/counter-tool-select" icon={<ToolOutlined />}>
+              <NavLink to="/counter-tool-select">Counter Tool</NavLink>
+            </Menu.Item>
+          </Menu>
+        </Drawer>
       </Header>
 
-      <Content style={{ padding: "20px", marginTop: "64px" }}>
+      <Content style={{ padding: "20px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/learn-counter" element={<LearnCounter />} />

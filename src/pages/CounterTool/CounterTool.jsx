@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { Card, Row, Col, Checkbox, Button, AutoComplete, Typography, Collapse } from "antd";
+import {
+  Card,
+  Row,
+  Col,
+  Checkbox,
+  Button,
+  AutoComplete,
+  Typography,
+  Collapse,
+} from "antd";
 import useCounterToolStore from "../../store/counterTool";
 import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
@@ -14,8 +23,10 @@ const CounterTool = () => {
   const [unitTypes, setUnitTypes] = useState([]);
   const [allCivilizations, setAllCivilizations] = useState([]);
   const [displayOnlyUserUnits, setDisplayOnlyUserUnits] = useState(true);
-  const [displayOnlyUserUnitsAgeOrLess, setDisplayOnlyUserUnitsAgeOrLess] = useState(false);
-  const [displayOnlyOpponentUnits, setDisplayOnlyOpponentUnits] = useState(true);
+  const [displayOnlyUserUnitsAgeOrLess, setDisplayOnlyUserUnitsAgeOrLess] =
+    useState(false);
+  const [displayOnlyOpponentUnits, setDisplayOnlyOpponentUnits] =
+    useState(true);
   const { userCivilization, opponentCivilizations } = useCounterToolStore();
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -79,7 +90,7 @@ const CounterTool = () => {
     <div style={{ padding: "10px" }}>
       <Title level={2}>Recherche d'unités</Title>
 
-      <Collapse defaultActiveKey={["1"]} style={{ marginBottom: 20 }}>
+      <Collapse style={{ marginBottom: 20 }}>
         <Panel header="Informations sur les civilisations" key="1">
           <Card>
             <Row gutter={16} align="middle">
@@ -92,7 +103,9 @@ const CounterTool = () => {
                     type="primary"
                     block
                     size="small"
-                    onClick={() => (userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1))}
+                    onClick={() =>
+                      userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1)
+                    }
                     style={{ marginTop: 5 }}
                   >
                     Avancer d'un âge
@@ -105,7 +118,11 @@ const CounterTool = () => {
                 <ul style={{ paddingLeft: 20, marginTop: 5 }}>
                   {opponentCivilizations.map((civId, index) => {
                     const civ = allCivilizations.find((c) => c.id === civId);
-                    return <li key={index}>{civ ? civ.name_fr || civ.name_en : "Inconnu"}</li>;
+                    return (
+                      <li key={index}>
+                        {civ ? civ.name_fr || civ.name_en : "Inconnu"}
+                      </li>
+                    );
                   })}
                 </ul>
               </Col>
@@ -122,7 +139,9 @@ const CounterTool = () => {
               <Checkbox
                 style={{ marginLeft: 15 }}
                 defaultChecked={displayOnlyUserUnitsAgeOrLess}
-                onChange={(e) => setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)}
+                onChange={(e) =>
+                  setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
+                }
                 disabled={true}
               >
                 Afficher seulement les unités de votre âge ou moins
@@ -166,7 +185,9 @@ const CounterTool = () => {
             <Card hoverable style={{ width: "100%", marginBottom: 20 }}>
               <Meta
                 title={unit.name_fr || unit.name_en}
-                description={`Type: ${getUnitTypeNames(unit.type)} | Âge : ${unit.Age}`}
+                description={`Type: ${getUnitTypeNames(unit.type)} | Âge : ${
+                  unit.Age
+                }`}
               />
             </Card>
           </Col>

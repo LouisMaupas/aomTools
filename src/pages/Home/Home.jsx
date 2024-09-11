@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Button, Card, Select, Typography } from 'antd';
-import useStore from '../../store/store';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Button, Card, Select, Typography } from "antd";
+import useStore from "../../store/store";
+import { useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -10,28 +10,28 @@ const Home = () => {
   const { userInfos, setUserInfos } = useStore();
   const [civilizations, setCivilizations] = useState([]);
   const [majorGods, setMajorGods] = useState([]);
-  const [selectedCiv, setSelectedCiv] = useState(userInfos.civilization || '');
-  const [selectedGod, setSelectedGod] = useState(userInfos.majorGod || '');
+  const [selectedCiv, setSelectedCiv] = useState(userInfos.civilization || "");
+  const [selectedGod, setSelectedGod] = useState(userInfos.majorGod || "");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCivilizations = async () => {
       try {
-        const civResponse = await fetch('/database/database_civ.json');
+        const civResponse = await fetch("/database/database_civ.json");
         const civData = await civResponse.json();
         setCivilizations(civData.civilizations);
       } catch (error) {
-        console.error('Erreur lors du chargement des civilisations:', error);
+        console.error("Erreur lors du chargement des civilisations:", error);
       }
     };
 
     const fetchMajorGods = async () => {
       try {
-        const godResponse = await fetch('/database/database_major_gods.json');
+        const godResponse = await fetch("/database/database_major_gods.json");
         const godData = await godResponse.json();
         setMajorGods(godData.major_gods);
       } catch (error) {
-        console.error('Erreur lors du chargement des dieux majeurs:', error);
+        console.error("Erreur lors du chargement des dieux majeurs:", error);
       }
     };
 
@@ -45,24 +45,26 @@ const Home = () => {
       majorGod: selectedGod,
     };
     setUserInfos(updatedUserInfos);
-    localStorage.setItem('userInfos', JSON.stringify(updatedUserInfos));
-    navigate('/counter-tool');
+    localStorage.setItem("userInfos", JSON.stringify(updatedUserInfos));
+    navigate("/counter-tool");
   };
 
   const filteredGods = majorGods.filter((god) => {
-    const selectedCivObj = civilizations.find((civ) => civ.name === selectedCiv);
+    const selectedCivObj = civilizations.find(
+      (civ) => civ.name === selectedCiv
+    );
     return selectedCivObj ? god.civilization === selectedCivObj.id : false;
   });
 
   return (
-    <div style={{ padding: '20px' }}>
-      <Card style={{ textAlign: 'center', borderRadius: '10px' }}>
+    <div style={{ padding: "20px" }}>
+      <Card style={{ textAlign: "center", borderRadius: "10px" }}>
         <Title level={2}>Sélectionnez votre civilisation et dieu majeur</Title>
-        
-        <div style={{ marginBottom: '20px' }}>
+
+        <div style={{ marginBottom: "20px" }}>
           <Text strong>Sélectionnez votre civilisation :</Text>
           <Select
-            style={{ width: '100%', marginTop: '10px' }}
+            style={{ width: "100%", marginTop: "10px" }}
             value={selectedCiv}
             onChange={(value) => setSelectedCiv(value)}
             placeholder="Choisir une civilisation"
@@ -76,10 +78,10 @@ const Home = () => {
         </div>
 
         {selectedCiv && (
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: "20px" }}>
             <Text strong>Sélectionnez votre dieu majeur :</Text>
             <Select
-              style={{ width: '100%', marginTop: '10px' }}
+              style={{ width: "100%", marginTop: "10px" }}
               value={selectedGod}
               onChange={(value) => setSelectedGod(value)}
               placeholder="Choisir un dieu majeur"
