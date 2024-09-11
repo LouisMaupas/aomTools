@@ -59,11 +59,10 @@ const analyzeUnit = async (unit) => {
     }
   });
 
-  // Retourner les résultats
   return {
     armor_weakness: armorWeakness,
-    type_weakness: Array.from(typeWeakness), // Conversion en tableau
-    type_bonus: Array.from(typeBonus), // Conversion en tableau
+    type_weakness: Array.from(typeWeakness),
+    type_bonus: Array.from(typeBonus),
     attack_type: attackType,
     attack_bonus: attackBonus,
   };

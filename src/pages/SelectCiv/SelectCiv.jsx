@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import useStore from '../../store/store';
+import React, { useState, useEffect } from "react";
+import useStore from "../../store/store";
 
 const SelectCiv = () => {
   const { userInfos, setUserInfos, loadUserInfosFromStorage } = useStore();
-  const [civilization, setCivilization] = useState(userInfos.civilization || '');
-  const [majorGod, setMajorGod] = useState(userInfos.majorGod || '');
+  const [civilization, setCivilization] = useState(
+    userInfos.civilization || ""
+  );
+  const [majorGod, setMajorGod] = useState(userInfos.majorGod || "");
 
-  // Charger les infos depuis localStorage
   useEffect(() => {
     loadUserInfosFromStorage();
   }, [loadUserInfosFromStorage]);
@@ -14,8 +15,8 @@ const SelectCiv = () => {
   const handleSave = () => {
     const newUserInfos = { civilization, majorGod };
     setUserInfos(newUserInfos);
-    localStorage.setItem('userInfos', JSON.stringify(newUserInfos));
-    alert('Vos choix ont été sauvegardés !');
+    localStorage.setItem("userInfos", JSON.stringify(newUserInfos));
+    alert("Vos choix ont été sauvegardés !");
   };
 
   return (
@@ -24,7 +25,10 @@ const SelectCiv = () => {
       <div>
         <label>
           Civilisation :
-          <select value={civilization} onChange={(e) => setCivilization(e.target.value)}>
+          <select
+            value={civilization}
+            onChange={(e) => setCivilization(e.target.value)}
+          >
             <option value="">Sélectionner</option>
             <option value="Egyptien">Egyptien</option>
             <option value="Grec">Grec</option>
@@ -36,7 +40,10 @@ const SelectCiv = () => {
       <div>
         <label>
           Dieu majeur :
-          <select value={majorGod} onChange={(e) => setMajorGod(e.target.value)}>
+          <select
+            value={majorGod}
+            onChange={(e) => setMajorGod(e.target.value)}
+          >
             <option value="">Sélectionner</option>
             <option value="Zeus">Zeus</option>
             <option value="Ra">Ra</option>
