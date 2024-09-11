@@ -27,7 +27,7 @@ const translations = {
  */
 const getWeaponFromArmors = (armor, lang = "en") => {
   return armor.map(
-    (element) => translations[lang][element.split("_").at(-1)] || element
+    (element) => translations[lang][element.split("_").at(-1)] || ""
   );
 };
 
@@ -41,7 +41,7 @@ const getWeaponFromArmors = (armor, lang = "en") => {
  * language.
  */
 const translateWeapons = (weapons, lang = "en") => {
-  return weapons.map((element) => translations[lang][element] || element);
+  return weapons.map((element) => translations[lang][element] || "");
 };
 
 export { getWeaponFromArmors, translateWeapons };
