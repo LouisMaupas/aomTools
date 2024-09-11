@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Modal, Row, Col, Card, Collapse, Typography, Spin } from "antd";
+import { useEffect, useState } from "react";
+import { Modal, Row, Col, Card, Collapse, Typography, Spin, Space, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import analyzeUnit from "../../utils/analyzeUnit";
 import getBestUnits from "../../utils/getBestUnits";
@@ -25,6 +25,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
   const [unitTypes, setUnitTypes] = useState([]);
   const [allUnits, setAllUnits] = useState([]);
   const [bestUnits, setBestUnits] = useState([]);
+  const [switchChecked, setSwitchChecked] = useState(false);
   const { i18n, t } = useTranslation();
 
   const fetchUnitTypes = async () => {
@@ -38,6 +39,10 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
     const data = await response.json();
     setAllUnits(data.units);
   };
+
+  useEffect(()=>{
+
+  }, [switchChecked])
 
   useEffect(() => {
     fetchUnitTypes();
@@ -81,7 +86,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       ? trainedAtArray.join(", ")
       : t("unknown");
   };
-
+console.log(unit)
   return (
     <Modal
       title={unit.name_fr || unit.name_en}
@@ -93,7 +98,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
         <Panel header="Détails de l'unité" key="1">
           <Row gutter={[16, 16]}>
-            <Col span={12}>
+            <Col span={8}>
               <Card bordered={false}>
                 <Meta
                   title={t("Types")}
@@ -112,9 +117,14 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
                 />
               </Card>
             </Col>
-            <Col span={12}>
+            <Col span={8}>
               <Card bordered={false}>
-                <Meta title="Âge" description={`${unit.Age}`} />
+                <Meta title={t("Âge")} description={`${unit.Age}`} />
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card bordered={false}>
+                <Meta title={t("Trained at")} description={`${unit.trained_at}`} />
               </Card>
             </Col>
           </Row>
@@ -123,7 +133,15 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       {analysisResult ? (
         <>
           <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-            <Panel header={t("Faiblesses et Menaces")} key="1">
+          <Panel header={t("Faiblesses et Menaces")} key="1">
+            <Switch 
+              checkedChildren={t("Summary")} 
+              unCheckedChildren={t("Detail")} 
+              defaultChecked
+              onChange={()=>setSwitchChecked(!switchChecked)}
+             />
+          {!switchChecked ? 
+              <>
               <div>
                 <Text strong>{t("Type d'attaque")} : </Text>
                 {analysisResult?.attack_type &&
@@ -175,6 +193,27 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
                   </li>
                 </ul>
               </div>
+              </>
+              :
+                <>
+                  <div>
+                    <Text strong>{t("Type")}</Text>
+                      {unit?.type.map(t => <span>{t}</span>)}
+                  </div>
+                  <div>
+                    <Title level={5}>{t("Armures")} </Title>
+                      {unit?.armors?.armor_hack}
+                      {unit?.armors?.armor_pierce}
+                      {unit?.armors?.armor_crush}
+                  </div>
+                  <div>
+                    <Title level={5}>{t("Attacks")}</Title>
+                      {unit?.attacks?.hack}
+                      {unit?.attacks?.pierce}
+                      {unit?.attacks?.crush}
+                  </div>
+                </>         
+                }
             </Panel>
           </Collapse>
 
