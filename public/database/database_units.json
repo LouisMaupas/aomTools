@@ -42,7 +42,7 @@
       },
       {
         "id": 3,
-        "name_fr": "",
+        "name_fr": "Toxotes",
         "name_en": "Toxotes",
         "type": [2, 4],
         "civilization": 2,
@@ -62,7 +62,7 @@
       },
       {
         "id": 4,
-        "name_fr": "",
+        "name_fr": "Peltast",
         "name_en": "Peltast",
         "type": [2, 4],
         "civilization": 2,
@@ -82,7 +82,7 @@
       },
       {
         "id": 5,
-        "name_fr": "",
+        "name_fr": "Hippeus",
         "name_en": "Hippeus",
         "type": [3,4],
         "civilization": 2,
@@ -102,7 +102,7 @@
       },
       {
         "id": 6,
-        "name_fr": "",
+        "name_fr": "Prodromos",
         "name_en": "Prodromos",
         "type": [3,4],
         "civilization": 2,
@@ -134,7 +134,7 @@
           "armor_crush": 80
         },
         "attacks":  {
-          "hack": 15,
+          "hack": 17,
           "pierce": 0,
           "crush": 0,
           "attack_200": [5],
