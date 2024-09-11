@@ -2,10 +2,19 @@
   "Home": "Accueil",
   "Type unkown": "Type unkown",
   "unknown": "unknown",
+  "Types": "Types",
   "Faiblesses et Menaces": "Faiblesses et Menaces",
+  "Type d'attaque": "Type d'attaque",
+  "Faiblesses": "Faiblesses",
   "Utiliser les armes suivantes face à ": "Utiliser les armes suivantes face à ",
+  "Craint": "Craint",
   "Menaces": "Menaces",
+  "va massacrer": "va massacrer",
+  "Bonus contre": "Bonus contre",
   "trained at age": "entrainé à l'age",
+  "Loading ": {
+    "": "Loading"
+  },
   "Sélectionnez votre civilisation et dieu majeur": "Sélectionnez votre civilisation et dieu majeur",
   "Sélectionnez votre civilisation": "Sélectionnez votre civilisation"
 }

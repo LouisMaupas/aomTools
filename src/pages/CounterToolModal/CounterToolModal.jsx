@@ -96,15 +96,15 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
             <Col span={12}>
               <Card bordered={false}>
                 <Meta
-                  title="Type d'unité"
+                  title={t("Types")}
                   description={unit.type
                     .map((typeId) => (
                       <span key={typeId}>
-                        <img
+                        {/* <img
                           src={getUnitIcon(typeId)}
                           alt={`${typeId}`}
                           style={{ width: "24px", marginRight: "8px" }}
-                        />
+                        /> */}
                         {getTypeName(typeId)}
                       </span>
                     ))
@@ -125,7 +125,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
           <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
             <Panel header={t("Faiblesses et Menaces")} key="1">
               <div>
-                <Text strong>Type d'attaque : </Text>
+                <Text strong>{t("Type d'attaque")} : </Text>
                 {analysisResult?.attack_type &&
                   translateWeapons(
                     analysisResult?.attack_type,
@@ -133,7 +133,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
                   ).join(", ")}
               </div>
               <div>
-                <Title level={5}>Faiblesses</Title>
+                <Title level={5}>{t("Faiblesses")}</Title>
                 <ul>
                   <li>
                     <Text strong>
@@ -148,7 +148,9 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
                       ).join(", ")}
                   </li>
                   <li>
-                    <Text strong>{unit.name_fr} craint : </Text>
+                    <Text strong>
+                      {unit.name_fr} {t("Craint")} :{" "}
+                    </Text>
                     {analysisResult?.type_weakness
                       .map((typeId) => getTypeName(typeId))
                       .join(", ")}
@@ -159,12 +161,14 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
                 <Title level={5}>{t("Menaces")}</Title>
                 <ul>
                   <li>
-                    <Text strong>{unit.name_fr} va massacrer : </Text>
+                    <Text strong>
+                      {unit.name_fr} {t("va massacrer")} :{" "}
+                    </Text>
                     {analysisResult?.type_bonus
                       .map((typeId) => getTypeName(typeId))
                       .join(", ")}
                     <br />
-                    <Text strong>Bonus contre : </Text>
+                    <Text strong>{t("Bonus contre")} : </Text>
                     {analysisResult?.attack_bonus
                       .map((unitId) => getUnitName(unitId))
                       .join(", ")}
