@@ -4,6 +4,11 @@ const translations = {
     pierce: "pierce",
     crush: "crush",
   },
+  "fr-FR": {
+    hack: "épée",
+    pierce: "flèche",
+    crush: "écrasement",
+  },
   fr: {
     hack: "épée",
     pierce: "flèche",
@@ -41,7 +46,6 @@ const getWeaponFromArmors = (armor, lang = "en") => {
  * language.
  */
 const translateWeapons = (weapons, lang = "en") => {
-  console.log(weapons, lang);
   return weapons.map((element) => translations[lang][element] || "");
 };
 
