@@ -12,6 +12,7 @@ import {
 import useCounterToolStore from "../../store/counterTool";
 import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
+import { useTranslation } from "react-i18next";
 
 const { Meta } = Card;
 const { Title, Text } = Typography;
