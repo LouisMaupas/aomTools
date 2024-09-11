@@ -48,7 +48,6 @@ const App = () => {
   };
 
   const handleLanguageChange = (lng) => {
-    console.log("lang will be = ", lng);
     i18n.changeLanguage(lng).then(() => setLanguage(lng));
   };
 

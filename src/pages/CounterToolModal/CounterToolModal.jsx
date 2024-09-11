@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Row, Col, Card, Collapse, Typography } from "antd";
+import { Modal, Row, Col, Card, Collapse, Typography, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import analyzeUnit from "../../utils/analyzeUnit";
 import getBestUnits from "../../utils/getBestUnits";
@@ -81,7 +81,6 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       ? trainedAtArray.join(", ")
       : t("unknown");
   };
-
   return (
     <Modal
       title={unit.name_fr || unit.name_en}
@@ -120,71 +119,84 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
           </Row>
         </Panel>
       </Collapse>
-
-      <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-        <Panel header={t("Faiblesses et Menaces")} key="1">
-          <div>
-            <Text strong>Type d'attaque : </Text>
-            {analysisResult?.attack_type &&
-              translateWeapons(analysisResult?.attack_type, i18n.language).join(
-                ", "
-              )}
-          </div>
-          <div>
-            <Title level={5}>Faiblesses</Title>
-            <ul>
-              <li>
-                <Text strong>
-                  {t("Utiliser les armes suivantes face à ")}
-                  {unit.name_fr}
-                  {" : "}
-                </Text>
-                {analysisResult?.armor_weakness &&
-                  getWeaponFromArmors(
-                    analysisResult?.armor_weakness,
+      {analysisResult ? (
+        <>
+          <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
+            <Panel header={t("Faiblesses et Menaces")} key="1">
+              <div>
+                <Text strong>Type d'attaque : </Text>
+                {analysisResult?.attack_type &&
+                  translateWeapons(
+                    analysisResult?.attack_type,
                     i18n.language
                   ).join(", ")}
-              </li>
-              <li>
-                <Text strong>{unit.name_fr} craint : </Text>
-                {analysisResult?.type_weakness
-                  .map((typeId) => getTypeName(typeId))
-                  .join(", ")}
-              </li>
-            </ul>
-          </div>
-          <div>
-            <Title level={5}>{t("Menaces")}</Title>
-            <ul>
-              <li>
-                <Text strong>{unit.name_fr} va massacrer : </Text>
-                {analysisResult?.type_bonus
-                  .map((typeId) => getTypeName(typeId))
-                  .join(", ")}
-                <br />
-                <Text strong>Bonus contre : </Text>
-                {analysisResult?.attack_bonus
-                  .map((unitId) => getUnitName(unitId))
-                  .join(", ")}
-              </li>
-            </ul>
-          </div>
-        </Panel>
-      </Collapse>
+              </div>
+              <div>
+                <Title level={5}>Faiblesses</Title>
+                <ul>
+                  <li>
+                    <Text strong>
+                      {t("Utiliser les armes suivantes face à ")}
+                      {unit.name_fr}
+                      {" : "}
+                    </Text>
+                    {analysisResult?.armor_weakness &&
+                      getWeaponFromArmors(
+                        analysisResult?.armor_weakness,
+                        i18n.language
+                      ).join(", ")}
+                  </li>
+                  <li>
+                    <Text strong>{unit.name_fr} craint : </Text>
+                    {analysisResult?.type_weakness
+                      .map((typeId) => getTypeName(typeId))
+                      .join(", ")}
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <Title level={5}>{t("Menaces")}</Title>
+                <ul>
+                  <li>
+                    <Text strong>{unit.name_fr} va massacrer : </Text>
+                    {analysisResult?.type_bonus
+                      .map((typeId) => getTypeName(typeId))
+                      .join(", ")}
+                    <br />
+                    <Text strong>Bonus contre : </Text>
+                    {analysisResult?.attack_bonus
+                      .map((unitId) => getUnitName(unitId))
+                      .join(", ")}
+                  </li>
+                </ul>
+              </div>
+            </Panel>
+          </Collapse>
 
-      <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-        <Panel header={`Unités qui contre ${unit.name_fr}`} key="1">
-          <ul>
-            {bestUnits.map((bestUnit) => (
-              <li key={bestUnit.id}>
-                <Text strong>{t(bestUnit.name_fr || bestUnit.name_en)}</Text>{" "}
-                {t("trained at age")} {bestUnit.Age} {"on"}{" "}
-                <Text strong>{getTrainingBuildings(bestUnit.trained_at)}</Text>.
-              </li>
-            ))}
-          </ul>
-        </Panel>
-      </Collapse>
+          <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
+            <Panel header={`Unités qui contre ${unit.name_fr}`} key="1">
+              <ul>
+                {bestUnits.map((bestUnit) => (
+                  <li key={bestUnit.id}>
+                    <Text strong>
+                      {t(bestUnit.name_fr || bestUnit.name_en)}
+                    </Text>{" "}
+                    {t("trained at age")} {bestUnit.Age} {"on"}{" "}
+                    <Text strong>
+                      {getTrainingBuildings(bestUnit.trained_at)}
+                    </Text>
+                    .
+                  </li>
+                ))}
+              </ul>
+            </Panel>
+          </Collapse>
+        </>
+      ) : (
+        <div>
+          <Spin /> {t("Loading ....")}
+        </div>
+      )}
     </Modal>
   );
 };
