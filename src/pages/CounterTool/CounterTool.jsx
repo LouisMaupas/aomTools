@@ -32,6 +32,7 @@ const CounterTool = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredUnits, setFilteredUnits] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const { i18n, t } = useTranslation();
 
   const handleOpenModal = (unit) => {
     setSelectedUnit(unit);
@@ -59,7 +60,7 @@ const CounterTool = () => {
         const typesData = await typesResponse.json();
         setUnitTypes(typesData.unit_types);
       } catch (error) {
-        console.error("Erreur lors du chargement des données:", error);
+        console.error("Error loading data : ", error);
       }
     };
 
@@ -70,7 +71,7 @@ const CounterTool = () => {
     return typeIds
       .map((typeId) => {
         const type = unitTypes.find((t) => t.id === typeId);
-        return type ? type.name_fr : "Type inconnu";
+        return type ? type.name_fr : t("Type unkown");
       })
       .join(", ");
   };

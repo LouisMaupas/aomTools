@@ -7,15 +7,20 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n": "i18next 'src/**/*.{js,jsx}'"
   },
   "dependencies": {
     "antd": "^5.20.6",
     "antd-mobile": "^5.37.1",
+    "i18next": "^23.15.1",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.1",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.1",
     "react-router-dom": "^6.26.2",
     "zustand": "^4.5.5"
   },

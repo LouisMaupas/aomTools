@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, Card, Select, Typography } from "antd";
 import useStore from "../../store/store";
 import { useNavigate } from "react-router-dom";
-
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
 const { Title, Text } = Typography;
 const { Option } = Select;
 
@@ -13,6 +14,7 @@ const Home = () => {
   const [selectedCiv, setSelectedCiv] = useState(userInfos.civilization || "");
   const [selectedGod, setSelectedGod] = useState(userInfos.majorGod || "");
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     const fetchCivilizations = async () => {
@@ -59,7 +61,9 @@ const Home = () => {
   return (
     <div style={{ padding: "20px" }}>
       <Card style={{ textAlign: "center", borderRadius: "10px" }}>
-        <Title level={2}>Sélectionnez votre civilisation et dieu majeur</Title>
+        <Title level={2}>
+          {t("Sélectionnez votre civilisation et dieu majeur")}
+        </Title>
 
         <div style={{ marginBottom: "20px" }}>
           <Text strong>Sélectionnez votre civilisation :</Text>
