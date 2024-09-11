@@ -90,7 +90,7 @@ const CounterTool = () => {
 
   return (
     <div style={{ padding: "10px" }}>
-      <Title level={2}>Recherche d'unités</Title>
+      <Title level={2}>{t("Recherche d'unités")}</Title>
 
       <Collapse style={{ marginBottom: 20 }}>
         <Panel header="Informations sur les civilisations" key="1">
@@ -100,7 +100,7 @@ const CounterTool = () => {
                 <Text strong>Votre civilisation :</Text>
                 <div>{userCivilization || "Inconnue"}</div>
                 <div style={{ marginTop: 10 }}>
-                  <Text>Vous êtes à l'âge : {userAge}</Text>
+                  <Text>{t("Vous êtes à l'âge")} : {userAge}</Text>
                   <Button
                     type="primary"
                     block
@@ -110,13 +110,13 @@ const CounterTool = () => {
                     }
                     style={{ marginTop: 5 }}
                   >
-                    Avancer d'un âge
+                    {t("Avancer d'un âge")}
                   </Button>
                 </div>
               </Col>
 
               <Col span={12}>
-                <Text strong>Civilisations des adversaires :</Text>
+                <Text strong>{t("Civilisations des adversaires")} :</Text>
                 <ul style={{ paddingLeft: 20, marginTop: 5 }}>
                   {opponentCivilizations.map((civId, index) => {
                     const civ = allCivilizations.find((c) => c.id === civId);
@@ -136,7 +136,7 @@ const CounterTool = () => {
                 onChange={(e) => setDisplayOnlyUserUnits(e.target.checked)}
                 disabled={true}
               >
-                Afficher seulement les unités de votre civilisation
+                {t("Afficher seulement les unités de votre civilisation")}
               </Checkbox>
               <Checkbox
                 style={{ marginLeft: 15 }}
@@ -146,7 +146,7 @@ const CounterTool = () => {
                 }
                 disabled={true}
               >
-                Afficher seulement les unités de votre âge ou moins
+                {t("Afficher seulement les unités de votre âge ou moins")}
               </Checkbox>
             </div>
 
@@ -156,7 +156,7 @@ const CounterTool = () => {
                 onChange={(e) => setDisplayOnlyOpponentUnits(e.target.checked)}
                 disabled={true}
               >
-                Afficher seulement les unités des adversaires
+                {t("Afficher seulement les unités des adversaires")}
               </Checkbox>
             </div>
           </Card>
@@ -167,7 +167,7 @@ const CounterTool = () => {
         style={{ width: "100%", marginBottom: 20 }}
         value={searchValue}
         onChange={handleSearch}
-        placeholder="Recherchez une unité..."
+        placeholder={t("Recherchez une unité...")}
         options={filteredUnits.map((unit) => ({
           value: unit.name_fr || unit.name_en,
           label: unit.name_fr || unit.name_en,
