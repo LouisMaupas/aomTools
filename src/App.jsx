@@ -82,7 +82,7 @@ const App = () => {
           <Dropdown menu={{ items }} trigger={["click"]}>
             <a onClick={(e) => e.preventDefault()}>
               <Space>
-                <GlobalOutlined />
+                <GlobalOutlined style={{ color: "white" }} />
               </Space>
             </a>
           </Dropdown>
