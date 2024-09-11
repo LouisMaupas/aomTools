@@ -25,6 +25,7 @@ const App = () => {
   const location = useLocation();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const { i18n, t } = useTranslation();
+  const [language, setLanguage] = useState(i18n.language);
 
   useEffect(() => {
     setActiveTab(location.pathname);
@@ -46,12 +47,9 @@ const App = () => {
     closeDrawer();
   };
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
   const handleLanguageChange = (lng) => {
-    i18n.changeLanguage(lng);
+    console.log("lang will be = ", lng);
+    i18n.changeLanguage(lng).then(() => setLanguage(lng));
   };
 
   const items = [

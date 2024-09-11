@@ -66,7 +66,7 @@ const Home = () => {
         </Title>
 
         <div style={{ marginBottom: "20px" }}>
-          <Text strong>Sélectionnez votre civilisation :</Text>
+          <Text strong>{t("Sélectionnez votre civilisation")} :</Text>
           <Select
             style={{ width: "100%", marginTop: "10px" }}
             value={selectedCiv}
