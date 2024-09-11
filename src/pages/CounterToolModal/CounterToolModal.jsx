@@ -3,6 +3,7 @@ import { Modal, Row, Col, Card, Collapse, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 import analyzeUnit from "../../utils/analyzeUnit";
 import getBestUnits from "../../utils/getBestUnits";
+import { getWeaponFromArmors, translateWeapons } from "../../utils/misc";
 
 const { Meta } = Card;
 const { Panel } = Collapse;
@@ -24,7 +25,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
   const [unitTypes, setUnitTypes] = useState([]);
   const [allUnits, setAllUnits] = useState([]);
   const [bestUnits, setBestUnits] = useState([]);
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const fetchUnitTypes = async () => {
     const response = await fetch("/database/database_unit_types.json");
@@ -121,17 +122,28 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       </Collapse>
 
       <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-        <Panel header="Forces et Faiblesses" key="1">
+        <Panel header={t("Faiblesses et Menaces")} key="1">
           <div>
             <Text strong>Type d'attaque : </Text>
-            {analysisResult?.attack_type.join(", ")}
+            {analysisResult?.attack_type &&
+              translateWeapons(analysisResult?.attack_type, i18n.language).join(
+                ", "
+              )}
           </div>
           <div>
             <Title level={5}>Faiblesses</Title>
             <ul>
               <li>
-                <Text strong>{unit.name_fr} a une mauvaise armure de : </Text>
-                {analysisResult?.armor_weakness.join(", ")}
+                <Text strong>
+                  {t("Utiliser les armes suivantes face à ")}
+                  {unit.name_fr}
+                  {" : "}
+                </Text>
+                {analysisResult?.armor_weakness &&
+                  getWeaponFromArmors(
+                    analysisResult?.armor_weakness,
+                    i18n.language
+                  ).join(", ")}
               </li>
               <li>
                 <Text strong>{unit.name_fr} craint : </Text>
@@ -142,7 +154,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
             </ul>
           </div>
           <div>
-            <Title level={5}>Forces</Title>
+            <Title level={5}>{t("Menaces")}</Title>
             <ul>
               <li>
                 <Text strong>{unit.name_fr} va massacrer : </Text>
@@ -165,9 +177,9 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
           <ul>
             {bestUnits.map((bestUnit) => (
               <li key={bestUnit.id}>
-                <Text strong>{t(bestUnit.name_fr || bestUnit.name_en)}</Text> -{" "}
-                {t("trained_at")}: {getTrainingBuildings(bestUnit.trained_at)} -{" "}
-                {t("age")}: {bestUnit.Age}
+                <Text strong>{t(bestUnit.name_fr || bestUnit.name_en)}</Text>{" "}
+                {t("trained at age")} {bestUnit.Age} {"on"}{" "}
+                <Text strong>{getTrainingBuildings(bestUnit.trained_at)}</Text>.
               </li>
             ))}
           </ul>

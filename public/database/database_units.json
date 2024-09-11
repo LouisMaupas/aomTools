@@ -7,7 +7,7 @@
         "type": [1, 4],
         "civilization": 2,
         "Age": 2,
-        "trained_at": [],
+        "trained_at": ["Military Academy"],
         "armors":  {
           "armor_hack": 40,
           "armor_pierce": 15,
@@ -27,7 +27,7 @@
         "type": [1, 4],
         "civilization": 2,
         "Age": 3,
-        "trained_at": [],
+        "trained_at": ["Military Academy"],
         "armors":  {
           "armor_hack": 35,
           "armor_pierce": 10,
@@ -47,7 +47,7 @@
         "type": [2, 4],
         "civilization": 2,
         "Age": 2,
-        "trained_at": [],
+        "trained_at": ["Archery Range"],
         "armors":  {
           "armor_hack": 15,
           "armor_pierce": 15,
@@ -67,7 +67,7 @@
         "type": [2, 4],
         "civilization": 2,
         "Age": 3,
-        "trained_at": [],
+        "trained_at": ["Archery Range"],
         "armors":  {
           "armor_hack": 15,
           "armor_pierce": 40,
@@ -87,7 +87,7 @@
         "type": [3,4],
         "civilization": 2,
         "Age": 2,
-        "trained_at": [],
+        "trained_at": ["Stable"],
         "armors":  {
           "armor_hack": 10,
           "armor_pierce": 40,
@@ -107,7 +107,7 @@
         "type": [3,4],
         "civilization": 2,
         "Age": 3,
-        "trained_at": [],
+        "trained_at": ["Stable"],
         "armors":  {
           "armor_hack": 20,
           "armor_pierce": 10,
@@ -127,7 +127,7 @@
         "type": [5],
         "civilization": 2,
         "Age": 2,
-        "trained_at": [],
+        "trained_at": ["Temple"],
         "armors":  {
           "armor_hack": 60,
           "armor_pierce": 55,
@@ -148,7 +148,7 @@
         "type": [6],
         "civilization": 2,
         "Age": 1,
-        "trained_at": [],
+        "trained_at": ["Town Center", "Fortress "],
         "armors":  {
           "armor_hack": 35,
           "armor_pierce": 35,

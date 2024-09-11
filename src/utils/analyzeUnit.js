@@ -53,7 +53,6 @@ const analyzeUnit = async (unit) => {
   unit.type.forEach((typeId) => {
     const unitType = unitTypes.find((t) => t.id === typeId);
     if (unitType) {
-      // Ajouter les types faibles et forts
       unitType.weak_against.forEach((weakId) => typeWeakness.add(weakId));
       unitType.strong_against.forEach((strongId) => typeBonus.add(strongId));
     }
