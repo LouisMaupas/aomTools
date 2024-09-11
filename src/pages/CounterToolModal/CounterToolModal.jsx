@@ -81,6 +81,9 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       ? trainedAtArray.join(", ")
       : t("unknown");
   };
+
+  console.log(analysisResult);
+
   return (
     <Modal
       title={unit.name_fr || unit.name_en}
