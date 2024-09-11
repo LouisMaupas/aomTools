@@ -170,27 +170,6 @@
         }
       },
       {
-        "id": 8,
-        "name_fr": "Jason (Hero)",
-        "name_en": "Jason (Hero)",
-        "type": [6],
-        "civilization": 2,
-        "Age": 1,
-        "trained_at": ["Town Center", "Fortress "],
-        "armors":  {
-          "armor_hack": 35,
-          "armor_pierce": 35,
-          "armor_crush": 99
-        },
-        "attacks":  {
-          "hack": 2.3,
-          "pierce": 4,
-          "crush": 0,
-          "divine": 0,
-          "attack_900": [5]
-        }
-      },
-      {
         "id": 9,
         "name_fr": "Petrobolos",
         "name_en": "Petrobolos",
@@ -207,8 +186,7 @@
           "hack": 0,
           "pierce": 10,
           "crush": 44,
-          "divine": 0,
-          "attack_900": [5]
+          "divine": 0
         }
       },
       {
@@ -228,8 +206,7 @@
           "hack": 10,
           "pierce": 0,
           "crush": 44,
-          "divine": 0,
-          "attack_900": [5]
+          "divine": 0
         }
       },
       {
@@ -250,8 +227,7 @@
           "hack": 0,
           "pierce": 0,
           "crush": 0,
-          "divine": 9,
-          "attack_900": [5]
+          "divine": 9
         }
       },
       {
@@ -272,8 +248,7 @@
           "hack": 10,
           "pierce": 0,
           "crush": 0,
-          "divine": 9,
-          "attack_900": [5]
+          "divine": 9
         }
       },
       {
@@ -296,6 +271,178 @@
           "crush": 0,
           "divine": 9,
           "attack_800": [8]
+        }
+      },
+      {
+        "id": 14,
+        "name_fr": "Murmillo",
+        "name_en": "Murmillo",
+        "type": [1, 4],
+        "civilization": 4,
+        "Age": 2,
+        "trained_at": ["Military Barracks"],
+        "armors":  {
+          "armor_hack": 35,
+          "armor_pierce": 10,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 8,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0
+        }
+      },
+      {
+        "id": 15,
+        "name_fr": "Arcus",
+        "name_en": "Arcus",
+        "type": [2, 4],
+        "civilization": 4,
+        "Age": 3,
+        "trained_at": ["Military Barracks"],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 15,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 6,
+          "crush": 0,
+          "divine": 0
+        }
+      },
+      {
+        "id": 16,
+        "name_fr": "Katapeltes",
+        "name_en": "Katapeltes",
+        "type": [1, 4],
+        "civilization": 4,
+        "Age": 2,
+        "trained_at": ["Counter Barracks"],
+        "armors":  {
+          "armor_hack": 35,
+          "armor_pierce": 10,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 5,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_300": [3],
+          "attack_250": [9]
+        }
+      },
+      {
+        "id": 17,
+        "name_fr": "Turma",
+        "name_en": "Turma",
+        "type": [2, 4],
+        "civilization": 4,
+        "Age": 2,
+        "trained_at": ["Counter Barracks"],
+        "armors":  {
+          "armor_hack": 5,
+          "armor_pierce": 30,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 4,
+          "crush": 0,
+          "divine": 0,
+          "attack_400": [2]
+        }
+      },
+      {
+        "id": 18,
+        "name_fr": "Cheiroballista",
+        "name_en": "Cheiroballista",
+        "type": [9],
+        "civilization": 4,
+        "Age": 2,
+        "trained_at": ["Counter Barracks"],
+        "armors":  {
+          "armor_hack": 25,
+          "armor_pierce": 50,
+          "armor_crush": 75,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 4,
+          "crush": 0,
+          "divine": 0,
+          "attack_300": [10],   
+          "attack_250": [1]
+        }
+      },
+      {
+        "id": 19,
+        "name_fr": "Destroyer",
+        "name_en": "Destroyer",
+        "type": [1,4],
+        "civilization": 4,
+        "Age": 3,
+        "trained_at": ["Palace"],
+        "armors":  {
+          "armor_hack": 30,
+          "armor_pierce": 70,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 5,
+          "pierce": 4,
+          "crush": 0,
+          "divine": 0,
+          "attack_500": [8]
+        }
+      },
+      {
+        "id": 20,
+        "name_fr": "Fire Siphon",
+        "name_en": "Fire Siphon",
+        "type": [9],
+        "civilization": 4,
+        "Age": 4,
+        "trained_at": ["Palace"],
+        "armors":  {
+          "armor_hack": 5,
+          "armor_pierce": 96,
+          "armor_crush": 60
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 12,
+          "crush": 60,
+          "divine": 0
+        }
+      },
+      {
+        "id": 21,
+        "name_fr": "Fanatic",
+        "name_en": "Fanatic",
+        "type": [1,4],
+        "civilization": 4,
+        "Age": 4,
+        "trained_at": ["Palace"],
+        "armors":  {
+          "armor_hack": 40,
+          "armor_pierce": 25,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 10,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_200": [1,3]
         }
       }
     ]

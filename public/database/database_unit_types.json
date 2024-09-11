@@ -58,9 +58,16 @@
       },
       {
         "id": 9,
-        "name_en": "Arme de siège",
-        "name_fr": "siege weapon",
+        "name_en": "Siege weapon",
+        "name_fr": "Arme de siège",
         "strong_against": [8],
+        "weak_against": []
+      },
+      {
+        "id": 10,
+        "name_en": "Ship",
+        "name_fr": "Bâteau",
+        "strong_against": [],
         "weak_against": []
       }
     ]
