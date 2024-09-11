@@ -1,9 +1,23 @@
 {
   "Home": "Accueil",
-  "Type unkown": "Type unkown",
-  "unknown": "unknown",
+  "Type unkown": "Type inconnu",
+  "Recherche d'unités": "Recherche d'unités",
+  "Vous êtes à l'âge": "Vous êtes à l'âge",
+  "Avancer d'un âge": "Avancer d'un âge",
+  "Civilisations des adversaires": "Civilisations des adversaires",
+  "Afficher seulement les unités de votre civilisation": "Afficher seulement les unités de votre civilisation",
+  "Afficher seulement les unités de votre âge ou moins": "Afficher seulement les unités de votre âge ou moins",
+  "Afficher seulement les unités des adversaires": "Afficher seulement les unités des adversaires",
+  "Recherchez une unité": {
+    "": "Recherchez une unité"
+  },
+  "unknown": "inconnu",
   "Types": "Types",
+  "Âge": "Âge",
+  "Trained at": "Entraîné à",
   "Faiblesses et Menaces": "Faiblesses et Menaces",
+  "Summary": "Résumé",
+  "Detail": "Détail",
   "Type d'attaque": "Type d'attaque",
   "Faiblesses": "Faiblesses",
   "Utiliser les armes suivantes face à ": "Utiliser les armes suivantes face à ",
@@ -11,10 +25,22 @@
   "Menaces": "Menaces",
   "va massacrer": "va massacrer",
   "Bonus contre": "Bonus contre",
-  "trained at age": "entrainé à l'age",
+  "Type": "Type",
+  "Armures": "Armures",
+  "Hack Armor": "Armure de piratage",
+  "Pierce Armor": "Armure perforante",
+  "Crush Armor": "Armure d'écrasement",
+  "Attaques": "Attaques",
+  "Hack Damage": "Dégâts de piratage",
+  "Pierce Damage": "Dégâts perforants",
+  "Crush Damage": "Dégâts d'écrasement",
+  "Bonus Damage": "Dégâts bonus",
+  "Unknown Type": "Type inconnu",
+  "trained at age": "Entraîné à l'âge",
   "Loading ": {
-    "": "Loading"
+    "": "Chargement"
   },
   "Sélectionnez votre civilisation et dieu majeur": "Sélectionnez votre civilisation et dieu majeur",
-  "Sélectionnez votre civilisation": "Sélectionnez votre civilisation"
+  "Sélectionnez votre civilisation": "Sélectionnez votre civilisation",
+  "Enregistrer et continuer": "Enregistrer et continuer"
 }

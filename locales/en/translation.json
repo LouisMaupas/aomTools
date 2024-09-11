@@ -1,9 +1,23 @@
 {
   "Home": "Home",
   "Type unkown": "Unknown type",
+  "Recherche d'unités": "Unit search",
+  "Vous êtes à l'âge": "You are at age",
+  "Avancer d'un âge": "Advance an age",
+  "Civilisations des adversaires": "Opponent's civilizations",
+  "Afficher seulement les unités de votre civilisation": "Show only units from your civilization",
+  "Afficher seulement les unités de votre âge ou moins": "Show only units of your age or lower",
+  "Afficher seulement les unités des adversaires": "Show only opponent's units",
+  "Recherchez une unité": {
+    "": "Search for a unit"
+  },
   "unknown": "Unknown",
   "Types": "Types",
+  "Âge": "Age",
+  "Trained at": "Trained at",
   "Faiblesses et Menaces": "Weaknesses and Threats",
+  "Summary": "Summary",
+  "Detail": "Detail",
   "Type d'attaque": "Attack Type",
   "Faiblesses": "Weaknesses",
   "Utiliser les armes suivantes face à ": "Use the following weapons against ",
@@ -11,10 +25,22 @@
   "Menaces": "Threats",
   "va massacrer": "will massacre",
   "Bonus contre": "Bonus against",
+  "Type": "Type",
+  "Armures": "Armors",
+  "Hack Armor": "Hack Armor",
+  "Pierce Armor": "Pierce Armor",
+  "Crush Armor": "Crush Armor",
+  "Attaques": "Attacks",
+  "Hack Damage": "Hack Damage",
+  "Pierce Damage": "Pierce Damage",
+  "Crush Damage": "Crush Damage",
+  "Bonus Damage": "Bonus Damage",
+  "Unknown Type": "Unknown Type",
   "trained at age": "Trained at age",
   "Loading ": {
-    "Loading": "Loading"
+    "": "Loading"
   },
   "Sélectionnez votre civilisation et dieu majeur": "Select your civilization and major god",
-  "Sélectionnez votre civilisation": "Select your civilization"
+  "Sélectionnez votre civilisation": "Select your civilization",
+  "Enregistrer et continuer": "Save and continue"
 }
