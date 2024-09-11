@@ -23,18 +23,19 @@ const analyzeUnit = async (unit) => {
     (key) => armorValues[key] === minArmorValue
   );
 
-  // Partie 3: Déterminer la plus grande attaque entre hack, pierce, crush
+  // Partie 3: Déterminer la plus grande attaque entre hack, pierce, crush et divine
   const attacks = unit.attacks;
   const attackValues = {
     hack: attacks.hack,
     pierce: attacks.pierce,
     crush: attacks.crush,
+    divine: attacks.divine
   };
 
-  const maxAttackValue = Math.max(...Object.values(attackValues));
+  const maxAttackValue = attackValues.divine ? attackValues.divine : Math.max(...Object.values(attackValues));
 
   // Trouver les types d'attaques avec la valeur maximale
-  const attackType = Object.keys(attackValues).filter(
+  const attackType =  attackValues.divine ? Object.keys(attackValues) === "divine" : Object.keys(attackValues).filter(
     (key) => attackValues[key] === maxAttackValue
   );
 

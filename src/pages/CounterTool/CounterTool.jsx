@@ -33,7 +33,7 @@ const CounterTool = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredUnits, setFilteredUnits] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   const handleOpenModal = (unit) => {
     setSelectedUnit(unit);

@@ -17,6 +17,7 @@
           "hack": 7.5,
           "pierce": 0,
           "crush": 0,
+          "divine": 0,
           "attack_125": [3]
         }
       },
@@ -37,6 +38,7 @@
           "hack": 6,
           "pierce": 0,
           "crush": 0,
+          "divine": 0,
           "attack_500": [1]
         }
       },
@@ -57,6 +59,7 @@
           "hack": 0,
           "pierce": 6,
           "crush": 0,
+          "divine": 0,
           "attack_125": [1]
         }
       },
@@ -77,6 +80,7 @@
           "hack": 0,
           "pierce": 5,
           "crush": 0,
+          "divine": 0,
           "attack_400": [2]
         }
       },
@@ -97,6 +101,7 @@
           "hack": 10,
           "pierce": 0,
           "crush": 0,
+          "divine": 0,
           "attack_150": [2]
         }
       },
@@ -117,6 +122,7 @@
           "hack": 8,
           "pierce": 0,
           "crush": 0,
+          "divine": 0,
           "attack_350": [3]
         }
       },
@@ -137,6 +143,7 @@
           "hack": 17,
           "pierce": 0,
           "crush": 0,
+          "divine": 0,
           "attack_200": [5],
           "attack_50": [6]
         }
@@ -158,7 +165,137 @@
           "hack": 2.3,
           "pierce": 4,
           "crush": 0,
+          "divine": 0,
           "attack_900": [5]
+        }
+      },
+      {
+        "id": 8,
+        "name_fr": "Jason (Hero)",
+        "name_en": "Jason (Hero)",
+        "type": [6],
+        "civilization": 2,
+        "Age": 1,
+        "trained_at": ["Town Center", "Fortress "],
+        "armors":  {
+          "armor_hack": 35,
+          "armor_pierce": 35,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 2.3,
+          "pierce": 4,
+          "crush": 0,
+          "divine": 0,
+          "attack_900": [5]
+        }
+      },
+      {
+        "id": 9,
+        "name_fr": "Petrobolos",
+        "name_en": "Petrobolos",
+        "type": [9],
+        "civilization": 2,
+        "Age": 3,
+        "trained_at": ["Fortress"],
+        "armors":  {
+          "armor_hack": 30,
+          "armor_pierce": 90,
+          "armor_crush": 50
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 10,
+          "crush": 44,
+          "divine": 0,
+          "attack_900": [5]
+        }
+      },
+      {
+        "id": 10,
+        "name_fr": "Helepolis",
+        "name_en": "Helepolis",
+        "type": [9],
+        "civilization": 2,
+        "Age": 4,
+        "trained_at": ["Fortress"],
+        "armors":  {
+          "armor_hack": 5,
+          "armor_pierce": 90,
+          "armor_crush": 50
+        },
+        "attacks":  {
+          "hack": 10,
+          "pierce": 0,
+          "crush": 44,
+          "divine": 0,
+          "attack_900": [5]
+        }
+      },
+      {
+        "id": 11,
+        "name_fr": "Myrmidon",
+        "name_en": "Myrmidon",
+        "type": [1,4],
+        "civilization": 2,
+        "Age": 4,
+        "trained_at": ["Fortress"],
+        "armors":  {
+          "armor_hack": 40,
+          "armor_pierce": 20,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 9,
+          "attack_900": [5]
+        }
+      },
+      {
+        "id": 12,
+        "name_fr": "Hetairos",
+        "name_en": "Hetairos",
+        "type": [3, 4],
+        "civilization": 2,
+        "Age": 4,
+        "trained_at": ["Stable","Fortress"],
+        "armors":  {
+          "armor_hack": 5,
+          "armor_pierce": 40,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 10,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 9,
+          "attack_900": [5]
+        }
+      },
+      {
+        "id": 13,
+        "name_fr": "Gastraphetoros",
+        "name_en": "Gastraphetoros",
+        "type": [2, 4],
+        "civilization": 2,
+        "Age": 4,
+        "trained_at": ["Fortress"],
+        "armors":  {
+          "armor_hack": 5,
+          "armor_pierce": 15,
+          "armor_crush": 99,
+          "divine": 0
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 14,
+          "crush": 0,
+          "divine": 9,
+          "attack_800": [8]
         }
       }
     ]
