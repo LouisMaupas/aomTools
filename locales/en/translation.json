@@ -1,6 +1,11 @@
 {
   "Home": "Home",
-  "Type unkown": "Type unkown",
+  "Type unkown": "Unknown type",
+  "unknown": "Unknown",
+  "Faiblesses et Menaces": "Weaknesses and Threats",
+  "Utiliser les armes suivantes face à ": "Use the following weapons against ",
+  "Menaces": "Threats",
+  "trained at age": "Trained at age",
   "Sélectionnez votre civilisation et dieu majeur": "Select your civilization and major god",
   "Sélectionnez votre civilisation": "Select your civilization"
 }
