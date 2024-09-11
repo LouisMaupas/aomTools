@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Row, Col, Card, Collapse, Typography } from "antd";
+import { useTranslation } from "react-i18next";
 import analyzeUnit from "../../utils/analyzeUnit";
+import getBestUnits from "../../utils/getBestUnits";
 
 const { Meta } = Card;
 const { Panel } = Collapse;
@@ -21,6 +23,8 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
   const [analysisResult, setAnalysisResult] = useState();
   const [unitTypes, setUnitTypes] = useState([]);
   const [allUnits, setAllUnits] = useState([]);
+  const [bestUnits, setBestUnits] = useState([]);
+  const { t } = useTranslation();
 
   const fetchUnitTypes = async () => {
     const response = await fetch("/database/database_unit_types.json");
@@ -50,6 +54,17 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
     }
   }, [unit]);
 
+  useEffect(() => {
+    const fetchBestUnits = async () => {
+      if (unit) {
+        const bestUnitsResult = await getBestUnits(unit, 5);
+        setBestUnits(bestUnitsResult);
+      }
+    };
+
+    fetchBestUnits();
+  }, [unit]);
+
   const getTypeName = (typeId) => {
     const type = unitTypes.find((t) => t.id === typeId);
     return type ? type.name_fr || type.name_en : `Type ${typeId}`;
@@ -58,6 +73,12 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
   const getUnitName = (unitId) => {
     const u = allUnits.find((unit) => unit.id === unitId);
     return u ? u.name_fr || u.name_en : `Unité ${unitId}`;
+  };
+
+  const getTrainingBuildings = (trainedAtArray) => {
+    return trainedAtArray && trainedAtArray.length
+      ? trainedAtArray.join(", ")
+      : t("unknown");
   };
 
   return (
@@ -141,9 +162,15 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
 
       <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
         <Panel header={`Unités qui contre ${unit.name_fr}`} key="1">
-          <span>
-            <i>En cours d'implémentation</i>
-          </span>
+          <ul>
+            {bestUnits.map((bestUnit) => (
+              <li key={bestUnit.id}>
+                <Text strong>{t(bestUnit.name_fr || bestUnit.name_en)}</Text> -{" "}
+                {t("trained_at")}: {getTrainingBuildings(bestUnit.trained_at)} -{" "}
+                {t("age")}: {bestUnit.Age}
+              </li>
+            ))}
+          </ul>
         </Panel>
       </Collapse>
     </Modal>
