@@ -889,6 +889,27 @@
           "divine": 0, 
           "attack_300": [10]
         }
+      },
+      {
+        "id": 43,
+        "name_fr": "Contarius",
+        "name_en": "Contarius",
+        "type": [3,4],
+        "civilization": 4,
+        "Age": 3,
+        "trained_at": ["Military Barracks"],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 25,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 10,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0, 
+          "attack_120": [2]
+        }
       }
     ]
   }
