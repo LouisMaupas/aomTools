@@ -654,6 +654,241 @@
           "divine": 0,
           "attack_250": [10]
         }
+      },
+      {
+        "id": 32,
+        "name_fr": "Berserk ",
+        "name_en": "Berserk ",
+        "type": [1,4],
+        "civilization": 3,
+        "Age": 1,
+        "trained_at": ["Town Center","Longhouse"],
+        "armors":  {
+          "armor_hack": 30,
+          "armor_pierce": 10,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 9,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0
+        }
+      },
+      {
+        "id": 33,
+        "name_fr": "Hersir ",
+        "name_en": "Hersir ",
+        "type": [1,4],
+        "civilization": 3,
+        "Age": 1,
+        "trained_at": ["Town Center","Longhouse"],
+        "armors":  {
+          "armor_hack": 20,
+          "armor_pierce": 15,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 8.8,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_600": [5,11],
+          "attack_300": [11]
+        }
+      },
+      {
+        "id": 34,
+        "name_fr": "Nidhogg ",
+        "name_en": "Nidhogg ",
+        "type": [5,12],
+        "civilization": 3,
+        "Age": 4,
+        "trained_at": ["God power"],
+        "armors":  {
+          "armor_hack": 50,
+          "armor_pierce": 50,
+          "armor_crush": 80
+        },
+        "attacks":  {
+          "hack": 40,
+          "pierce": 0,
+          "crush": 40,
+          "divine": 0,
+          "attack_10": [6]
+        }
+      },
+      {
+        "id": 35,
+        "name_fr": "Hirdman ",
+        "name_en": "Hirdman ",
+        "type": [1,4],
+        "civilization": 3,
+        "Age": 2,
+        "trained_at": ["Longhouse"],
+        "armors":  {
+          "armor_hack": 35,
+          "armor_pierce": 5,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 4.4,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0, 
+          "attack_400": [3]
+        }
+      },
+      {
+        "id": 36,
+        "name_fr": "Throwing Axeman ",
+        "name_en": "Throwing Axeman ",
+        "type": [1,2,4],
+        "civilization": 3,
+        "Age": 2,
+        "trained_at": ["Longhouse"],
+        "armors":  {
+          "armor_hack": 30,
+          "armor_pierce": 10,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 6,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0, 
+          "attack_300": [1]
+        }
+      },
+      {
+        "id": 37,
+        "name_fr": "Godi ",
+        "name_en": "Godi ",
+        "type": [1,4],
+        "civilization": 3,
+        "Age": 3,
+        "trained_at": ["Great Hall"],
+        "armors":  {
+          "armor_hack": 20,
+          "armor_pierce": 15,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 5.67,
+          "crush": 0,
+          "divine": 0, 
+          "attack_550": [5]
+        }
+      },
+      {
+        "id": 38,
+        "name_fr": "Raiding Cavalry ",
+        "name_en": "Raiding Cavalry ",
+        "type": [3,4],
+        "civilization": 3,
+        "Age": 2,
+        "trained_at": ["Longhouse"],
+        "armors":  {
+          "armor_hack": 20,
+          "armor_pierce": 35,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 8,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0, 
+          "attack_200": [9], 
+          "attack_125": [2],
+          "bonus_against_specific_unit" : {
+            "attack_175": [36]
+          }
+        }
+      },
+      {
+        "id": 39,
+        "name_fr": "Jarl",
+        "name_en": "Jarl",
+        "type": [3,4],
+        "civilization": 3,
+        "Age": 3,
+        "trained_at": ["Town Center","Longhouse"],
+        "armors":  {
+          "armor_hack": 20,
+          "armor_pierce": 35,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 9,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0, 
+          "attack_400": [5], 
+          "attack_300": [11]
+        }
+      },
+      {
+        "id": 40,
+        "name_fr": "Huskarl",
+        "name_en": "Huskarl",
+        "type": [1,4],
+        "civilization": 3,
+        "Age": 3,
+        "trained_at": ["Hill Fort"],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 50,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 8,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0, 
+          "attack_200": [2]
+        }
+      },
+      {
+        "id": 41,
+        "name_fr": "Portable Ram ",
+        "name_en": "Portable Ram ",
+        "type": [9],
+        "civilization": 3,
+        "Age": 3,
+        "trained_at": ["Hill Fort"],
+        "armors":  {
+          "armor_hack": 10,
+          "armor_pierce": 99,
+          "armor_crush": 90
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 0,
+          "crush": 40,
+          "divine": 0
+        }
+      },
+      {
+        "id": 42,
+        "name_fr": "Ballista",
+        "name_en": "Ballista",
+        "type": [9],
+        "civilization": 3,
+        "Age": 4,
+        "trained_at": ["ill Fort"],
+        "armors":  {
+          "armor_hack": 20,
+          "armor_pierce": 80,
+          "armor_crush": 90
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 9,
+          "crush": 4,
+          "divine": 0, 
+          "attack_300": [10]
+        }
       }
     ]
   }

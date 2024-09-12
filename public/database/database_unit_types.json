@@ -76,6 +76,13 @@
         "name_fr": "Animal de Set",
         "strong_against": [],
         "weak_against": [6]
+      },
+      {
+        "id": 12,
+        "name_en": "Flying unit",
+        "name_fr": "Unité volante",
+        "strong_against": [1,3,7],
+        "weak_against": [2]
       }
     ]
   }
