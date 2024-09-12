@@ -5,7 +5,7 @@
         "name_fr": "Hoplite",
         "name_en": "Hoplite",
         "type": [1, 4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 2,
         "trained_at": ["Military Academy"],
         "armors":  {
@@ -26,7 +26,7 @@
         "name_fr": "Hypaspist",
         "name_en": "Hypaspist",
         "type": [1, 4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 3,
         "trained_at": ["Military Academy"],
         "armors":  {
@@ -47,7 +47,7 @@
         "name_fr": "Toxotes",
         "name_en": "Toxotes",
         "type": [2, 4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 2,
         "trained_at": ["Archery Range"],
         "armors":  {
@@ -68,7 +68,7 @@
         "name_fr": "Peltast",
         "name_en": "Peltast",
         "type": [2, 4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 3,
         "trained_at": ["Archery Range"],
         "armors":  {
@@ -89,7 +89,7 @@
         "name_fr": "Hippeus",
         "name_en": "Hippeus",
         "type": [3,4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 2,
         "trained_at": ["Stable"],
         "armors":  {
@@ -110,7 +110,7 @@
         "name_fr": "Prodromos",
         "name_en": "Prodromos",
         "type": [3,4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 3,
         "trained_at": ["Stable"],
         "armors":  {
@@ -131,7 +131,7 @@
         "name_fr": "Minotaur",
         "name_en": "Minotaur",
         "type": [5],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 2,
         "trained_at": ["Temple"],
         "armors":  {
@@ -153,7 +153,7 @@
         "name_fr": "Jason (Hero)",
         "name_en": "Jason (Hero)",
         "type": [6],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 1,
         "trained_at": ["Town Center", "Fortress "],
         "armors":  {
@@ -174,7 +174,7 @@
         "name_fr": "Petrobolos",
         "name_en": "Petrobolos",
         "type": [9],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 3,
         "trained_at": ["Fortress"],
         "armors":  {
@@ -194,7 +194,7 @@
         "name_fr": "Helepolis",
         "name_en": "Helepolis",
         "type": [9],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 4,
         "trained_at": ["Fortress"],
         "armors":  {
@@ -214,7 +214,7 @@
         "name_fr": "Myrmidon",
         "name_en": "Myrmidon",
         "type": [1,4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 4,
         "trained_at": ["Fortress"],
         "armors":  {
@@ -235,7 +235,7 @@
         "name_fr": "Hetairos",
         "name_en": "Hetairos",
         "type": [3, 4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 4,
         "trained_at": ["Stable","Fortress"],
         "armors":  {
@@ -256,7 +256,7 @@
         "name_fr": "Gastraphetoros",
         "name_en": "Gastraphetoros",
         "type": [2, 4],
-        "civilization": 2,
+        "civilization": 1,
         "Age": 4,
         "trained_at": ["Fortress"],
         "armors":  {
@@ -443,6 +443,216 @@
           "crush": 0,
           "divine": 0,
           "attack_200": [1,3]
+        }
+      },
+      {
+        "id": 22,
+        "name_fr": "Pretre",
+        "name_en": "Priest",
+        "type": [],
+        "civilization": 2,
+        "Age": 1,
+        "trained_at": ["Town Center", "Temple"],
+        "armors":  {
+          "armor_hack": 10,
+          "armor_pierce": 1,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 3,
+          "crush": 0,
+          "divine": 0,
+          "attack_900": [5],
+          "attack_250": [11]
+        }
+      },
+      {
+        "id": 23,
+        "name_fr": "Anubite",
+        "name_en": "Anubite",
+        "type": [5],
+        "civilization": 2,
+        "Age": 2,
+        "trained_at": ["Temple"],
+        "armors":  {
+          "armor_hack": 60,
+          "armor_pierce": 55,
+          "armor_crush": 80
+        },
+        "attacks":  {
+          "hack": 11,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_300": [5],
+          "attack_50": [6]
+        }
+      },
+      {
+        "id": 24,
+        "name_fr": "Lancier",
+        "name_en": "Spearman",
+        "type": [1,4],
+        "civilization": 2,
+        "Age": 2,
+        "trained_at": ["Barracks"],
+        "armors":  {
+          "armor_hack": 40,
+          "armor_pierce": 15,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 6,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_175": [3]
+        }
+      },
+      {
+        "id": 25,
+        "name_fr": "Homme à Hache",
+        "name_en": "Axeman",
+        "type": [1,4],
+        "civilization": 2,
+        "Age": 2,
+        "trained_at": ["Barracks"],
+        "armors":  {
+          "armor_hack": 40,
+          "armor_pierce": 15,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 6,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_175": [3]
+        }
+      },
+      {
+        "id": 26,
+        "name_fr": "Frondeur",
+        "name_en": "Slinger",
+        "type": [2,4],
+        "civilization": 2,
+        "Age": 2,
+        "trained_at": ["Barracks"],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 35,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 3,
+          "crush": 0,
+          "divine": 0,
+          "attack_300": [2] 
+        }
+      },
+      {
+        "id": 27,
+        "name_fr": "Archer à char",
+        "name_en": "Chariot Archer",
+        "type": [2,3,4],
+        "civilization": 2,
+        "Age": 3,
+        "trained_at": ["Migdol Stronghold"],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 20,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 10,
+          "crush": 0,
+          "divine": 0
+        }
+      },
+      {
+        "id": 28,
+        "name_fr": "Chevaucheur de chameaux",
+        "name_en": "Camel Rider",
+        "type": [3,4],
+        "civilization": 2,
+        "Age": 3,
+        "trained_at": ["Migdol Stronghold"],
+        "armors":  {
+          "armor_hack": 15,
+          "armor_pierce": 35,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 8,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_200": [2]
+        }
+      },
+      {
+        "id": 29,
+        "name_fr": "Elephant de guerre",
+        "name_en": "War Elephant",
+        "type": [3,4],
+        "civilization": 2,
+        "Age": 3,
+        "trained_at": ["Migdol Stronghold"],
+        "armors":  {
+          "armor_hack": 25,
+          "armor_pierce": 40,
+          "armor_crush": 99
+        },
+        "attacks":  {
+          "hack": 20,
+          "pierce": 0,
+          "crush": 0,
+          "divine": 0,
+          "attack_300": [8]
+        }
+      },
+      {
+        "id": 30,
+        "name_fr": "Tour de siège",
+        "name_en": "Siege Tower",
+        "type": [8],
+        "civilization": 2,
+        "Age": 3,
+        "trained_at": ["Siege Works"],
+        "armors":  {
+          "armor_hack": 5,
+          "armor_pierce": 90,
+          "armor_crush": 50
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 3,
+          "crush": 200,
+          "divine": 0
+        }
+      },
+      {
+        "id": 31,
+        "name_fr": "Catapulte",
+        "name_en": "Catapult",
+        "type": [8],
+        "civilization": 2,
+        "Age": 4,
+        "trained_at": ["Siege Works"],
+        "armors":  {
+          "armor_hack": 30,
+          "armor_pierce": 90,
+          "armor_crush": 50
+        },
+        "attacks":  {
+          "hack": 0,
+          "pierce": 40,
+          "crush": 200,
+          "divine": 0,
+          "attack_250": [10]
         }
       }
     ]

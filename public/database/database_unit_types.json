@@ -69,6 +69,13 @@
         "name_fr": "Bâteau",
         "strong_against": [],
         "weak_against": []
+      },
+      {
+        "id": 11,
+        "name_en": "Animal of Set",
+        "name_fr": "Animal de Set",
+        "strong_against": [],
+        "weak_against": [6]
       }
     ]
   }
