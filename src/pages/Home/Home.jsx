@@ -47,13 +47,11 @@ const Home = () => {
     };
     setUserInfos(updatedUserInfos);
     localStorage.setItem("userInfos", JSON.stringify(updatedUserInfos));
-    navigate("/counter-tool");
+    navigate("/counter-tool-select");
   };
 
   const filteredGods = majorGods.filter((god) => {
-    const selectedCivObj = civilizations.find(
-      (civ) => civ.name === selectedCiv
-    );
+    const selectedCivObj = civilizations.find((civ) => civ.id === selectedCiv);
     return selectedCivObj ? god.civilization === selectedCivObj.id : false;
   });
 
@@ -73,7 +71,7 @@ const Home = () => {
             placeholder="Choisir une civilisation"
           >
             {civilizations.map((civ) => (
-              <Option key={civ.id} value={civ.name}>
+              <Option key={civ.id} value={civ.id}>
                 {civ.name_fr || civ.name_en}
               </Option>
             ))}
@@ -90,7 +88,7 @@ const Home = () => {
               placeholder="Choisir un dieu majeur"
             >
               {filteredGods.map((god) => (
-                <Option key={god.id} value={god.name}>
+                <Option key={god.id} value={god.id}>
                   {god.name}
                 </Option>
               ))}
