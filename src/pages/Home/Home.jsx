@@ -42,8 +42,8 @@ const Home = () => {
 
   const handleSave = () => {
     const updatedUserInfos = {
-      civilization: selectedCiv,
-      majorGod: selectedGod,
+      fav_civilization: selectedCiv,
+      fav_majorGod: selectedGod,
     };
     setUserInfos(updatedUserInfos);
     localStorage.setItem("userInfos", JSON.stringify(updatedUserInfos));

@@ -16,14 +16,14 @@ const CounterToolSelect = () => {
     removeOpponentCivilization,
     updateOpponentCivilization,
     userInfos,
-  } = useStore(); 
+  } = useStore();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCivilizations = async () => {
       try {
-        const response = await fetch("/database/database_civ.json"); 
+        const response = await fetch("/database/database_civ.json");
         const data = await response.json();
         setCivilizations(data.civilizations);
       } catch (error) {
@@ -35,18 +35,40 @@ const CounterToolSelect = () => {
   }, []);
 
   useEffect(() => {
-    if (userInfos?.civilization) {
+    const localStorageUserInfos = localStorage.getItem("userInfos");
+    if (localStorageUserInfos?.fav_civilization) {
+      setUserCivilization(userInfos.fav_civilization);
+    } else if (userInfos?.civilization) {
       setUserCivilization(userInfos.civilization);
     }
-  }, [userInfos, setUserCivilization]);
+  }, [userInfos]);
 
   const handleConfirmSelection = () => {
     if (opponentCivilizations.length === 0 || !userCivilization) {
-      alert("Veuillez sélectionner au moins une civilisation d'adversaire et la vôtre.");
+      alert(
+        "Veuillez sélectionner au moins une civilisation d'adversaire et la vôtre."
+      );
     } else {
       navigate("/counter-tool");
     }
   };
+
+  const setCurrentCivilisation = () => {
+    const localStorageUserInfos = localStorage.getItem("userInfos");
+    const user_civ = localStorageUserInfos.fav_civilization;
+    const current_civilizations = {
+      user: user_civ, // FIXME vérifier que l'user n'a pas selectionner une courante civ si il en a pas alors on pernds localstorage
+      opponents: [],
+    };
+    localStorage.setItem(
+      "current_civilisations",
+      JSON.stringify(current_civilizations)
+    );
+  };
+
+  useEffect(() => {
+    setCurrentCivilisation();
+  }, []);
 
   return (
     <div style={{ padding: "20px" }}>
@@ -56,7 +78,9 @@ const CounterToolSelect = () => {
             <Title level={2}>Sélection des civilisations</Title>
 
             <div style={{ marginBottom: "20px" }}>
-              <Text strong>Sélectionnez les civilisations des adversaires :</Text>
+              <Text strong>
+                Sélectionnez les civilisations des adversaires :
+              </Text>
               {opponentCivilizations.map((civilization, index) => (
                 <div key={index} style={{ margin: "10px 0" }}>
                   <Row gutter={[16, 16]}>
@@ -110,7 +134,7 @@ const CounterToolSelect = () => {
               >
                 <Option value="">Sélectionner une civilisation</Option>
                 {civilizations.map((civ) => (
-                  <Option key={civ.id} value={civ.name_fr}>
+                  <Option key={civ.id} value={civ.id}>
                     {civ.name_fr}
                   </Option>
                 ))}
