@@ -8,10 +8,18 @@ const { Option } = Select;
 
 const Home = () => {
   const { userInfos, setUserInfos } = useStore();
+
+  const storedUserInfos = JSON.parse(localStorage.getItem("userInfos")) || {};
   const [civilizations, setCivilizations] = useState([]);
   const [majorGods, setMajorGods] = useState([]);
-  const [selectedCiv, setSelectedCiv] = useState(userInfos.civilization || "");
-  const [selectedGod, setSelectedGod] = useState(userInfos.majorGod || "");
+
+  const [selectedCiv, setSelectedCiv] = useState(
+    storedUserInfos.fav_civilization || ""
+  );
+  const [selectedGod, setSelectedGod] = useState(
+    storedUserInfos.fav_majorGod || ""
+  );
+
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -22,7 +30,7 @@ const Home = () => {
         const civData = await civResponse.json();
         setCivilizations(civData.civilizations);
       } catch (error) {
-        console.error("Erreur lors du chargement des civilisations:", error);
+        console.error("error loading civilizations", error);
       }
     };
 
@@ -32,7 +40,7 @@ const Home = () => {
         const godData = await godResponse.json();
         setMajorGods(godData.major_gods);
       } catch (error) {
-        console.error("Erreur lors du chargement des dieux majeurs:", error);
+        console.error("error loading major gods", error);
       }
     };
 
@@ -68,7 +76,7 @@ const Home = () => {
             style={{ width: "100%", marginTop: "10px" }}
             value={selectedCiv}
             onChange={(value) => setSelectedCiv(value)}
-            placeholder="Choisir une civilisation"
+            placeholder={t("Choisir une civilisation")}
           >
             {civilizations.map((civ) => (
               <Option key={civ.id} value={civ.id}>
