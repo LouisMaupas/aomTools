@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react";
-import { Modal, Row, Col, Card, Collapse, Typography, Spin, Space, Switch } from "antd";
+import {
+  Modal,
+  Row,
+  Col,
+  Card,
+  Collapse,
+  Typography,
+  Spin,
+  Switch,
+  Tooltip,
+} from "antd";
 import { useTranslation } from "react-i18next";
 import analyzeUnit from "../../utils/analyzeUnit";
 import getBestUnits from "../../utils/getBestUnits";
+import { InfoCircleOutlined } from "@ant-design/icons";
 import { getWeaponFromArmors, translateWeapons } from "../../utils/misc";
 
 const { Meta } = Card;
@@ -40,9 +51,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
     setAllUnits(data.units);
   };
 
-  useEffect(()=>{
-
-  }, [switchChecked])
+  useEffect(() => {}, [switchChecked]);
 
   useEffect(() => {
     fetchUnitTypes();
@@ -86,7 +95,7 @@ const CounterToolModal = ({ unit, visible, onClose }) => {
       ? trainedAtArray.join(", ")
       : t("unknown");
   };
-console.log(unit)
+  console.log(unit);
   return (
     <Modal
       title={unit.name_fr || unit.name_en}
@@ -124,7 +133,10 @@ console.log(unit)
             </Col>
             <Col span={8}>
               <Card bordered={false}>
-                <Meta title={t("Trained at")} description={`${unit.trained_at}`} />
+                <Meta
+                  title={t("Trained at")}
+                  description={`${unit.trained_at}`}
+                />
               </Card>
             </Col>
           </Row>
@@ -132,140 +144,155 @@ console.log(unit)
       </Collapse>
       {analysisResult ? (
         <>
-<Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-  <Panel header={t("Faiblesses et Menaces")} key="1">
-    <Switch
-      checkedChildren={t("Summary")}
-      unCheckedChildren={t("Detail")}
-      defaultChecked
-      onChange={() => setSwitchChecked(!switchChecked)}
-    />
-    {!switchChecked ? (
-      <>
-        <div>
-          <Text strong>{t("Type d'attaque")} : </Text>
-          {analysisResult?.attack_type &&
-            translateWeapons(
-              analysisResult?.attack_type,
-              i18n.language
-            ).join(", ")}
-        </div>
-        <div>
-          <Title level={5}>{t("Faiblesses")}</Title>
-          <ul>
-            <li>
-              <Text strong>
-                {t("Utiliser les armes suivantes face à ")}
-                {unit.name_fr}
-                {" : "}
-              </Text>
-              {analysisResult?.armor_weakness &&
-                getWeaponFromArmors(
-                  analysisResult?.armor_weakness,
-                  i18n.language
-                ).join(", ")}
-            </li>
-            <li>
-              <Text strong>
-                {unit.name_fr} {t("Craint")} :{" "}
-              </Text>
-              {analysisResult?.type_weakness
-                .map((typeId) => getTypeName(typeId))
-                .join(", ")}
-            </li>
-          </ul>
-        </div>
-        <div>
-          <Title level={5}>{t("Menaces")}</Title>
-          <ul>
-            <li>
-              <Text strong>
-                {unit.name_fr} {t("va massacrer")} :{" "}
-              </Text>
-              {analysisResult?.type_bonus
-                .map((typeId) => getTypeName(typeId))
-                .join(", ")}
-              <br />
-              <Text strong>{t("Bonus contre")} : </Text>
-              {analysisResult?.attack_bonus
-                .map((unitId) => getUnitName(unitId))
-                .join(", ")}
-            </li>
-          </ul>
-        </div>
-      </>
-    ) : (
-      <>
-        <div>
-          <Text strong>{t("Type")} : </Text>
-          {unit?.type?.map((typeId) => (
-            <span key={typeId}>
-              {getTypeName(typeId)}
-              {typeId !== unit?.type[unit.type.length - 1] && ", "}
-            </span>
-          ))}
-        </div>
+          <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
+            <Panel header={t("Faiblesses et Menaces")} key="1">
+              <Switch
+                checkedChildren={t("Summary")}
+                unCheckedChildren={t("Detail")}
+                defaultChecked
+                onChange={() => setSwitchChecked(!switchChecked)}
+              />
+              {!switchChecked ? (
+                <>
+                  <div>
+                    <Text strong>{t("Type d'attaque")} : </Text>
+                    {analysisResult?.attack_type &&
+                      translateWeapons(
+                        analysisResult?.attack_type,
+                        i18n.language
+                      ).join(", ")}
+                  </div>
+                  <div>
+                    <Title level={5}>{t("Faiblesses")}</Title>
+                    <ul>
+                      <li>
+                        <Text strong>
+                          {t("Utiliser les armes suivantes face à ")}
+                          {unit.name_fr}
+                          {" : "}
+                        </Text>
+                        {analysisResult?.armor_weakness &&
+                          getWeaponFromArmors(
+                            analysisResult?.armor_weakness,
+                            i18n.language
+                          ).join(", ")}
+                      </li>
+                      <li>
+                        <Text strong>
+                          {unit.name_fr} {t("Craint")} :{" "}
+                        </Text>
+                        {analysisResult?.type_weakness
+                          .map((typeId) => getTypeName(typeId))
+                          .join(", ")}
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <Title level={5}>{t("Menaces")}</Title>
+                    <ul>
+                      <li>
+                        <Text strong>
+                          {unit.name_fr} {t("va massacrer")} :{" "}
+                        </Text>
+                        {analysisResult?.type_bonus
+                          .map((typeId) => getTypeName(typeId))
+                          .join(", ")}
+                        <br />
+                        <Text strong>{t("Bonus contre")} : </Text>
+                        {analysisResult?.attack_bonus
+                          .map((unitId) => getUnitName(unitId))
+                          .join(", ")}
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <Text strong>{t("Type")} : </Text>
+                    {unit?.type?.map((typeId) => (
+                      <span key={typeId}>
+                        {getTypeName(typeId)}
+                        {typeId !== unit?.type[unit.type.length - 1] && ", "}
+                      </span>
+                    ))}
+                  </div>
 
-        <div>
-          <Title level={5}>{t("Armures")}</Title>
-          <ul>
-            <li>
-              <Text strong>{t("Hack Armor")}: </Text>
-              {unit?.armors?.armor_hack}%
-            </li>
-            <li>
-              <Text strong>{t("Pierce Armor")}: </Text>
-              {unit?.armors?.armor_pierce}%
-            </li>
-            <li>
-              <Text strong>{t("Crush Armor")}: </Text>
-              {unit?.armors?.armor_crush}%
-            </li>
-          </ul>
-        </div>
+                  <div>
+                    <Title level={5}>{t("Armures")}</Title>
+                    <ul>
+                      <li>
+                        <Text strong>{t("Hack Armor")}: </Text>
+                        {unit?.armors?.armor_hack}%
+                      </li>
+                      <li>
+                        <Text strong>{t("Pierce Armor")}: </Text>
+                        {unit?.armors?.armor_pierce}%
+                      </li>
+                      <li>
+                        <Text strong>{t("Crush Armor")}: </Text>
+                        {unit?.armors?.armor_crush}%
+                      </li>
+                    </ul>
+                  </div>
 
-        <div>
-          <Title level={5}>{t("Attaques")}</Title>
-          <ul>
-            <li>
-              <Text strong>{t("Hack Damage")}: </Text>
-              {unit?.attacks?.hack}
-            </li>
-            <li>
-              <Text strong>{t("Pierce Damage")}: </Text>
-              {unit?.attacks?.pierce}
-            </li>
-            <li>
-              <Text strong>{t("Crush Damage")}: </Text>
-              {unit?.attacks?.crush}
-            </li>
-            {Object.keys(unit?.attacks || {})
-              .filter((attackKey) => attackKey.startsWith("attack_"))
-              .map((attackKey) => {
-                const attackValue = unit.attacks[attackKey];
-                const unitTypeId = unit.attacks[attackKey][0];
-                
-             const bonusPercentage = attackKey.split('_')[1]; 
+                  <div>
+                    <Title level={5}>{t("Attaques")}</Title>
+                    <ul>
+                      <li>
+                        <Text strong>{t("Hack Damage")}: </Text>
+                        {unit?.attacks?.hack}
+                      </li>
+                      <li>
+                        <Text strong>{t("Pierce Damage")}: </Text>
+                        {unit?.attacks?.pierce}
+                      </li>
+                      <li>
+                        <Text strong>{t("Crush Damage")}: </Text>
+                        {unit?.attacks?.crush}
+                      </li>
+                      {Object.keys(unit?.attacks || {})
+                        .filter((attackKey) => attackKey.startsWith("attack_"))
+                        .map((attackKey) => {
+                          const attackValue = unit.attacks[attackKey];
+                          const unitTypeId = unit.attacks[attackKey][0];
 
-             const unitTypeName = getTypeName(unitTypeId);
-                return (
-                  <li key={attackKey}>
-                  <Text strong>{t("Bonus Damage")} (x {bonusPercentage}%): </Text>
-                  {unitTypeName ? unitTypeName : t("Unknown Type")}
-                </li>
-                );
-              })}
-          </ul>
-        </div>
-      </>
-    )}
-  </Panel>
-</Collapse>
+                          const bonusPercentage = attackKey.split("_")[1];
 
-
+                          const unitTypeName = getTypeName(unitTypeId);
+                          return (
+                            <li key={attackKey}>
+                              <Text strong>
+                                {t("Bonus Damage")} (x {bonusPercentage}%):{" "}
+                              </Text>
+                              {unitTypeName ? unitTypeName : t("Unknown Type")}
+                            </li>
+                          );
+                        })}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </Panel>
+          </Collapse>
 
           <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-            <Panel header={`Unités qui contre ${unit.name_fr}`} key="1">
+            <Panel
+              header={
+                <span>
+                  {t("Unités qui contre ")}
+                  {unit.name_fr}{" "}
+                  <Tooltip
+                    title={t(
+                      "Le calcul se base sur le type d'armure le plus faible de l'unité cible."
+                    )}
+                  >
+                    <InfoCircleOutlined style={{ marginLeft: 8 }} />
+                  </Tooltip>
+                </span>
+              }
+              key="1"
+            >
               <ul>
                 {bestUnits.map((bestUnit) => (
                   <li key={bestUnit.id}>
