@@ -28,12 +28,14 @@ const CounterTool = () => {
     useState(false);
   const [displayOnlyOpponentUnits, setDisplayOnlyOpponentUnits] =
     useState(true);
-  const { userCivilization, opponentCivilizations } = useCounterToolStore();
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredUnits, setFilteredUnits] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const { t } = useTranslation();
+
+  const [userCivilization, setUserCivilization] = useState(null);
+  const [opponentCivilizations, setOpponentCivilizations] = useState([]);
 
   const handleOpenModal = (unit) => {
     setSelectedUnit(unit);
@@ -66,13 +68,20 @@ const CounterTool = () => {
     };
 
     fetchData();
+
+    const currentCivData = localStorage.getItem("current_civilisations");
+    if (currentCivData) {
+      const parsedCivData = JSON.parse(currentCivData);
+      setUserCivilization(parsedCivData.user);
+      setOpponentCivilizations(parsedCivData.opponents || []);
+    }
   }, []);
 
   const getUnitTypeNames = (typeIds) => {
     return typeIds
       .map((typeId) => {
         const type = unitTypes.find((t) => t.id === typeId);
-        return type ? type.name_fr : t("Type unkown");
+        return type ? type.name_fr : t("Type inconnu");
       })
       .join(", ");
   };
@@ -88,19 +97,28 @@ const CounterTool = () => {
     setFilteredUnits(filtered);
   };
 
+  const getCivilizationName = (civId) => {
+    const civ = allCivilizations.find((c) => c.id === civId);
+    return civ ? civ.name_fr || civ.name_en : t("Inconnu");
+  };
+
   return (
     <div style={{ padding: "10px" }}>
       <Title level={2}>{t("Recherche d'unités")}</Title>
 
       <Collapse style={{ marginBottom: 20 }}>
-        <Panel header="Informations sur les civilisations" key="1">
+        <Panel header={t("Informations sur les civilisations")} key="1">
           <Card>
             <Row gutter={16} align="middle">
               <Col span={12}>
-                <Text strong>Votre civilisation :</Text>
-                <div>{userCivilization || "Inconnue"}</div>
+                <Text strong>{t("Votre civilisation")}:</Text>
+                <div>
+                  {getCivilizationName(userCivilization) || t("Inconnue")}
+                </div>
                 <div style={{ marginTop: 10 }}>
-                  <Text>{t("Vous êtes à l'âge")} : {userAge}</Text>
+                  <Text>
+                    {t("Vous êtes à l'âge")} : {userAge}
+                  </Text>
                   <Button
                     type="primary"
                     block
@@ -116,16 +134,11 @@ const CounterTool = () => {
               </Col>
 
               <Col span={12}>
-                <Text strong>{t("Civilisations des adversaires")} :</Text>
+                <Text strong>{t("Civilisations des adversaires")}:</Text>
                 <ul style={{ paddingLeft: 20, marginTop: 5 }}>
-                  {opponentCivilizations.map((civId, index) => {
-                    const civ = allCivilizations.find((c) => c.id === civId);
-                    return (
-                      <li key={index}>
-                        {civ ? civ.name_fr || civ.name_en : "Inconnu"}
-                      </li>
-                    );
-                  })}
+                  {opponentCivilizations.map((civId, index) => (
+                    <li key={index}>{getCivilizationName(civId)}</li>
+                  ))}
                 </ul>
               </Col>
             </Row>
@@ -199,6 +212,8 @@ const CounterTool = () => {
       {selectedUnit && (
         <CounterToolModal
           unit={selectedUnit}
+          age={userAge}
+          civ={userCivilization}
           visible={modalVisible}
           onClose={handleCloseModal}
         />
