@@ -27,20 +27,23 @@
   "Bonus contre": "Bonus contre",
   "Type": "Type",
   "Armures": "Armures",
-  "Hack Armor": "Armure de piratage",
+  "Hack Armor": "Armure de tranchage",
   "Pierce Armor": "Armure perforante",
   "Crush Armor": "Armure d'écrasement",
   "Attaques": "Attaques",
-  "Hack Damage": "Dégâts de piratage",
+  "Hack Damage": "Dégâts de tranchage",
   "Pierce Damage": "Dégâts perforants",
   "Crush Damage": "Dégâts d'écrasement",
   "Bonus Damage": "Dégâts bonus",
   "Unknown Type": "Type inconnu",
+  "Unités qui contre ": "",
+  "Le calcul se base sur le type d'armure le plus faible de l'unité cible": "",
   "trained at age": "Entraîné à l'âge",
   "Loading ": {
     "": "Chargement"
   },
   "Sélectionnez votre civilisation et dieu majeur": "Sélectionnez votre civilisation et dieu majeur",
   "Sélectionnez votre civilisation": "Sélectionnez votre civilisation",
+  "Choisir une civilisation": "",
   "Enregistrer et continuer": "Enregistrer et continuer"
 }

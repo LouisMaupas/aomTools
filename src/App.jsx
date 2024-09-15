@@ -60,6 +60,10 @@ const App = () => {
       label: <a onClick={() => handleLanguageChange("fr")}>Français</a>,
       key: "1",
     },
+    {
+      label: <a onClick={() => handleLanguageChange("es")}>Español</a>,
+      key: "2",
+    },
   ];
 
   return (

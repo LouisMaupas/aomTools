@@ -36,11 +36,14 @@
   "Crush Damage": "Crush Damage",
   "Bonus Damage": "Bonus Damage",
   "Unknown Type": "Unknown Type",
+  "Unités qui contre ": "",
+  "Le calcul se base sur le type d'armure le plus faible de l'unité cible": "",
   "trained at age": "Trained at age",
   "Loading ": {
     "": "Loading"
   },
   "Sélectionnez votre civilisation et dieu majeur": "Select your civilization and major god",
   "Sélectionnez votre civilisation": "Select your civilization",
+  "Choisir une civilisation": "",
   "Enregistrer et continuer": "Save and continue"
 }
