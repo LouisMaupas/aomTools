@@ -26,23 +26,15 @@ const getBestUnits = async (targetUnit, X, age, civId) => {
   }
 
   // 2. Filter units based on the maximum age if provided
-  console.log("age = ", age);
-
   if (age !== undefined && age !== null && age !== false) {
     filteredUnits = filteredUnits.filter((unit) => unit.Age <= age);
     console.log(`Units after age filter (maxAge=${age}):`, filteredUnits);
   }
 
-  // 3. Check if there are less than X units left, if so, take units from the full list to complete
-  let fallbackUnits = [];
-  if (filteredUnits.length < X) {
-    // Take the missing number of units from the remaining pool (non-filtered) units
-    fallbackUnits = units
-      .filter(
-        (unit) => !filteredUnits.includes(unit) && unit.id !== targetUnit.id
-      )
-      .slice(0, X - filteredUnits.length);
-    console.log(`Fallback units to complete top ${X}:`, fallbackUnits);
+  // 3. If there are no units left after filtering, return an empty array
+  if (filteredUnits.length === 0) {
+    console.log("No units available after applying filters.");
+    return [];
   }
 
   // 4. Find the weakest armor type (armor_hack, armor_pierce, armor_crush) of the target unit
@@ -57,9 +49,8 @@ const getBestUnits = async (targetUnit, X, age, civId) => {
     }))
     .sort((a, b) => b.damage - a.damage); // Sort by the calculated damage
 
-  // 6. Return the top X units including fallback if necessary
-  const topUnits = sortedUnits.slice(0, X).map((entry) => entry.unit);
-  return topUnits.concat(fallbackUnits).slice(0, X); // Ensure exactly X units are returned
+  // 6. Return the top X units (or fewer if less than X units are available)
+  return sortedUnits.slice(0, X).map((entry) => entry.unit);
 };
 
 /**
