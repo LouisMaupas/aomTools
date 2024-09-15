@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Select, Typography, Row, Col, Card } from "antd";
+import { Button, Select, Typography, Row, Col, Card, Modal } from "antd";
 import useStore from "../../store/store";
+import { useTranslation } from "react-i18next";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
+  const [loadingCivilization, setLoadingCivilization] = useState(true);
+  const { t } = useTranslation();
   const {
     userCivilization,
     setUserCivilization,
@@ -34,52 +37,95 @@ const CounterToolSelect = () => {
     fetchCivilizations();
   }, []);
 
-  useEffect(() => {
+  const loadUserCivilization = () => {
+    const localStorageCurrentCivs = localStorage.getItem(
+      "current_civilisations"
+    );
     const localStorageUserInfos = localStorage.getItem("userInfos");
-    if (localStorageUserInfos?.fav_civilization) {
-      setUserCivilization(userInfos.fav_civilization);
-    } else if (userInfos?.civilization) {
-      setUserCivilization(userInfos.civilization);
+
+    let userCiv = "";
+    let opponents = [];
+
+    if (localStorageCurrentCivs) {
+      const parsedCurrentCivs = JSON.parse(localStorageCurrentCivs);
+      userCiv = parsedCurrentCivs.user || "";
+      opponents = parsedCurrentCivs.opponents || [];
     }
-  }, [userInfos]);
+
+    if (!userCiv && localStorageUserInfos) {
+      const parsedUserInfos = JSON.parse(localStorageUserInfos);
+      userCiv = parsedUserInfos.fav_civilization || "";
+    }
+
+    setUserCivilization(userCiv || "");
+    opponents.forEach((opponent, index) => {
+      updateOpponentCivilization(index, opponent);
+    });
+    setLoadingCivilization(false);
+  };
+
+  useEffect(() => {
+    loadUserCivilization();
+  }, []);
+
+  const updateLocalStorage = (userCiv, opponentCivs) => {
+    const currentCivilisations = {
+      user: userCiv,
+      opponents: opponentCivs,
+    };
+
+    localStorage.setItem(
+      "current_civilisations",
+      JSON.stringify(currentCivilisations)
+    );
+  };
 
   const handleConfirmSelection = () => {
-    if (opponentCivilizations.length === 0 || !userCivilization) {
-      alert(
-        "Veuillez sélectionner au moins une civilisation d'adversaire et la vôtre."
-      );
+    if (!userCivilization || opponentCivilizations.some((civ) => !civ)) {
+      Modal.confirm({
+        title: t("Une ou plusieurs civilisations manquent"),
+        content: !userCivilization
+          ? t(
+              "Vous n'avez pas sélectionné votre civilisation. Voulez-vous continuer ?"
+            )
+          : t(
+              "Vous n'avez pas sélectionné toutes les civilisations des adversaires. Voulez-vous continuer ?"
+            ),
+        onOk() {
+          navigate("/counter-tool");
+        },
+        onCancel() {},
+      });
     } else {
       navigate("/counter-tool");
     }
   };
 
-  const setCurrentCivilisation = () => {
-    const localStorageUserInfos = localStorage.getItem("userInfos");
-    const user_civ = localStorageUserInfos.fav_civilization;
-    const current_civilizations = {
-      user: user_civ, // FIXME vérifier que l'user n'a pas selectionner une courante civ si il en a pas alors on pernds localstorage
-      opponents: [],
-    };
-    localStorage.setItem(
-      "current_civilisations",
-      JSON.stringify(current_civilizations)
-    );
+  const handleUserCivilizationChange = (value) => {
+    setUserCivilization(value);
+
+    updateLocalStorage(value, opponentCivilizations);
   };
 
-  useEffect(() => {
-    setCurrentCivilisation();
-  }, []);
+  const handleOpponentCivilizationChange = (index, value) => {
+    updateOpponentCivilization(index, value);
+
+    updateLocalStorage(
+      userCivilization,
+      opponentCivilizations.map((civ, idx) => (idx === index ? value : civ))
+    );
+  };
 
   return (
     <div style={{ padding: "20px" }}>
       <Row justify="center">
         <Col xs={24} md={20} lg={16}>
           <Card style={{ textAlign: "center", borderRadius: "10px" }}>
-            <Title level={2}>Sélection des civilisations</Title>
+            <Title level={2}>{t("Sélection des civilisations")}</Title>
 
             <div style={{ marginBottom: "20px" }}>
               <Text strong>
-                Sélectionnez les civilisations des adversaires :
+                {t("Sélectionnez les civilisations des adversaires")}:
               </Text>
               {opponentCivilizations.map((civilization, index) => (
                 <div key={index} style={{ margin: "10px 0" }}>
@@ -87,15 +133,17 @@ const CounterToolSelect = () => {
                     <Col span={18}>
                       <Select
                         style={{ width: "100%" }}
-                        value={civilization}
+                        value={civilization || undefined}
                         onChange={(value) =>
-                          updateOpponentCivilization(index, value)
+                          handleOpponentCivilizationChange(index, value)
                         }
-                        placeholder={`Adversaire ${index + 1}`}
+                        placeholder={`${t("Adversaire")} ${index + 1}`}
                       >
-                        <Option value="">Sélectionner une civilisation</Option>
+                        <Option value="">
+                          {t("Sélectionner une civilisation")}
+                        </Option>
                         {civilizations.map((civ) => (
-                          <Option key={civ.id} value={civ.name_fr}>
+                          <Option key={civ.id} value={civ.id}>
                             {civ.name_fr}
                           </Option>
                         ))}
@@ -107,7 +155,7 @@ const CounterToolSelect = () => {
                         block
                         onClick={() => removeOpponentCivilization(index)}
                       >
-                        Retirer
+                        {t("Retirer")}
                       </Button>
                     </Col>
                   </Row>
@@ -120,19 +168,19 @@ const CounterToolSelect = () => {
                 onClick={addOpponentCivilization}
                 style={{ marginTop: "10px" }}
               >
-                Ajouter un adversaire
+                {t("Ajouter un adversaire")}
               </Button>
             </div>
 
             <div style={{ marginBottom: "20px" }}>
-              <Text strong>Sélectionnez votre civilisation :</Text>
+              <Text strong>{t("Sélectionnez votre civilisation")}:</Text>
               <Select
                 style={{ width: "100%", marginTop: "10px" }}
-                value={userCivilization}
-                onChange={(value) => setUserCivilization(value)}
-                placeholder="Sélectionner votre civilisation"
+                value={loadingCivilization ? undefined : userCivilization}
+                onChange={handleUserCivilizationChange}
+                placeholder={t("Sélectionner votre civilisation")}
               >
-                <Option value="">Sélectionner une civilisation</Option>
+                <Option value="">{t("Sélectionner une civilisation")}</Option>
                 {civilizations.map((civ) => (
                   <Option key={civ.id} value={civ.id}>
                     {civ.name_fr}
@@ -147,7 +195,7 @@ const CounterToolSelect = () => {
               onClick={handleConfirmSelection}
               style={{ marginTop: "20px" }}
             >
-              Confirmer et obtenir des conseils
+              {t("Confirmer et obtenir des conseils")}
             </Button>
           </Card>
 
@@ -157,7 +205,7 @@ const CounterToolSelect = () => {
             onClick={() => navigate("/counter-tool")}
             style={{ marginTop: "20px" }}
           >
-            OSEF, GO COUNTER TOOL
+            {t("Aller directement au counter tool")}
           </Button>
         </Col>
       </Row>
