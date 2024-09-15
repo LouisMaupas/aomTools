@@ -31,7 +31,14 @@ const getUnitIcon = (typeId) => {
   return unitTypeIcons[typeId] || null;
 };
 
-const CounterToolModal = ({ unit, visible, onClose, age, civ }) => {
+const CounterToolModal = ({
+  unit,
+  visible,
+  onClose,
+  age,
+  civ,
+  encyclopedia,
+}) => {
   const [analysisResult, setAnalysisResult] = useState();
   const [unitTypes, setUnitTypes] = useState([]);
   const [allUnits, setAllUnits] = useState([]);

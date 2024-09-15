@@ -216,6 +216,7 @@ const CounterTool = () => {
           civ={userCivilization}
           visible={modalVisible}
           onClose={handleCloseModal}
+          encyclopedia={false}
         />
       )}
     </div>
