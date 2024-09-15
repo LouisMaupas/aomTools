@@ -116,8 +116,49 @@ const CounterTool = () => {
                   {getCivilizationName(userCivilization) || t("Inconnue")}
                 </div>
                 <div style={{ marginTop: 10 }}>
-                  <Text>
-                    {t("Vous êtes à l'âge")} : {userAge}
+                  <div style={{ marginTop: 10 }}>
+                    <Checkbox
+                      defaultChecked={displayOnlyOpponentUnits}
+                      onChange={(e) =>
+                        setDisplayOnlyOpponentUnits(e.target.checked)
+                      }
+                      disabled={true}
+                    >
+                      {t(
+                        "Afficher seulement les unités potentielles des adversaires"
+                      )}
+                    </Checkbox>
+                  </div>
+                  <div style={{ marginTop: 10 }}>
+                    <Checkbox
+                      defaultChecked={displayOnlyUserUnits}
+                      onChange={(e) =>
+                        setDisplayOnlyUserUnits(e.target.checked)
+                      }
+                    >
+                      {t(
+                        "Afficher comme unités de contre, seulement les unités de votre civilisation"
+                      )}
+                    </Checkbox>
+                  </div>
+                  <Checkbox
+                    style={{ marginTop: 10 }}
+                    defaultChecked={displayOnlyUserUnitsAgeOrLess}
+                    onChange={(e) =>
+                      setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
+                    }
+                  >
+                    {t(
+                      "Afficher comme unités de contre, seulement les unités de votre âge ou moins"
+                    )}
+                  </Checkbox>
+                  <Text
+                    style={{
+                      color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
+                    }}
+                  >
+                    {t("Vous êtes à l'âge")} :{" "}
+                    <span style={{ fontWeight: "bolder" }}>{userAge}</span>
                   </Text>
                   <Button
                     type="primary"
@@ -127,6 +168,7 @@ const CounterTool = () => {
                       userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1)
                     }
                     style={{ marginTop: 5 }}
+                    disabled={!displayOnlyUserUnitsAgeOrLess}
                   >
                     {t("Avancer d'un âge")}
                   </Button>
@@ -142,36 +184,6 @@ const CounterTool = () => {
                 </ul>
               </Col>
             </Row>
-
-            <div style={{ marginTop: 10 }}>
-              <Checkbox
-                defaultChecked={displayOnlyUserUnits}
-                onChange={(e) => setDisplayOnlyUserUnits(e.target.checked)}
-                disabled={true}
-              >
-                {t("Afficher seulement les unités de votre civilisation")}
-              </Checkbox>
-              <Checkbox
-                style={{ marginLeft: 15 }}
-                defaultChecked={displayOnlyUserUnitsAgeOrLess}
-                onChange={(e) =>
-                  setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
-                }
-                disabled={true}
-              >
-                {t("Afficher seulement les unités de votre âge ou moins")}
-              </Checkbox>
-            </div>
-
-            <div style={{ marginTop: 10 }}>
-              <Checkbox
-                defaultChecked={displayOnlyOpponentUnits}
-                onChange={(e) => setDisplayOnlyOpponentUnits(e.target.checked)}
-                disabled={true}
-              >
-                {t("Afficher seulement les unités des adversaires")}
-              </Checkbox>
-            </div>
           </Card>
         </Panel>
       </Collapse>
@@ -212,8 +224,8 @@ const CounterTool = () => {
       {selectedUnit && (
         <CounterToolModal
           unit={selectedUnit}
-          age={userAge}
-          civ={userCivilization}
+          age={displayOnlyUserUnitsAgeOrLess && userAge}
+          civ={displayOnlyUserUnits && userCivilization}
           visible={modalVisible}
           onClose={handleCloseModal}
           encyclopedia={false}

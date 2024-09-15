@@ -8,16 +8,48 @@ const fetchUnits = async () => {
  * Function to get the X best units against a target unit
  * @param {Object} targetUnit - The unit to counter.
  * @param {number} X - The number of best counter units to return.
+ * @param {number} [age] - (Optional) The maximum age the units can have.
+ * @param {number} [civId] - (Optional) The civilization ID to filter units.
  * @returns {Promise<Array>} - A promise that resolves to the top X units that are most effective against the target.
  */
-const getBestUnits = async (targetUnit, X) => {
+const getBestUnits = async (targetUnit, X, age, civId) => {
   const units = await fetchUnits(); // Fetch units asynchronously
 
-  // 1. Find the weakest armor type (armor_hack, armor_pierce, armor_crush)
+  // 1. Filter units based on the civilization ID if provided
+  let filteredUnits = units;
+  if (civId !== undefined && civId !== null && civId !== false) {
+    filteredUnits = filteredUnits.filter((unit) => unit.civilization === civId);
+    console.log(
+      `Units after civilization filter (civId=${civId}):`,
+      filteredUnits
+    );
+  }
+
+  // 2. Filter units based on the maximum age if provided
+  console.log("age = ", age);
+
+  if (age !== undefined && age !== null && age !== false) {
+    filteredUnits = filteredUnits.filter((unit) => unit.Age <= age);
+    console.log(`Units after age filter (maxAge=${age}):`, filteredUnits);
+  }
+
+  // 3. Check if there are less than X units left, if so, take units from the full list to complete
+  let fallbackUnits = [];
+  if (filteredUnits.length < X) {
+    // Take the missing number of units from the remaining pool (non-filtered) units
+    fallbackUnits = units
+      .filter(
+        (unit) => !filteredUnits.includes(unit) && unit.id !== targetUnit.id
+      )
+      .slice(0, X - filteredUnits.length);
+    console.log(`Fallback units to complete top ${X}:`, fallbackUnits);
+  }
+
+  // 4. Find the weakest armor type (armor_hack, armor_pierce, armor_crush) of the target unit
   const weakestArmorType = getWeakestArmorType(targetUnit.armors);
 
-  // 2. Sort units based on both direct damage (hack, pierce, crush) and bonus damage (multiplicative bonus)
-  const sortedUnits = units
+  // 5. Calculate damage and sort units based on their effectiveness against the target unit
+  const sortedUnits = filteredUnits
     .filter((unit) => unit.id !== targetUnit.id) // Exclude the target unit itself
     .map((unit) => ({
       unit,
@@ -25,8 +57,9 @@ const getBestUnits = async (targetUnit, X) => {
     }))
     .sort((a, b) => b.damage - a.damage); // Sort by the calculated damage
 
-  // 3. Return the top X units
-  return sortedUnits.slice(0, X).map((entry) => entry.unit);
+  // 6. Return the top X units including fallback if necessary
+  const topUnits = sortedUnits.slice(0, X).map((entry) => entry.unit);
+  return topUnits.concat(fallbackUnits).slice(0, X); // Ensure exactly X units are returned
 };
 
 /**

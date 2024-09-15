@@ -79,7 +79,8 @@ const CounterToolModal = ({
   useEffect(() => {
     const fetchBestUnits = async () => {
       if (unit) {
-        const bestUnitsResult = await getBestUnits(unit, 5);
+        console.log(unit, 5, age, civ);
+        const bestUnitsResult = await getBestUnits(unit, 5, age, civ);
         setBestUnits(bestUnitsResult);
       }
     };
@@ -102,7 +103,7 @@ const CounterToolModal = ({
       ? trainedAtArray.join(", ")
       : t("unknown");
   };
-  console.log(unit);
+
   return (
     <Modal
       title={unit.name_fr || unit.name_en}
