@@ -39,10 +39,6 @@ const App = () => {
     setDrawerVisible(false);
   };
 
-  const handleLogoClick = () => {
-    alert("Clicked!");
-  };
-
   const handleMenuClick = () => {
     closeDrawer();
   };
@@ -77,9 +73,11 @@ const App = () => {
             className="menu-button"
           />
 
-          <div className="logo-container" onClick={handleLogoClick}>
-            <img src="/favicon.png" alt="Logo" className="logo-img" />
-            <span className="logo-text">AOM Tools</span>
+          <div className="logo-container">
+            <NavLink to="/" exact="true">
+              <img src="/favicon.png" alt="Logo" className="logo-img" />
+              <span className="logo-text">AOM Tools</span>
+            </NavLink>
           </div>
 
           <Dropdown menu={{ items }} trigger={["click"]}>
