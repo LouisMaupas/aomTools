@@ -15,9 +15,11 @@ import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChessPawn,
+  faFilter,
   faHourglass,
   faHourglass1,
   faHourglassEnd,
+  faLayerGroup,
   faMagnifyingGlass,
   faPlus,
   faPlusCircle,
@@ -170,7 +172,15 @@ const CounterTool = () => {
       </Title>
 
       <Collapse style={{ marginBottom: 20 }}>
-        <Panel header={t("Informations sur les civilisations")} key="1">
+        <Panel
+          header={
+            <>
+              {" "}
+              <FontAwesomeIcon icon={faFilter} /> {t("Détails de la recherche")}
+            </>
+          }
+          key="1"
+        >
           <Card>
             <Row gutter={16} align="middle">
               <Col span={12}>
@@ -207,7 +217,10 @@ const CounterTool = () => {
                     </Checkbox>
                   </div>
                   <Checkbox
-                    style={{ marginTop: 10 }}
+                    style={{
+                      color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
+                      marginTop: 10,
+                    }}
                     checked={displayOnlyUserUnitsAgeOrLess}
                     onChange={(e) =>
                       setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
@@ -218,6 +231,7 @@ const CounterTool = () => {
                       "Afficher comme unités de contre, seulement les unités de votre âge ou moins"
                     )}
                   </Checkbox>
+                  <br />
                   <Text
                     style={{
                       color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",

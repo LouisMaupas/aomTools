@@ -206,7 +206,7 @@ const CounterToolSelect = () => {
               style={{ marginTop: "20px" }}
             >
               <FontAwesomeIcon icon={faCheckCircle} />
-              {t("Confirmer et obtenir des conseils")}
+              {t("Confirmer")}
             </Button>
           </Card>
 
