@@ -4,7 +4,7 @@ import useStore from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBolt, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { faBolt, faSave, faScroll } from "@fortawesome/free-solid-svg-icons";
 const { Text } = Typography;
 const { Option } = Select;
 
@@ -113,6 +113,7 @@ const Home = () => {
           onClick={handleSave}
           disabled={!selectedCiv || !selectedGod}
         >
+          <FontAwesomeIcon icon={faSave} />
           {t("Enregistrer et continuer")}
         </Button>
       </Card>
