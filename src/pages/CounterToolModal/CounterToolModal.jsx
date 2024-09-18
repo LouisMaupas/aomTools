@@ -130,7 +130,7 @@ const CounterToolModal = ({
                         {getTypeName(typeId)}
                       </span>
                     ))
-                    .reduce((prev, curr) => [prev, ", ", curr])}
+                    .reduce((prev, curr) => [prev, ", ", curr], [])}
                 />
               </Card>
             </Col>
