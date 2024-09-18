@@ -83,6 +83,14 @@
         "name_fr": "Unité volante",
         "strong_against": [1,3,7],
         "weak_against": [2]
+      },
+      
+      {
+        "id": 13,
+        "name_en": "Scoot",
+        "name_fr": "Scoot",
+        "strong_against": [],
+        "weak_against": []
       }
     ]
   }

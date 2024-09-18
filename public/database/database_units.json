@@ -449,7 +449,7 @@
         "id": 22,
         "name_fr": "Pretre",
         "name_en": "Priest",
-        "type": [],
+        "type": [6],
         "civilization": 2,
         "Age": 1,
         "trained_at": ["Town Center", "Temple"],
