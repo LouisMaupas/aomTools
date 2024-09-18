@@ -9,10 +9,10 @@ import {
   Typography,
   Collapse,
 } from "antd";
-import useCounterToolStore from "../../store/counterTool";
 import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
 import { useTranslation } from "react-i18next";
+import { use } from "i18next";
 
 const { Meta } = Card;
 const { Title, Text } = Typography;
@@ -31,11 +31,35 @@ const CounterTool = () => {
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredUnits, setFilteredUnits] = useState([]);
+  const [unitsToDisplay, setUnitsToDisplay] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const { t } = useTranslation();
 
   const [userCivilization, setUserCivilization] = useState(null);
   const [opponentCivilizations, setOpponentCivilizations] = useState([]);
+
+  useEffect(() => {
+    const fetchFilteredUnits = async () => {
+      try {
+        const unitResponse = await fetch("/database/database_units.json");
+        const unitData = await unitResponse.json();
+
+        const filteredUnits = displayOnlyOpponentUnits
+          ? unitData.units.filter((unit) =>
+              opponentCivilizations.includes(unit.civilization)
+            )
+          : unitData.units;
+
+        setUnits(unitData.units);
+      } catch (error) {
+        console.error("Erreur lors du chargement des unités: ", error);
+      }
+    };
+
+    if (opponentCivilizations.length > 0) {
+      fetchFilteredUnits();
+    }
+  }, [displayOnlyOpponentUnits, opponentCivilizations]);
 
   const handleOpenModal = (unit) => {
     setSelectedUnit(unit);
@@ -56,14 +80,21 @@ const CounterTool = () => {
 
         const unitResponse = await fetch("/database/database_units.json");
         const unitData = await unitResponse.json();
+
+        const filteredUnits = displayOnlyOpponentUnits
+          ? unitData.units.filter((unit) =>
+              opponentCivilizations.includes(unit.civilization)
+            )
+          : unitData.units;
+
         setUnits(unitData.units);
-        setFilteredUnits(unitData.units);
+        setFilteredUnits(filteredUnits);
 
         const typesResponse = await fetch("/database/database_unit_types.json");
         const typesData = await typesResponse.json();
         setUnitTypes(typesData.unit_types);
       } catch (error) {
-        console.error("Error loading data : ", error);
+        console.error("Erreur lors du chargement des données: ", error);
       }
     };
 
@@ -77,6 +108,22 @@ const CounterTool = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const applyFilters = () => {
+      const filtered = displayOnlyOpponentUnits
+        ? units.filter((unit) =>
+            opponentCivilizations.includes(unit.civilization)
+          )
+        : units;
+      setFilteredUnits(filtered);
+      setUnitsToDisplay(filtered);
+    };
+
+    if (units.length > 0) {
+      applyFilters();
+    }
+  }, [units, displayOnlyOpponentUnits, opponentCivilizations]);
+
   const getUnitTypeNames = (typeIds) => {
     return typeIds
       .map((typeId) => {
@@ -89,12 +136,12 @@ const CounterTool = () => {
   const handleSearch = (value) => {
     setSearchValue(value);
 
-    const filtered = units.filter(
+    const filtered = filteredUnits.filter(
       (unit) =>
         unit.name_fr?.toLowerCase().includes(value.toLowerCase()) ||
         unit.name_en?.toLowerCase().includes(value.toLowerCase())
     );
-    setFilteredUnits(filtered);
+    setUnitsToDisplay(filtered);
   };
 
   const getCivilizationName = (civId) => {
@@ -118,11 +165,10 @@ const CounterTool = () => {
                 <div style={{ marginTop: 10 }}>
                   <div style={{ marginTop: 10 }}>
                     <Checkbox
-                      defaultChecked={displayOnlyOpponentUnits}
+                      checked={displayOnlyOpponentUnits}
                       onChange={(e) =>
                         setDisplayOnlyOpponentUnits(e.target.checked)
                       }
-                      disabled={true}
                     >
                       {t(
                         "Afficher seulement les unités potentielles des adversaires"
@@ -131,7 +177,7 @@ const CounterTool = () => {
                   </div>
                   <div style={{ marginTop: 10 }}>
                     <Checkbox
-                      defaultChecked={displayOnlyUserUnits}
+                      checked={displayOnlyUserUnits}
                       onChange={(e) =>
                         setDisplayOnlyUserUnits(e.target.checked)
                       }
@@ -143,7 +189,7 @@ const CounterTool = () => {
                   </div>
                   <Checkbox
                     style={{ marginTop: 10 }}
-                    defaultChecked={displayOnlyUserUnitsAgeOrLess}
+                    checked={displayOnlyUserUnitsAgeOrLess}
                     onChange={(e) =>
                       setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
                     }
@@ -200,7 +246,7 @@ const CounterTool = () => {
       />
 
       <Row gutter={[16, 16]} className="grid-container">
-        {filteredUnits.map((unit) => (
+        {unitsToDisplay.map((unit) => (
           <Col
             key={unit.id}
             xs={24}
