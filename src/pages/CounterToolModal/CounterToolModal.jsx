@@ -15,6 +15,24 @@ import analyzeUnit from "../../utils/analyzeUnit";
 import getBestUnits from "../../utils/getBestUnits";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { getWeaponFromArmors, translateWeapons } from "../../utils/misc";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChessPawn,
+  faFan,
+  faHourglass,
+  faHourglass1,
+  faHourglassEnd,
+  faMagnifyingGlass,
+  faPlus,
+  faPlusCircle,
+  faShield,
+  faSkullCrossbones,
+  faTags,
+  faThumbsDown,
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import { faHourglass2 } from "@fortawesome/free-solid-svg-icons/faHourglass2";
 
 const { Meta } = Card;
 const { Panel } = Collapse;
@@ -79,7 +97,6 @@ const CounterToolModal = ({
   useEffect(() => {
     const fetchBestUnits = async () => {
       if (unit) {
-        console.log(unit, 5, age, civ);
         const bestUnitsResult = await getBestUnits(unit, 5, age, civ);
         setBestUnits(bestUnitsResult);
       }
@@ -113,7 +130,15 @@ const CounterToolModal = ({
       width={800}
     >
       <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-        <Panel header="Détails de l'unité" key="1">
+        <Panel
+          header={
+            <>
+              {" "}
+              <FontAwesomeIcon icon={faTags} /> {t("Détails de l'unité")}
+            </>
+          }
+          key="1"
+        >
           <Row gutter={[16, 16]}>
             <Col span={8}>
               <Card bordered={false}>
@@ -153,7 +178,16 @@ const CounterToolModal = ({
       {analysisResult ? (
         <>
           <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
-            <Panel header={t("Faiblesses et Menaces")} key="1">
+            <Panel
+              header={
+                <>
+                  <FontAwesomeIcon icon={faThumbsUp} color="" />{" "}
+                  <FontAwesomeIcon icon={faThumbsDown} color="" />{" "}
+                  {t("Faiblesses et Menaces")}
+                </>
+              }
+              key="1"
+            >
               <Switch
                 checkedChildren={t("Summary")}
                 unCheckedChildren={t("Detail")}
@@ -171,7 +205,11 @@ const CounterToolModal = ({
                       ).join(", ")}
                   </div>
                   <div>
-                    <Title level={5}>{t("Faiblesses")}</Title>
+                    <Title level={5}>
+                      {" "}
+                      <FontAwesomeIcon icon={faThumbsUp} color="green" />{" "}
+                      {t("Faiblesses")}
+                    </Title>
                     <ul>
                       <li>
                         <Text strong>
@@ -196,7 +234,11 @@ const CounterToolModal = ({
                     </ul>
                   </div>
                   <div>
-                    <Title level={5}>{t("Menaces")}</Title>
+                    <Title level={5}>
+                      {" "}
+                      <FontAwesomeIcon icon={faThumbsDown} color="red" />{" "}
+                      {t("Menaces")}
+                    </Title>
                     <ul>
                       <li>
                         <Text strong>
@@ -227,7 +269,11 @@ const CounterToolModal = ({
                   </div>
 
                   <div>
-                    <Title level={5}>{t("Armures")}</Title>
+                    <Title level={5}>
+                      {" "}
+                      <FontAwesomeIcon icon={faShield} color="grey" />{" "}
+                      {t("Armures")}
+                    </Title>
                     <ul>
                       <li>
                         <Text strong>{t("Hack Armor")}: </Text>
@@ -245,7 +291,10 @@ const CounterToolModal = ({
                   </div>
 
                   <div>
-                    <Title level={5}>{t("Attaques")}</Title>
+                    <Title level={5}>
+                      {" "}
+                      <FontAwesomeIcon icon={faFan} /> {t("Attaques")}
+                    </Title>
                     <ul>
                       <li>
                         <Text strong>{t("Hack Damage")}: </Text>

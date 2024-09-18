@@ -3,6 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { Button, Select, Typography, Row, Col, Card, Modal } from "antd";
 import useStore from "../../store/store";
 import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faCheckCircle,
+  faSkull,
+  faSquarePlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -121,10 +130,9 @@ const CounterToolSelect = () => {
       <Row justify="center">
         <Col xs={24} md={20} lg={16}>
           <Card style={{ textAlign: "center", borderRadius: "10px" }}>
-            <Title level={2}>{t("Sélection des civilisations")}</Title>
-
             <div style={{ marginBottom: "20px" }}>
               <Text strong>
+                <FontAwesomeIcon icon={faSkull} />{" "}
                 {t("Sélectionnez les civilisations des adversaires")}:
               </Text>
               {opponentCivilizations.map((civilization, index) => (
@@ -155,7 +163,7 @@ const CounterToolSelect = () => {
                         block
                         onClick={() => removeOpponentCivilization(index)}
                       >
-                        {t("Retirer")}
+                        <FontAwesomeIcon icon={faTrash} /> {t("Retirer")}
                       </Button>
                     </Col>
                   </Row>
@@ -168,11 +176,13 @@ const CounterToolSelect = () => {
                 onClick={addOpponentCivilization}
                 style={{ marginTop: "10px" }}
               >
+                <FontAwesomeIcon icon={faSquarePlus} />
                 {t("Ajouter un adversaire")}
               </Button>
             </div>
 
             <div style={{ marginBottom: "20px" }}>
+              <FontAwesomeIcon icon={faUser} />{" "}
               <Text strong>{t("Sélectionnez votre civilisation")}:</Text>
               <Select
                 style={{ width: "100%", marginTop: "10px" }}
@@ -195,6 +205,7 @@ const CounterToolSelect = () => {
               onClick={handleConfirmSelection}
               style={{ marginTop: "20px" }}
             >
+              <FontAwesomeIcon icon={faCheckCircle} />
               {t("Confirmer et obtenir des conseils")}
             </Button>
           </Card>
@@ -205,6 +216,7 @@ const CounterToolSelect = () => {
             onClick={() => navigate("/counter-tool")}
             style={{ marginTop: "20px" }}
           >
+            <FontAwesomeIcon icon={faArrowRight} />
             {t("Aller directement au counter tool")}
           </Button>
         </Col>

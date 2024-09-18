@@ -12,7 +12,19 @@ import {
 import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
 import { useTranslation } from "react-i18next";
-import { use } from "i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChessPawn,
+  faHourglass,
+  faHourglass1,
+  faHourglassEnd,
+  faMagnifyingGlass,
+  faPlus,
+  faPlusCircle,
+  faSkullCrossbones,
+} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import { faHourglass2 } from "@fortawesome/free-solid-svg-icons/faHourglass2";
 
 const { Meta } = Card;
 const { Title, Text } = Typography;
@@ -151,13 +163,18 @@ const CounterTool = () => {
 
   return (
     <div style={{ padding: "10px" }}>
-      <Title level={2}>{t("Recherche d'unités")}</Title>
+      <Title level={2}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        {""}
+        {t("Recherche d'unités")}
+      </Title>
 
       <Collapse style={{ marginBottom: 20 }}>
         <Panel header={t("Informations sur les civilisations")} key="1">
           <Card>
             <Row gutter={16} align="middle">
               <Col span={12}>
+                <FontAwesomeIcon icon={faUser} />{" "}
                 <Text strong>{t("Votre civilisation")}:</Text>
                 <div>
                   {getCivilizationName(userCivilization) || t("Inconnue")}
@@ -170,6 +187,7 @@ const CounterTool = () => {
                         setDisplayOnlyOpponentUnits(e.target.checked)
                       }
                     >
+                      <FontAwesomeIcon icon={faSkullCrossbones} />
                       {t(
                         "Afficher seulement les unités potentielles des adversaires"
                       )}
@@ -182,6 +200,7 @@ const CounterTool = () => {
                         setDisplayOnlyUserUnits(e.target.checked)
                       }
                     >
+                      <FontAwesomeIcon icon={faUser} />
                       {t(
                         "Afficher comme unités de contre, seulement les unités de votre civilisation"
                       )}
@@ -194,6 +213,7 @@ const CounterTool = () => {
                       setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
                     }
                   >
+                    <FontAwesomeIcon icon={faHourglassEnd} />{" "}
                     {t(
                       "Afficher comme unités de contre, seulement les unités de votre âge ou moins"
                     )}
@@ -216,13 +236,17 @@ const CounterTool = () => {
                     style={{ marginTop: 5 }}
                     disabled={!displayOnlyUserUnitsAgeOrLess}
                   >
+                    <FontAwesomeIcon icon={faPlusCircle} />
                     {t("Avancer d'un âge")}
                   </Button>
                 </div>
               </Col>
 
               <Col span={12}>
-                <Text strong>{t("Civilisations des adversaires")}:</Text>
+                <Text strong>
+                  <FontAwesomeIcon icon={faSkullCrossbones} />
+                  {t("Civilisations des adversaires")}:
+                </Text>
                 <ul style={{ paddingLeft: 20, marginTop: 5 }}>
                   {opponentCivilizations.map((civId, index) => (
                     <li key={index}>{getCivilizationName(civId)}</li>

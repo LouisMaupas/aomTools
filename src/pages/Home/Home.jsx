@@ -3,7 +3,9 @@ import { Button, Card, Select, Typography } from "antd";
 import useStore from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-const { Title, Text } = Typography;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBolt, faScroll } from "@fortawesome/free-solid-svg-icons";
+const { Text } = Typography;
 const { Option } = Select;
 
 const Home = () => {
@@ -66,12 +68,11 @@ const Home = () => {
   return (
     <div className="main-content">
       <Card style={{ textAlign: "center", borderRadius: "10px" }}>
-        <Title level={2}>
-          {t("Sélectionnez votre civilisation et dieu majeur")}
-        </Title>
-
         <div style={{ marginBottom: "20px" }}>
-          <Text strong>{t("Sélectionnez votre civilisation")} :</Text>
+          <Text strong>
+            <FontAwesomeIcon icon={faScroll} />{" "}
+            {t("Sélectionnez votre civilisation")} :
+          </Text>
           <Select
             style={{ width: "100%", marginTop: "10px" }}
             value={selectedCiv}
@@ -88,7 +89,9 @@ const Home = () => {
 
         {selectedCiv && (
           <div style={{ marginBottom: "20px" }}>
-            <Text strong>Sélectionnez votre dieu majeur :</Text>
+            <Text strong>
+              <FontAwesomeIcon icon={faBolt} /> Sélectionnez votre dieu majeur :
+            </Text>
             <Select
               style={{ width: "100%", marginTop: "10px" }}
               value={selectedGod}
