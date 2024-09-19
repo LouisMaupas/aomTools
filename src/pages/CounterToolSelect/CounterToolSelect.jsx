@@ -14,13 +14,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getCivilizationIcon } from "../../utils/iconUtils.jsx";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 const { Option } = Select;
 const { Step } = Steps;
 
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
   const [loadingCivilization, setLoadingCivilization] = useState(true);
+  const [currentStep, setCurrentStep] = useState(0); // Ajout du state pour les étapes
   const { t } = useTranslation();
   const {
     userCivilization,
@@ -115,6 +116,8 @@ const CounterToolSelect = () => {
   const handleUserCivilizationChange = (value) => {
     setUserCivilization(value);
     updateLocalStorage(value, opponentCivilizations);
+    // Active Step 2 lorsqu'une civilisation utilisateur est sélectionnée
+    setCurrentStep(2);
   };
 
   const handleOpponentCivilizationChange = (index, value) => {
@@ -124,6 +127,13 @@ const CounterToolSelect = () => {
       userCivilization,
       opponentCivilizations.map((civ, idx) => (idx === index ? value : civ))
     );
+
+    // Active Step 1 quand une civilisation d'adversaire est sélectionnée
+    setCurrentStep(1);
+  };
+
+  const goToNextStep = () => {
+    setCurrentStep(currentStep + 1);
   };
 
   return (
@@ -132,7 +142,7 @@ const CounterToolSelect = () => {
         <Col xs={24} md={20} lg={16}>
           <Card style={{ textAlign: "center", borderRadius: "10px" }}>
             {/* Steps Section */}
-            <Steps current={0} style={{ marginBottom: "20px" }}>
+            <Steps current={currentStep} style={{ marginBottom: "20px" }}>
               <Step title={t("Ajouter des adversaires")} />
               <Step title={t("Choisir votre civilisation")} />
               <Step title={t("Accéder au Counter Tool")} />
@@ -182,7 +192,10 @@ const CounterToolSelect = () => {
               <Button
                 type="dashed"
                 block
-                onClick={addOpponentCivilization}
+                onClick={() => {
+                  addOpponentCivilization();
+                  setCurrentStep(1);
+                }}
                 style={{ marginTop: "10px" }}
               >
                 <FontAwesomeIcon icon={faSquarePlus} />{" "}
