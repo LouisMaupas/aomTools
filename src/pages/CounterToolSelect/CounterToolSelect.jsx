@@ -21,7 +21,7 @@ const { Step } = Steps;
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
   const [loadingCivilization, setLoadingCivilization] = useState(true);
-  const [currentStep, setCurrentStep] = useState(0); // Ajout du state pour les étapes
+  const [currentStep, setCurrentStep] = useState(0);
   const { t } = useTranslation();
   const {
     userCivilization,
@@ -116,7 +116,6 @@ const CounterToolSelect = () => {
   const handleUserCivilizationChange = (value) => {
     setUserCivilization(value);
     updateLocalStorage(value, opponentCivilizations);
-    // Active Step 2 lorsqu'une civilisation utilisateur est sélectionnée
     setCurrentStep(2);
   };
 
@@ -128,7 +127,6 @@ const CounterToolSelect = () => {
       opponentCivilizations.map((civ, idx) => (idx === index ? value : civ))
     );
 
-    // Active Step 1 quand une civilisation d'adversaire est sélectionnée
     setCurrentStep(1);
   };
 
@@ -141,14 +139,12 @@ const CounterToolSelect = () => {
       <Row justify="center">
         <Col xs={24} md={20} lg={16}>
           <Card style={{ textAlign: "center", borderRadius: "10px" }}>
-            {/* Steps Section */}
             <Steps current={currentStep} style={{ marginBottom: "20px" }}>
               <Step title={t("Ajouter des adversaires")} />
               <Step title={t("Choisir votre civilisation")} />
               <Step title={t("Accéder au Counter Tool")} />
             </Steps>
 
-            {/* Step 1: Ajouter les adversaires */}
             <div style={{ marginBottom: "20px" }}>
               <Text strong>
                 <FontAwesomeIcon icon={faSkull} />{" "}
@@ -203,7 +199,6 @@ const CounterToolSelect = () => {
               </Button>
             </div>
 
-            {/* Step 2: Choisir sa civilisation */}
             <div style={{ marginBottom: "20px" }}>
               <FontAwesomeIcon icon={faUser} />{" "}
               <Text strong>
@@ -224,7 +219,6 @@ const CounterToolSelect = () => {
               </Select>
             </div>
 
-            {/* Step 3: Confirmation Button */}
             <Button
               type="primary"
               block
@@ -235,7 +229,6 @@ const CounterToolSelect = () => {
               {t("Étape 3: Confirmer et accéder au Counter Tool")}
             </Button>
 
-            {/* Skip button */}
             <Button
               type="link"
               danger
