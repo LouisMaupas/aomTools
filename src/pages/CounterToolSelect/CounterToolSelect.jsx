@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Select, Typography, Row, Col, Card, Modal } from "antd";
+import { Button, Select, Typography, Row, Col, Card, Modal, Steps } from "antd";
 import useStore from "../../store/store";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,7 @@ import { getCivilizationIcon } from "../../utils/iconUtils.jsx";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
+const { Step } = Steps;
 
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
@@ -130,10 +131,18 @@ const CounterToolSelect = () => {
       <Row justify="center">
         <Col xs={24} md={20} lg={16}>
           <Card style={{ textAlign: "center", borderRadius: "10px" }}>
+            {/* Steps Section */}
+            <Steps current={0} style={{ marginBottom: "20px" }}>
+              <Step title={t("Ajouter des adversaires")} />
+              <Step title={t("Choisir votre civilisation")} />
+              <Step title={t("Accéder au Counter Tool")} />
+            </Steps>
+
+            {/* Step 1: Ajouter les adversaires */}
             <div style={{ marginBottom: "20px" }}>
               <Text strong>
                 <FontAwesomeIcon icon={faSkull} />{" "}
-                {t("Sélectionnez les civilisations des adversaires")}:
+                {t("Étape 1: Sélectionnez les civilisations des adversaires")}:
               </Text>
               {opponentCivilizations.map((civilization, index) => (
                 <div key={index} style={{ margin: "10px 0" }}>
@@ -181,9 +190,12 @@ const CounterToolSelect = () => {
               </Button>
             </div>
 
+            {/* Step 2: Choisir sa civilisation */}
             <div style={{ marginBottom: "20px" }}>
               <FontAwesomeIcon icon={faUser} />{" "}
-              <Text strong>{t("Sélectionnez votre civilisation")}:</Text>
+              <Text strong>
+                {t("Étape 2: Sélectionnez votre civilisation")}:
+              </Text>
               <Select
                 style={{ width: "100%", marginTop: "10px" }}
                 value={loadingCivilization ? undefined : userCivilization}
@@ -199,27 +211,30 @@ const CounterToolSelect = () => {
               </Select>
             </div>
 
+            {/* Step 3: Confirmation Button */}
             <Button
               type="primary"
               block
               onClick={handleConfirmSelection}
               style={{ marginTop: "20px" }}
             >
-              <FontAwesomeIcon icon={faCheckCircle} /> {t("Confirmer")}
+              <FontAwesomeIcon icon={faCheckCircle} />{" "}
+              {t("Étape 3: Confirmer et accéder au Counter Tool")}
+            </Button>
+
+            {/* Skip button */}
+            <Button
+              type="link"
+              danger
+              onClick={() => navigate("/counter-tool")}
+              style={{ marginTop: "20px" }}
+            >
+              <FontAwesomeIcon icon={faArrowRight} />{" "}
+              {t(
+                "Passer toutes les étapes et accéder directement au Counter Tool"
+              )}
             </Button>
           </Card>
-
-          <Button
-            type="link"
-            danger
-            onClick={() => navigate("/counter-tool")}
-            style={{ marginTop: "20px" }}
-          >
-            <FontAwesomeIcon icon={faArrowRight} />{" "}
-            {t(
-              "Aller directement au counter tool sans définir de civilisations"
-            )}
-          </Button>
         </Col>
       </Row>
     </div>
