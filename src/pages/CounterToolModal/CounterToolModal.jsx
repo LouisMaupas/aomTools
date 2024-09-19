@@ -129,7 +129,7 @@ const CounterToolModal = ({
       footer={null}
       width={800}
     >
-      <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
+      <Collapse style={{ marginBottom: "20px" }}>
         <Panel
           header={
             <>
@@ -177,7 +177,7 @@ const CounterToolModal = ({
       </Collapse>
       {analysisResult ? (
         <>
-          <Collapse defaultActiveKey={["1"]} style={{ marginBottom: "20px" }}>
+          <Collapse style={{ marginBottom: "20px" }}>
             <Panel
               header={
                 <>
@@ -337,11 +337,10 @@ const CounterToolModal = ({
             <Panel
               header={
                 <span>
-                  {t("Unités qui contre ")}
-                  {unit.name_fr}{" "}
+                  {unit.name_fr} {t("est contré par : ")}
                   <Tooltip
                     title={t(
-                      "Le calcul se base sur le type d'armure le plus faible de l'unité cible."
+                      `Le calcul se base sur le type d'armure le plus faible de l'unité ${unit.name_fr}.`
                     )}
                   >
                     <InfoCircleOutlined style={{ marginLeft: 8 }} />
