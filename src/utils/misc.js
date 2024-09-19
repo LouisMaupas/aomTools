@@ -3,25 +3,25 @@ const translations = {
     hack: "hack",
     pierce: "pierce",
     crush: "crush",
-    divine: "divine"
+    divine: "divine",
   },
   "fr-FR": {
     hack: "tranchant",
     pierce: "perçant",
     crush: "écrasement",
-        divine: "divine"
+    divine: "divine",
   },
   fr: {
     hack: "tranchant",
     pierce: "perçant",
     crush: "écrasement",
-    divine: "divine"
+    divine: "divine",
   },
   de: {
     hack: "hacken",
     pierce: "durchbohren",
     crush: "zerschmettern",
-    divine: "divine"
+    divine: "divine",
   },
 };
 
