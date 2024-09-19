@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt, faSave, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { getCivilizationIcon } from "../../utils/iconUtils";
+
 const { Text } = Typography;
 const { Option } = Select;
 
@@ -81,7 +83,7 @@ const Home = () => {
           >
             {civilizations.map((civ) => (
               <Option key={civ.id} value={civ.id}>
-                {civ.name_fr || civ.name_en}
+                {getCivilizationIcon(civ.id)} {civ.name_fr || civ.name_en}
               </Option>
             ))}
           </Select>
