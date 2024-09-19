@@ -295,7 +295,15 @@ const CounterTool = () => {
           >
             <Card hoverable style={{ width: "100%", marginBottom: 20 }}>
               <Meta
-                title={unit.name_fr || unit.name_en}
+                title={
+                  <>
+                    <img
+                      src={`/img/units_portraits/${unit.name_en.toLowerCase()}.png`}
+                      alt="unit portrait"
+                    />{" "}
+                    {unit.name_fr || unit.name_en}
+                  </>
+                }
                 description={`Type: ${getUnitTypeNames(unit.type)} | Âge : ${
                   unit.Age
                 }`}
