@@ -216,7 +216,9 @@ const CounterToolSelect = () => {
             style={{ marginTop: "20px" }}
           >
             <FontAwesomeIcon icon={faArrowRight} />{" "}
-            {t("Aller directement au counter tool")}
+            {t(
+              "Aller directement au counter tool sans définir de civilisations"
+            )}
           </Button>
         </Col>
       </Row>

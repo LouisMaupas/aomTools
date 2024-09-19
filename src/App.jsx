@@ -6,6 +6,7 @@ import {
   HomeOutlined,
   ToolOutlined,
   GlobalOutlined,
+  HeartOutlined,
   DownOutlined,
 } from "@ant-design/icons";
 import Home from "./pages/Home/Home";
@@ -17,6 +18,7 @@ import CounterTool from "./pages/CounterTool/CounterTool";
 import CounterToolSelect from "./pages/CounterToolSelect/CounterToolSelect";
 import { useTranslation } from "react-i18next";
 import i18n from "./i18n";
+import Preferences from "./pages/Preferences/Preferences";
 
 const { Header, Content } = Layout;
 
@@ -107,7 +109,10 @@ const App = () => {
               </NavLink>
             </Menu.Item>
             <Menu.Item key="/counter-tool-select" icon={<ToolOutlined />}>
-              <NavLink to="/counter-tool-select">Counter Tool</NavLink>
+              <NavLink to="/counter-tool-select">{t("Counter tool")}</NavLink>
+            </Menu.Item>
+            <Menu.Item key="/preferences" icon={<HeartOutlined />}>
+              <NavLink to="/preferences">{t("Préférences")}</NavLink>
             </Menu.Item>
           </Menu>
         </Drawer>
@@ -116,6 +121,7 @@ const App = () => {
       <Content style={{ padding: "20px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/preferences" element={<Preferences />} />
           <Route path="/learn-counter" element={<LearnCounter />} />
           <Route path="/counter-tool" element={<CounterTool />} />
           <Route path="/counter-tool-select" element={<CounterToolSelect />} />
