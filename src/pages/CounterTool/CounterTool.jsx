@@ -298,9 +298,14 @@ const CounterTool = () => {
                 title={
                   <>
                     <img
-                      src={`/img/units_portraits/${unit.name_en.toLowerCase()}.png`}
-                      alt="unit portrait"
-                    />{" "}
+                      src={`/img/unit_portraits/${unit.name_en.toLowerCase()}.png`}
+                      alt={`${unit.name_en} portrait`}
+                      style={{
+                        width: "50px",
+                        marginRight: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />
                     {unit.name_fr || unit.name_en}
                   </>
                 }
