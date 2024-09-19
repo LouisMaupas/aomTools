@@ -9,6 +9,8 @@ import {
   faCog,
   faTools,
   faHome,
+  faBook,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
 const { Title, Text, Paragraph } = Typography;
@@ -102,7 +104,12 @@ const HomePage = () => {
                   icon: faTools,
                   path: "/counter-tool-select",
                 },
-                { name: t("Préférences"), icon: faCog, path: "/preferences" },
+                { name: t("Préférences"), icon: faHeart, path: "/preferences" },
+                {
+                  name: t("Encyclopédie [en construction]"),
+                  icon: faBook,
+                  path: "/preferences",
+                },
               ]}
               renderItem={(item) => (
                 <List.Item>

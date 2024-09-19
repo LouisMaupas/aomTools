@@ -7,7 +7,7 @@ import {
   ToolOutlined,
   GlobalOutlined,
   HeartOutlined,
-  DownOutlined,
+  BookOutlined as Book,
 } from "@ant-design/icons";
 import Home from "./pages/Home/Home";
 import SelectCiv from "./pages/SelectCiv/SelectCiv";
@@ -113,6 +113,11 @@ const App = () => {
             </Menu.Item>
             <Menu.Item key="/preferences" icon={<HeartOutlined />}>
               <NavLink to="/preferences">{t("Préférences")}</NavLink>
+            </Menu.Item>
+            <Menu.Item key="/encyclopedia" icon={<Book />}>
+              <NavLink to="/encyclopedia">
+                {t("Encyclopédie [en construction]")}
+              </NavLink>
             </Menu.Item>
           </Menu>
         </Drawer>
