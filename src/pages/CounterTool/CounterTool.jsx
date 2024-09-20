@@ -179,96 +179,98 @@ const CounterTool = () => {
               <Col span={12}>
                 {userCivilization ? (
                   <>
-                    <FontAwesomeIcon icon={faUser} />{" "}
-                    <Text strong>{t("Votre civilisation")}:</Text>
+                    <FontAwesomeIcon icon={faUser} /> {t("Vous jouez")}
                     <div>
-                      {getCivilizationIcon(userCivilization)}
-                      {getCivilizationName(userCivilization)}
+                      <Text strong>
+                        {getCivilizationIcon(userCivilization)}{" "}
+                        {getCivilizationName(userCivilization)}
+                      </Text>
                     </div>
                   </>
                 ) : (
                   <></>
                 )}
+              </Col>
+              <Col span={12}>
+                <FontAwesomeIcon icon={faSkullCrossbones} />
+                {t("Les adversaires sont ")}:
+                <Text strong>
+                  <ul style={{ paddingLeft: 20, marginTop: 5 }}>
+                    {opponentCivilizations.map((civId, index) => (
+                      <li key={index}>
+                        {getCivilizationIcon(civId)}{" "}
+                        {getCivilizationName(civId)}
+                      </li>
+                    ))}
+                  </ul>
+                </Text>
+              </Col>
+              <div style={{ marginTop: 10 }}>
                 <div style={{ marginTop: 10 }}>
+                  <Checkbox
+                    checked={displayOnlyOpponentUnits}
+                    onChange={(e) =>
+                      setDisplayOnlyOpponentUnits(e.target.checked)
+                    }
+                  >
+                    <FontAwesomeIcon icon={faSkullCrossbones} />{" "}
+                    {t(
+                      "Afficher seulement les unités adverses dans la recherche"
+                    )}
+                    .
+                  </Checkbox>
+                </div>
+                {userCivilization && (
                   <div style={{ marginTop: 10 }}>
                     <Checkbox
-                      checked={displayOnlyOpponentUnits}
+                      checked={displayOnlyUserUnits}
                       onChange={(e) =>
-                        setDisplayOnlyOpponentUnits(e.target.checked)
+                        setDisplayOnlyUserUnits(e.target.checked)
                       }
                     >
-                      <FontAwesomeIcon icon={faSkullCrossbones} />
-                      {t("Afficher seulement les unités adverses")}
+                      {getCivilizationIcon(userCivilization)}{" "}
+                      {t("Afficher seulement vos unités en contre")}.
                     </Checkbox>
                   </div>
-                  {userCivilization && (
-                    <div style={{ marginTop: 10 }}>
-                      <Checkbox
-                        checked={displayOnlyUserUnits}
-                        onChange={(e) =>
-                          setDisplayOnlyUserUnits(e.target.checked)
-                        }
-                      >
-                        <FontAwesomeIcon icon={faUser} />
-                        {t("Montrer seulement les unités de contre ")}{" "}
-                        {getCivilizationIcon(userCivilization)}
-                        {getCivilizationName(userCivilization)}
-                      </Checkbox>
-                    </div>
-                  )}
-                  <Checkbox
-                    style={{
-                      color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
-                      marginTop: 10,
-                    }}
-                    checked={displayOnlyUserUnitsAgeOrLess}
-                    onChange={(e) =>
-                      setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
-                    }
-                  >
-                    <FontAwesomeIcon icon={faHourglassEnd} />{" "}
-                    {t("Afficher seulement les unités de contre de l'age")}{" "}
-                    {userAge} {t("ou moins")}
-                  </Checkbox>
-                  <br />
-                  <Text
-                    style={{
-                      color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
-                    }}
-                  >
-                    {t("Vous êtes à l'âge")} :{" "}
-                    <span style={{ fontWeight: "bolder" }}>{userAge}</span>
-                  </Text>
-                  <Button
-                    type="primary"
-                    block
-                    size="small"
-                    onClick={() =>
-                      userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1)
-                    }
-                    style={{ marginTop: 5 }}
-                    disabled={!displayOnlyUserUnitsAgeOrLess}
-                  >
-                    <FontAwesomeIcon icon={faPlusCircle} />
-                    {t("Avancer d'un âge")}
-                  </Button>
-                </div>
-              </Col>
+                )}
+                <Checkbox
+                  style={{
+                    color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
+                    marginTop: 10,
+                    marginBottom: "0.75rem",
+                  }}
+                  checked={displayOnlyUserUnitsAgeOrLess}
+                  onChange={(e) =>
+                    setDisplayOnlyUserUnitsAgeOrLess(e.target.checked)
+                  }
+                >
+                  <FontAwesomeIcon icon={faHourglassEnd} />{" "}
+                  {t("Afficher seulement les unités de contre de l'age")}{" "}
+                  {userAge} {t("ou moins")}.
+                </Checkbox>
 
-              <Col span={12}>
-                <Text strong>
-                  <FontAwesomeIcon icon={faSkullCrossbones} />
-                  {t("Civilisations des adversaires")}:
+                <Text
+                  style={{
+                    color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
+                  }}
+                >
+                  {t("Vous êtes à l'âge")} :{" "}
+                  <span style={{ fontWeight: "bolder" }}>{userAge}</span>
                 </Text>
-                <ul style={{ paddingLeft: 20, marginTop: 5 }}>
-                  {opponentCivilizations.map((civId, index) => (
-                    <li key={index}>
-                      {getCivilizationIcon(civId)}
-                      {getCivilizationName(civId)}
-                    </li>
-                  ))}
-                </ul>
-              </Col>
+                <Button
+                  type="primary"
+                  block
+                  size="small"
+                  onClick={() =>
+                    userAge < 4 ? setUserAge(userAge + 1) : setUserAge(1)
+                  }
+                  style={{ marginTop: 5 }}
+                  disabled={!displayOnlyUserUnitsAgeOrLess}
+                >
+                  <FontAwesomeIcon icon={faPlusCircle} />
+                  {t("Avancer d'un âge")}
+                </Button>
+              </div>
             </Row>
           </Card>
         </Panel>
