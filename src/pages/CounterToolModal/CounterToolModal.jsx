@@ -17,22 +17,12 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import { getWeaponFromArmors, translateWeapons } from "../../utils/misc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChessPawn,
   faFan,
-  faHourglass,
-  faHourglass1,
-  faHourglassEnd,
-  faMagnifyingGlass,
-  faPlus,
-  faPlusCircle,
   faShield,
-  faSkullCrossbones,
   faTags,
   faThumbsDown,
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
-import { faHourglass2 } from "@fortawesome/free-solid-svg-icons/faHourglass2";
 
 const { Meta } = Card;
 const { Panel } = Collapse;
@@ -134,7 +124,9 @@ const CounterToolModal = ({
           header={
             <>
               {" "}
-              <FontAwesomeIcon icon={faTags} /> {t("Détails de l'unité")}
+              <FontAwesomeIcon icon={faTags} />{" "}
+              <Text strong> {t("Détails de")} </Text>
+              {unit.name_fr}
             </>
           }
           key="1"
@@ -183,26 +175,30 @@ const CounterToolModal = ({
                 <>
                   <FontAwesomeIcon icon={faThumbsUp} color="" />{" "}
                   <FontAwesomeIcon icon={faThumbsDown} color="" />{" "}
-                  {t("Faiblesses et Menaces")}
+                  <Text strong> {t("Forces et Faiblesses de")} </Text>
+                  {unit.name_fr}
                 </>
               }
               key="1"
             >
               <Switch
-                checkedChildren={t("Summary")}
-                unCheckedChildren={t("Detail")}
+                checkedChildren={t("Résumé")}
+                unCheckedChildren={t("Détails")}
                 defaultChecked
                 onChange={() => setSwitchChecked(!switchChecked)}
               />
               {!switchChecked ? (
                 <>
                   <div>
-                    <Text strong>{t("Type d'attaque")} : </Text>
+                    <Text strong>
+                      {t("Type d'attaque de ")} {unit.name_en} :{" "}
+                    </Text>
                     {analysisResult?.attack_type &&
                       translateWeapons(
                         analysisResult?.attack_type,
                         i18n.language
                       ).join(", ")}
+                    .
                   </div>
                   <div>
                     <Title level={5}>
@@ -212,24 +208,28 @@ const CounterToolModal = ({
                     </Title>
                     <ul>
                       <li>
+                        {t("Les dégâts de type ")} :
+                        <br />
                         <Text strong>
-                          {t("Utiliser les armes suivantes face à ")}
-                          {unit.name_fr}
-                          {" : "}
+                          {analysisResult?.armor_weakness &&
+                            getWeaponFromArmors(
+                              analysisResult?.armor_weakness,
+                              i18n.language
+                            ).join(", ")}
                         </Text>
-                        {analysisResult?.armor_weakness &&
-                          getWeaponFromArmors(
-                            analysisResult?.armor_weakness,
-                            i18n.language
-                          ).join(", ")}
+                        <br />
+                        {t(" sont efficace contre ")}
+                        {unit.name_fr}
                       </li>
                       <li>
+                        {unit.name_fr} {t("craint")} :
+                        <br />
                         <Text strong>
-                          {unit.name_fr} {t("Craint")} :{" "}
+                          {analysisResult?.type_weakness
+                            .map((typeId) => getTypeName(typeId))
+                            .join(", ")}
+                          .
                         </Text>
-                        {analysisResult?.type_weakness
-                          .map((typeId) => getTypeName(typeId))
-                          .join(", ")}
                       </li>
                     </ul>
                   </div>
@@ -237,21 +237,23 @@ const CounterToolModal = ({
                     <Title level={5}>
                       {" "}
                       <FontAwesomeIcon icon={faThumbsDown} color="red" />{" "}
-                      {t("Menaces")}
+                      {t("Forces")}
                     </Title>
                     <ul>
                       <li>
+                        {unit.name_fr} {t("contre les")} :{" "}
                         <Text strong>
-                          {unit.name_fr} {t("va massacrer")} :{" "}
+                          {analysisResult?.attack_bonus
+                            .map((unitId) => getUnitName(unitId))
+                            .join(", ")}
                         </Text>
-                        {analysisResult?.type_bonus
-                          .map((typeId) => getTypeName(typeId))
-                          .join(", ")}
                         <br />
-                        <Text strong>{t("Bonus contre")} : </Text>
-                        {analysisResult?.attack_bonus
-                          .map((unitId) => getUnitName(unitId))
-                          .join(", ")}
+                        {unit.name_fr} {t("a un bonus contre les")} :{" "}
+                        <Text strong>
+                          {analysisResult?.type_bonus
+                            .map((typeId) => getTypeName(typeId))
+                            .join(", ")}
+                        </Text>
                       </li>
                     </ul>
                   </div>
@@ -259,7 +261,10 @@ const CounterToolModal = ({
               ) : (
                 <>
                   <div>
-                    <Text strong>{t("Type")} : </Text>
+                    <Text strong>
+                      {t("Type")}
+                      {unit?.type > 1 && "s"} :{" "}
+                    </Text>
                     {unit?.type?.map((typeId) => (
                       <span key={typeId}>
                         {getTypeName(typeId)}
@@ -337,10 +342,10 @@ const CounterToolModal = ({
             <Panel
               header={
                 <span>
-                  {unit.name_fr} {t("est contré par : ")}
+                  {unit.name_fr} <Text strong>{t("est contré par... ")} </Text>
                   <Tooltip
                     title={t(
-                      `Le calcul se base sur le type d'armure le plus faible de l'unité ${unit.name_fr}.`
+                      `Le calcul se base sur le type d'armure le plus faible de ${unit.name_fr}.`
                     )}
                   >
                     <InfoCircleOutlined style={{ marginLeft: 8 }} />

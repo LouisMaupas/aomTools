@@ -9,24 +9,19 @@ import {
   Typography,
   Collapse,
 } from "antd";
+import { getCivilizationIcon } from "../../utils/iconUtils";
 import CounterToolModal from "../CounterToolModal/CounterToolModal";
 import "./counterTool.css";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChessPawn,
   faFilter,
-  faHourglass,
-  faHourglass1,
   faHourglassEnd,
-  faLayerGroup,
   faMagnifyingGlass,
-  faPlus,
   faPlusCircle,
   faSkullCrossbones,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
-import { faHourglass2 } from "@fortawesome/free-solid-svg-icons/faHourglass2";
 
 const { Meta } = Card;
 const { Title, Text } = Typography;
@@ -58,11 +53,11 @@ const CounterTool = () => {
         const unitResponse = await fetch("/database/database_units.json");
         const unitData = await unitResponse.json();
 
-        const filteredUnits = displayOnlyOpponentUnits
-          ? unitData.units.filter((unit) =>
-              opponentCivilizations.includes(unit.civilization)
-            )
-          : unitData.units;
+        // const filteredUnits = displayOnlyOpponentUnits
+        //   ? unitData.units.filter((unit) =>
+        //       opponentCivilizations.includes(unit.civilization)
+        //     )
+        //   : unitData.units;
 
         setUnits(unitData.units);
       } catch (error) {
@@ -165,10 +160,8 @@ const CounterTool = () => {
 
   return (
     <div style={{ padding: "10px" }}>
-      <Title level={2}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-        {""}
-        {t("Recherche d'unités")}
+      <Title level={3}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} /> {t("Rechercher une unité")}
       </Title>
 
       <Collapse style={{ marginBottom: 20 }}>
@@ -176,7 +169,7 @@ const CounterTool = () => {
           header={
             <>
               {" "}
-              <FontAwesomeIcon icon={faFilter} /> {t("Détails de la recherche")}
+              <FontAwesomeIcon icon={faFilter} /> {t("Filtrer la recherche")}
             </>
           }
           key="1"
@@ -184,11 +177,18 @@ const CounterTool = () => {
           <Card>
             <Row gutter={16} align="middle">
               <Col span={12}>
-                <FontAwesomeIcon icon={faUser} />{" "}
-                <Text strong>{t("Votre civilisation")}:</Text>
-                <div>
-                  {getCivilizationName(userCivilization) || t("Inconnue")}
-                </div>
+                {userCivilization ? (
+                  <>
+                    <FontAwesomeIcon icon={faUser} />{" "}
+                    <Text strong>{t("Votre civilisation")}:</Text>
+                    <div>
+                      {getCivilizationIcon(userCivilization)}
+                      {getCivilizationName(userCivilization)}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
                 <div style={{ marginTop: 10 }}>
                   <div style={{ marginTop: 10 }}>
                     <Checkbox
@@ -198,24 +198,24 @@ const CounterTool = () => {
                       }
                     >
                       <FontAwesomeIcon icon={faSkullCrossbones} />
-                      {t(
-                        "Afficher seulement les unités potentielles des adversaires"
-                      )}
+                      {t("Afficher seulement les unités adverses")}
                     </Checkbox>
                   </div>
-                  <div style={{ marginTop: 10 }}>
-                    <Checkbox
-                      checked={displayOnlyUserUnits}
-                      onChange={(e) =>
-                        setDisplayOnlyUserUnits(e.target.checked)
-                      }
-                    >
-                      <FontAwesomeIcon icon={faUser} />
-                      {t(
-                        "Afficher comme unités de contre, seulement les unités de votre civilisation"
-                      )}
-                    </Checkbox>
-                  </div>
+                  {userCivilization && (
+                    <div style={{ marginTop: 10 }}>
+                      <Checkbox
+                        checked={displayOnlyUserUnits}
+                        onChange={(e) =>
+                          setDisplayOnlyUserUnits(e.target.checked)
+                        }
+                      >
+                        <FontAwesomeIcon icon={faUser} />
+                        {t("Montrer seulement les unités de contre ")}{" "}
+                        {getCivilizationIcon(userCivilization)}
+                        {getCivilizationName(userCivilization)}
+                      </Checkbox>
+                    </div>
+                  )}
                   <Checkbox
                     style={{
                       color: displayOnlyUserUnitsAgeOrLess ? "black" : "grey",
@@ -227,9 +227,8 @@ const CounterTool = () => {
                     }
                   >
                     <FontAwesomeIcon icon={faHourglassEnd} />{" "}
-                    {t(
-                      "Afficher comme unités de contre, seulement les unités de votre âge ou moins"
-                    )}
+                    {t("Afficher seulement les unités de contre de l'age")}{" "}
+                    {userAge} {t("ou moins")}
                   </Checkbox>
                   <br />
                   <Text
@@ -263,7 +262,10 @@ const CounterTool = () => {
                 </Text>
                 <ul style={{ paddingLeft: 20, marginTop: 5 }}>
                   {opponentCivilizations.map((civId, index) => (
-                    <li key={index}>{getCivilizationName(civId)}</li>
+                    <li key={index}>
+                      {getCivilizationIcon(civId)}
+                      {getCivilizationName(civId)}
+                    </li>
                   ))}
                 </ul>
               </Col>
@@ -276,7 +278,7 @@ const CounterTool = () => {
         style={{ width: "100%", marginBottom: 20 }}
         value={searchValue}
         onChange={handleSearch}
-        placeholder={t("Recherchez une unité...")}
+        placeholder={t("Rechercher une unité...")}
         options={filteredUnits.map((unit) => ({
           value: unit.name_fr || unit.name_en,
           label: unit.name_fr || unit.name_en,

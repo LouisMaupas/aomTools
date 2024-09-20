@@ -101,7 +101,7 @@ const CounterToolSelect = () => {
               "Vous n'avez pas sélectionné votre civilisation. Voulez-vous continuer ?"
             )
           : t(
-              "Vous n'avez pas sélectionné toutes les civilisations des adversaires. Voulez-vous continuer ?"
+              "Vous n'avez pas sélectionné de civilisation pour les adversaires. Voulez-vous tout de même continuer ?"
             ),
         onOk() {
           navigate("/counter-tool");
@@ -146,9 +146,9 @@ const CounterToolSelect = () => {
             </Steps>
 
             <div style={{ marginBottom: "20px" }}>
-              <Text strong>
+              <Text strong style={{ fontSize: "15px" }}>
                 <FontAwesomeIcon icon={faSkull} />{" "}
-                {t("Étape 1: Sélectionnez les civilisations des adversaires")}:
+                {t("I) Sélectionnez les civilisations des adversaires")}
               </Text>
               {opponentCivilizations.map((civilization, index) => (
                 <div key={index} style={{ margin: "10px 0" }}>
@@ -177,8 +177,10 @@ const CounterToolSelect = () => {
                         danger
                         block
                         onClick={() => removeOpponentCivilization(index)}
+                        style={{ display: "flex" }}
                       >
-                        <FontAwesomeIcon icon={faTrash} /> {t("Retirer")}
+                        {/* {t("Retirer")} */}
+                        <FontAwesomeIcon icon={faTrash} />
                       </Button>
                     </Col>
                   </Row>
@@ -195,14 +197,14 @@ const CounterToolSelect = () => {
                 style={{ marginTop: "10px" }}
               >
                 <FontAwesomeIcon icon={faSquarePlus} />{" "}
-                {t("Ajouter un adversaire")}
+                {t("Ajouter un ou des adversaire(s)")}
               </Button>
             </div>
 
             <div style={{ marginBottom: "20px" }}>
               <FontAwesomeIcon icon={faUser} />{" "}
-              <Text strong>
-                {t("Étape 2: Sélectionnez votre civilisation")}:
+              <Text strong style={{ fontSize: "15px" }}>
+                {t("II) Sélectionnez votre civilisation")}
               </Text>
               <Select
                 style={{ width: "100%", marginTop: "10px" }}
@@ -225,8 +227,7 @@ const CounterToolSelect = () => {
               onClick={handleConfirmSelection}
               style={{ marginTop: "20px" }}
             >
-              <FontAwesomeIcon icon={faCheckCircle} />{" "}
-              {t("Étape 3: Confirmer et accéder au Counter Tool")}
+              <FontAwesomeIcon icon={faCheckCircle} /> {t("Confirmer")}
             </Button>
 
             <Button
@@ -236,9 +237,7 @@ const CounterToolSelect = () => {
               style={{ marginTop: "20px" }}
             >
               <FontAwesomeIcon icon={faArrowRight} />{" "}
-              {t(
-                "Passer toutes les étapes et accéder directement au Counter Tool"
-              )}
+              {t("Aller directement au Counter Tool")}
             </Button>
           </Card>
         </Col>

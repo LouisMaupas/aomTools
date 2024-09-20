@@ -92,13 +92,14 @@ const Preferences = () => {
         {selectedCiv && (
           <div style={{ marginBottom: "20px" }}>
             <Text strong>
-              <FontAwesomeIcon icon={faBolt} /> Sélectionnez votre dieu majeur :
+              <FontAwesomeIcon icon={faBolt} />{" "}
+              {t("Sélectionnez votre dieu majeur")} :
             </Text>
             <Select
               style={{ width: "100%", marginTop: "10px" }}
               value={selectedGod}
               onChange={(value) => setSelectedGod(value)}
-              placeholder="Choisir un dieu majeur"
+              placeholder={t("Choisir un dieu majeur")}
             >
               {filteredGods.map((god) => (
                 <Option key={god.id} value={god.id}>

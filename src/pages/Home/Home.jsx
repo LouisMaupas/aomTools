@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { Card, Typography, Row, Col, List } from "antd";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { getCivilizationIcon } from "../../utils/iconUtils"; // Import de l'icône des civilisations
+import { getCivilizationIcon } from "../../utils/iconUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBolt,
-  faCog,
   faTools,
   faHome,
   faBook,
@@ -23,12 +22,10 @@ const HomePage = () => {
   const [majorGods, setMajorGods] = useState([]);
 
   useEffect(() => {
-    // Charger les informations de l'utilisateur depuis localStorage
     const storedUserInfos = JSON.parse(localStorage.getItem("userInfos")) || {};
     setCivilization(storedUserInfos.fav_civilization || "");
     setGod(storedUserInfos.fav_majorGod || "");
 
-    // Fetcher les civilisations et les dieux
     const fetchCivilizationsAndGods = async () => {
       try {
         const civResponse = await fetch("/database/database_civ.json");
@@ -46,7 +43,6 @@ const HomePage = () => {
     fetchCivilizationsAndGods();
   }, []);
 
-  // Trouver les noms de civilisation et de dieu favoris
   const userCiv = civilizations.find((civ) => civ.id === civilization);
   const userGod = majorGods.find((g) => g.id === god);
 
@@ -59,15 +55,14 @@ const HomePage = () => {
           marginBottom: "20px",
         }}
       >
-        <Title level={2}>{t("Bienvenue")} !</Title>
+        <Title level={2}>{t("Bienvenue sur Aom Tools")} !</Title>
         <Text strong>
-          {t("Votre civilisation favorite")} :{" "}
-          {getCivilizationIcon(civilization)}{" "}
+          {t("Civilisation favorite")} : {getCivilizationIcon(civilization)}{" "}
           {userCiv ? userCiv.name_fr : t("Inconnue")}
         </Text>
         <br />
         <Text strong>
-          {t("Votre dieu favori")} : <FontAwesomeIcon icon={faBolt} />{" "}
+          {t("Dieu majeur favori")} : <FontAwesomeIcon icon={faBolt} />{" "}
           {userGod ? userGod.name : t("Inconnu")}
         </Text>
       </Card>
@@ -83,7 +78,7 @@ const HomePage = () => {
           >
             <Paragraph style={{ textAlign: "left" }}>
               {t(
-                "Cet outil permet de connaitre facilement les counters les plus efficaces pour chaque unité du jeu. Vous pouvez sélectionner votre civilisation favorite dans l'onglet Préférences, ce qui permet de filtrer les unités que vous souhaitez."
+                "Cet outil permet de connaitre facilement les plus unités les plus efficaces contre chaque unité du jeu. Vous pouvez également sélectionner votre civilisation favorite dans 'préférences."
               )}
             </Paragraph>
           </Card>

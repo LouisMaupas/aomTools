@@ -19,21 +19,15 @@ const getBestUnits = async (targetUnit, X, age, civId) => {
   let filteredUnits = units;
   if (civId !== undefined && civId !== null && civId !== false) {
     filteredUnits = filteredUnits.filter((unit) => unit.civilization === civId);
-    console.log(
-      `Units after civilization filter (civId=${civId}):`,
-      filteredUnits
-    );
   }
 
   // 2. Filter units based on the maximum age if provided
   if (age !== undefined && age !== null && age !== false) {
     filteredUnits = filteredUnits.filter((unit) => unit.Age <= age);
-    console.log(`Units after age filter (maxAge=${age}):`, filteredUnits);
   }
 
   // 3. If there are no units left after filtering, return an empty array
   if (filteredUnits.length === 0) {
-    console.log("No units available after applying filters.");
     return [];
   }
 
