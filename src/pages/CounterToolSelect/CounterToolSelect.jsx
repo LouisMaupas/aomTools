@@ -130,8 +130,9 @@ const CounterToolSelect = () => {
     setCurrentStep(1);
   };
 
-  const goToNextStep = () => {
-    setCurrentStep(currentStep + 1);
+  const skipSelectAndGoCounterTool = () => {
+    updateLocalStorage(null, [1, 2, 3, 4]);
+    navigate("/counter-tool");
   };
 
   return (
@@ -233,7 +234,7 @@ const CounterToolSelect = () => {
             <Button
               type="link"
               danger
-              onClick={() => navigate("/counter-tool")}
+              onClick={skipSelectAndGoCounterTool}
               style={{ marginTop: "20px" }}
             >
               <FontAwesomeIcon icon={faArrowRight} />{" "}
