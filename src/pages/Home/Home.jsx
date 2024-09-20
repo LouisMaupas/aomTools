@@ -78,7 +78,7 @@ const HomePage = () => {
           >
             <Paragraph style={{ textAlign: "left" }}>
               {t(
-                "Cet outil permet de connaitre facilement les plus unités les plus efficaces contre chaque unité du jeu. Vous pouvez également sélectionner votre civilisation favorite dans 'préférences."
+                "Cet outil permet de connaitre facilement les unités les plus efficaces contre chaque unité du jeu. Vous pouvez également sélectionner votre civilisation favorite dans 'préférences."
               )}
             </Paragraph>
           </Card>
