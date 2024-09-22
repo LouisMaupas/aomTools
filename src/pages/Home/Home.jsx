@@ -143,6 +143,7 @@ const HomePage = () => {
                       "Selection correcte des noms des unités dans la langue séléctionnée."
                     )}
                   </li>
+                  <li>{t("Meilleure gestion du cache.")}</li>
                 </ul>
               </List>
             </Paragraph>
