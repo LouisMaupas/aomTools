@@ -192,8 +192,10 @@ const CounterTool = () => {
 
                 {opponentCivilizations.length > 0 ? (
                   <Col span={12}>
-                    <FontAwesomeIcon icon={faSkullCrossbones} />
-                    {t("Les adversaires sont ")}:
+                    <FontAwesomeIcon icon={faSkullCrossbones} />{" "}
+                    {opponentCivilizations.length > 1
+                      ? t("Les adversaires sont ")
+                      : t("L'adversaire est ")}
                     <Text strong>
                       <ul style={{ paddingLeft: 20, marginTop: 5 }}>
                         {opponentCivilizations.map((civId, index) => (
