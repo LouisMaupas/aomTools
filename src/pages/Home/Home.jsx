@@ -10,6 +10,7 @@ import {
   faHome,
   faBook,
   faHeart,
+  faSign,
 } from "@fortawesome/free-solid-svg-icons";
 
 const { Title, Text, Paragraph } = Typography;
@@ -103,7 +104,12 @@ const HomePage = () => {
                 {
                   name: t("Encyclopédie [en construction]"),
                   icon: faBook,
-                  path: "/preferences",
+                  path: "/encyclopedia",
+                },
+                {
+                  name: t("Reliques [en construction]"),
+                  icon: faSign,
+                  path: "/relics",
                 },
               ]}
               renderItem={(item) => (
@@ -127,8 +133,7 @@ const HomePage = () => {
               marginBottom: "20px",
             }}
           >
-            <Title level={2}>{t("Changements")}</Title>
-            <Title level={3}>{t("A venir")}</Title>
+            <Title level={3}>{t("Changements à venir")}</Title>
             <Title level={4}>{t("Corrections")}</Title>
             <Paragraph style={{ textAlign: "left" }}>
               <List>
@@ -169,7 +174,7 @@ const HomePage = () => {
                   <li>{t("Base de données : ajout des unités navals.")}</li>
                   <li>
                     {t(
-                      "Counter Tool : préciser les dieux majeuurs lors de la séléction des civilisations."
+                      "Counter Tool : préciser les dieux majeurs lors de la séléction des civilisations."
                     )}
                   </li>
                   <li>
