@@ -117,6 +117,78 @@ const HomePage = () => {
           </Card>
         </Col>
       </Row>
+
+      <Row justify="center">
+        <Col xs={24} sm={18} md={12}>
+          <Card
+            style={{
+              textAlign: "center",
+              borderRadius: "10px",
+              marginBottom: "20px",
+            }}
+          >
+            <Title level={2}>{t("Changements")}</Title>
+            <Title level={3}>{t("A venir")}</Title>
+            <Title level={4}>{t("Corrections")}</Title>
+            <Paragraph style={{ textAlign: "left" }}>
+              <List>
+                <ul>
+                  <li>
+                    {t(
+                      "Correction d'un bug faisant planter l'application en l'absence de nom de l'unité dans la langue séléctionnée."
+                    )}
+                  </li>
+                  <li>
+                    {t(
+                      "Selection correcte des noms des unités dans la langue séléctionnée."
+                    )}
+                  </li>
+                </ul>
+              </List>
+            </Paragraph>
+            <Title level={4}>{t("Fonctionnalitées")}</Title>
+            <Paragraph style={{ textAlign: "left" }}>
+              <List>
+                <ul>
+                  <li>{t("Ajout des images manquantes.")}</li>
+                  <li>{t("Amélioration de l'UI.")}</li>
+                  <li>{t("Amélioration des performances.")}</li>
+                  <li>
+                    {t(
+                      "Algorithme counter units : prendre en compte l'évoulution des statistiques par age."
+                    )}
+                  </li>
+                  <li>
+                    {t(
+                      "Algorithme counter units : prendre en compte les bonus sur des unités spécifiques."
+                    )}
+                  </li>
+                  <li>{t("Base de données : ajout des héros atlantéens.")}</li>
+                  <li>{t("Base de données : ajout des unités manquantes.")}</li>
+                  <li>{t("Base de données : ajout des unités navals.")}</li>
+                  <li>
+                    {t(
+                      "Counter Tool : préciser les dieux majeuurs lors de la séléction des civilisations."
+                    )}
+                  </li>
+                  <li>
+                    {t(
+                      "Counter Tool : en cas de 1v1 pouvoir alterner entre le profil de l'utilisateur et de l'adversaire."
+                    )}
+                  </li>
+                  <li>
+                    {t(
+                      "Counter Tool : en cas de 1v1 ajout d'un récap du matchup (stratégies à adopter, forces et faiblesses du panthéon)."
+                    )}
+                  </li>
+                  <li>{t("Ajout de l'encyclopédie.")}</li>
+                  <li>{t("Ajout de la section reliques")}</li>
+                </ul>
+              </List>
+            </Paragraph>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };
