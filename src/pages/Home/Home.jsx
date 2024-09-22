@@ -140,7 +140,12 @@ const HomePage = () => {
                 <ul>
                   <li>
                     {t(
-                      "Correction d'un bug qui faisait planter l'application en cas d'absence du nom d'une unité dans la langue sélectionnée."
+                      "Correction de la page de selection des civilisations du counter tool."
+                    )}
+                  </li>
+                  <li>
+                    {t(
+                      "Correction d'un bug qui fait planter l'application en cas d'absence du nom d'une unité dans la langue sélectionnée."
                     )}
                   </li>
                   <li>

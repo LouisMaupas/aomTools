@@ -7,6 +7,7 @@ import {
   Button,
   AutoComplete,
   Typography,
+  Switch,
   Collapse,
 } from "antd";
 import { getCivilizationIcon } from "../../utils/iconUtils";
@@ -160,11 +161,30 @@ const CounterTool = () => {
 
   return (
     <div style={{ padding: "10px" }}>
-      <Title level={3}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} /> {t("Rechercher une unité")}
-      </Title>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ marginBottom: "1rem" }}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />{" "}
+          {t("Rechercher une unité")}
+        </div>
+        {userCivilization && opponentCivilizations.length === 1 ? (
+          <Switch
+            checkedChildren={t("Profil utilisateur")}
+            unCheckedChildren={t("Profil adverse")}
+            defaultChecked
+            onChange={() => alert(t("[En construction]"))}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
+
       {userCivilization && opponentCivilizations.length > 0 ? (
-        <Collapse style={{ marginBottom: 20 }}>
+        <Collapse>
           <Panel
             header={
               <>
@@ -197,7 +217,7 @@ const CounterTool = () => {
                       ? t("Les adversaires sont ")
                       : t("L'adversaire est ")}
                     <Text strong>
-                      <ul style={{ paddingLeft: 20, marginTop: 5 }}>
+                      <ul style={{ paddingLeft: 20 }}>
                         {opponentCivilizations.map((civId, index) => (
                           <li key={index}>
                             {getCivilizationIcon(civId)}{" "}
