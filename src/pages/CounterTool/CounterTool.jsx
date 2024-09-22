@@ -184,7 +184,7 @@ const CounterTool = () => {
       </div>
 
       {userCivilization && opponentCivilizations.length > 0 ? (
-        <Collapse>
+        <Collapse style={{ marginBottom: "1rem" }}>
           <Panel
             header={
               <>
@@ -310,7 +310,7 @@ const CounterTool = () => {
       )}
 
       <AutoComplete
-        style={{ width: "100%", marginBottom: 20 }}
+        style={{ width: "100%" }}
         value={searchValue}
         onChange={handleSearch}
         placeholder={t("Rechercher une unité...")}
