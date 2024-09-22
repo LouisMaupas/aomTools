@@ -155,7 +155,7 @@ const HomePage = () => {
                   <li>{t("Amélioration des performances.")}</li>
                   <li>
                     {t(
-                      "Algorithme counter units : prendre en compte l'évoulution des statistiques par age."
+                      "Algorithme counter units : prendre en compte l'évolution des statistiques par age."
                     )}
                   </li>
                   <li>
