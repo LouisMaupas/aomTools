@@ -79,7 +79,7 @@ const HomePage = () => {
           >
             <Paragraph style={{ textAlign: "left" }}>
               {t(
-                "Cet outil permet de connaitre facilement les unités les plus efficaces contre chaque unité du jeu. Vous pouvez également sélectionner votre civilisation favorite dans préférences."
+                "Cet outil permet d’identifier facilement les unités les plus efficaces contre chaque type d’unité du jeu. Vous pouvez également sélectionner votre civilisation favorite dans les préférences."
               )}
             </Paragraph>
           </Card>
@@ -140,55 +140,55 @@ const HomePage = () => {
                 <ul>
                   <li>
                     {t(
-                      "Correction d'un bug faisant planter l'application en l'absence de nom de l'unité dans la langue séléctionnée."
+                      "Correction d'un bug qui faisait planter l'application en cas d'absence du nom d'une unité dans la langue sélectionnée."
                     )}
                   </li>
                   <li>
                     {t(
-                      "Selection correcte des noms des unités dans la langue séléctionnée."
+                      "Sélection correcte des noms des unités dans la langue choisie."
                     )}
                   </li>
-                  <li>{t("Meilleure gestion du cache.")}</li>
+                  <li>{t("Amélioration de la gestion du cache.")}</li>
                 </ul>
               </List>
             </Paragraph>
-            <Title level={4}>{t("Fonctionnalitées")}</Title>
+            <Title level={4}>{t("Fonctionnalités")}</Title>
             <Paragraph style={{ textAlign: "left" }}>
               <List>
                 <ul>
                   <li>{t("Ajout des images manquantes.")}</li>
-                  <li>{t("Amélioration de l'UI.")}</li>
-                  <li>{t("Amélioration des performances.")}</li>
+                  <li>{t("Amélioration de l'interface utilisateur.")}</li>
+                  <li>{t("Optimisation des performances.")}</li>
                   <li>
                     {t(
-                      "Algorithme counter units : prendre en compte l'évolution des statistiques par age."
+                      "Algorithme des contre d'unités : prise en compte de l'évolution des statistiques selon l'âge."
                     )}
                   </li>
                   <li>
                     {t(
-                      "Algorithme counter units : prendre en compte les bonus sur des unités spécifiques."
+                      "Algorithme des contre d'unités : prise en compte des bonus spécifiques contre certaines unités."
                     )}
                   </li>
-                  <li>{t("Base de données : ajout des héros atlantéens.")}</li>
+                  <li>{t("Base de données : ajout des héros atlantes.")}</li>
                   <li>{t("Base de données : ajout des unités manquantes.")}</li>
-                  <li>{t("Base de données : ajout des unités navals.")}</li>
+                  <li>{t("Base de données : ajout des unités navales.")}</li>
                   <li>
                     {t(
-                      "Counter Tool : préciser les dieux majeurs lors de la séléction des civilisations."
+                      "Counter Tool : préciser les dieux majeurs lors de la sélection des civilisations."
                     )}
                   </li>
                   <li>
                     {t(
-                      "Counter Tool : en cas de 1v1 pouvoir alterner entre le profil de l'utilisateur et de l'adversaire."
+                      "Counter Tool : en 1v1, permettre d'alterner entre le profil de l'utilisateur et celui de l'adversaire."
                     )}
                   </li>
                   <li>
                     {t(
-                      "Counter Tool : en cas de 1v1 ajout d'un récap du matchup (stratégies à adopter, forces et faiblesses du panthéon)."
+                      "Counter Tool : en 1v1, ajout d'un récapitulatif du matchup (stratégies recommandées, forces et faiblesses du panthéon)."
                     )}
                   </li>
                   <li>{t("Ajout de l'encyclopédie.")}</li>
-                  <li>{t("Ajout de la section reliques")}</li>
+                  <li>{t("Ajout de la section reliques.")}</li>
                 </ul>
               </List>
             </Paragraph>
