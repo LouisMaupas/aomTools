@@ -19,6 +19,7 @@ import CounterToolSelect from "./pages/CounterToolSelect/CounterToolSelect";
 import { useTranslation } from "react-i18next";
 import i18n from "./i18n";
 import Preferences from "./pages/Preferences/Preferences";
+import HttpNotFound from "./pages/HttpNotFound/HttpNotFound";
 
 const { Header, Content } = Layout;
 
@@ -119,6 +120,9 @@ const App = () => {
                 {t("Encyclopédie [en construction]")}
               </NavLink>
             </Menu.Item>
+            <Menu.Item key="/relics" icon={<Book />}>
+              <NavLink to="/relics">{t("Reliques [en construction]")}</NavLink>
+            </Menu.Item>
           </Menu>
         </Drawer>
       </Header>
@@ -130,6 +134,8 @@ const App = () => {
           <Route path="/learn-counter" element={<LearnCounter />} />
           <Route path="/counter-tool" element={<CounterTool />} />
           <Route path="/counter-tool-select" element={<CounterToolSelect />} />
+          <Route path="/encyclopedia" element={<HttpNotFound />} />
+          <Route path="/relics" element={<HttpNotFound />} />
         </Routes>
       </Content>
     </Layout>
