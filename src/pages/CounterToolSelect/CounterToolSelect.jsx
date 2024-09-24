@@ -11,6 +11,7 @@ import {
   faSquarePlus,
   faTrash,
   faUser,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { getCivilizationIcon } from "../../utils/iconUtils.jsx";
 
@@ -20,7 +21,9 @@ const { Step } = Steps;
 
 const CounterToolSelect = () => {
   const [civilizations, setCivilizations] = useState([]);
+  const [majorGods, setMajorGods] = useState([]);
   const [loadingCivilization, setLoadingCivilization] = useState(true);
+  const [gods, setGods] = useState({}); // État pour stocker les dieux majeurs sélectionnés
   const [currentStep, setCurrentStep] = useState(0);
   const { t } = useTranslation();
   const {
@@ -30,66 +33,37 @@ const CounterToolSelect = () => {
     addOpponentCivilization,
     removeOpponentCivilization,
     updateOpponentCivilization,
-    userInfos,
   } = useStore();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCivilizations = async () => {
+    const fetchCivilizationsAndGods = async () => {
       try {
-        const response = await fetch("/database/database_civ.json");
-        const data = await response.json();
-        setCivilizations(data.civilizations);
+        const civResponse = await fetch("/database/database_civ.json");
+        const civData = await civResponse.json();
+        setCivilizations(civData.civilizations);
+
+        const godResponse = await fetch("/database/database_major_gods.json");
+        const godData = await godResponse.json();
+        setMajorGods(godData.major_gods);
       } catch (error) {
-        console.error("Erreur lors du chargement des civilisations:", error);
+        console.error("Erreur lors du chargement des données:", error);
       }
     };
 
-    fetchCivilizations();
+    fetchCivilizationsAndGods();
   }, []);
 
-  const loadUserCivilization = () => {
-    const localStorageCurrentCivs = localStorage.getItem(
-      "current_civilisations"
-    );
-    const localStorageUserInfos = localStorage.getItem("userInfos");
-
-    let userCiv = "";
-    let opponents = [];
-
-    if (localStorageCurrentCivs) {
-      const parsedCurrentCivs = JSON.parse(localStorageCurrentCivs);
-      userCiv = parsedCurrentCivs.user || "";
-      opponents = parsedCurrentCivs.opponents || [];
-    }
-
-    if (!userCiv && localStorageUserInfos) {
-      const parsedUserInfos = JSON.parse(localStorageUserInfos);
-      userCiv = parsedUserInfos.fav_civilization || "";
-    }
-
-    setUserCivilization(userCiv || "");
-    opponents.forEach((opponent, index) => {
-      updateOpponentCivilization(index, opponent);
-    });
-    setLoadingCivilization(false);
-  };
-
-  useEffect(() => {
-    loadUserCivilization();
-  }, []);
-
-  const updateLocalStorage = (userCiv, opponentCivs) => {
+  const updateLocalStorage = (userCiv, userGod, opponentCivs, opponentGods) => {
     const currentCivilisations = {
       user: userCiv,
+      userGod: userGod,
       opponents: opponentCivs,
+      opponentsGods: opponentGods,
     };
 
-    localStorage.setItem(
-      "current_civilisations",
-      JSON.stringify(currentCivilisations)
-    );
+    localStorage.setItem("current_civilisations", JSON.stringify(currentCivilisations));
   };
 
   const handleConfirmSelection = () => {
@@ -115,23 +89,37 @@ const CounterToolSelect = () => {
 
   const handleUserCivilizationChange = (value) => {
     setUserCivilization(value);
-    updateLocalStorage(value, opponentCivilizations);
+    updateLocalStorage(value, gods["user"], opponentCivilizations, Object.values(gods).filter((_, index) => index !== "user"));
     setCurrentStep(2);
   };
 
   const handleOpponentCivilizationChange = (index, value) => {
     updateOpponentCivilization(index, value);
-
     updateLocalStorage(
       userCivilization,
-      opponentCivilizations.map((civ, idx) => (idx === index ? value : civ))
+      gods["user"],
+      opponentCivilizations.map((civ, idx) => (idx === index ? value : civ)),
+      Object.values(gods).filter((_, idx) => idx !== "user")
     );
 
     setCurrentStep(1);
   };
 
+  const handleGodChange = (index, value) => {
+    const updatedGods = {
+      ...gods,
+      [index]: value,
+    };
+    setGods(updatedGods);
+    updateLocalStorage(userCivilization, updatedGods["user"], opponentCivilizations, Object.values(updatedGods).filter((_, idx) => idx !== "user"));
+  };
+
+  const filteredGodsForCiv = (civId) => {
+    return majorGods.filter((god) => god.civilization === civId);
+  };
+
   const skipSelectAndGoCounterTool = () => {
-    updateLocalStorage(null, [1, 2, 3, 4]);
+    updateLocalStorage(null, null, [1, 2, 3, 4], []);
     navigate("/counter-tool");
   };
 
@@ -154,7 +142,7 @@ const CounterToolSelect = () => {
               {opponentCivilizations.map((civilization, index) => (
                 <div key={index} style={{ margin: "10px 0" }}>
                   <Row gutter={[16, 16]}>
-                    <Col span={18}>
+                    <Col span={14}>
                       <Select
                         style={{ width: "100%" }}
                         value={civilization || undefined}
@@ -180,10 +168,36 @@ const CounterToolSelect = () => {
                         onClick={() => removeOpponentCivilization(index)}
                         style={{ display: "flex" }}
                       >
-                        {/* {t("Retirer")} */}
                         <FontAwesomeIcon icon={faTrash} />
                       </Button>
                     </Col>
+                    {civilization && (
+                      <Col span={4}>
+                        <Button
+                          type="dashed"
+                          onClick={() => setCurrentStep(3)}
+                          block
+                        >
+                          <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                        {/* Menu déroulant pour sélectionner le dieu majeur */}
+                        {currentStep === 3 && (
+                          <Select
+                            style={{ width: "100%", marginTop: "10px" }}
+                            value={gods[index] || undefined}
+                            onChange={(value) => handleGodChange(index, value)}
+                            placeholder={t("Sélectionner le dieu majeur")}
+                          >
+                            <Option value="">{t("Sélectionner un dieu")}</Option>
+                            {filteredGodsForCiv(civilization).map((god) => (
+                              <Option key={god.id} value={god.id}>
+                                {god.name}
+                              </Option>
+                            ))}
+                          </Select>
+                        )}
+                      </Col>
+                    )}
                   </Row>
                 </div>
               ))}
@@ -220,6 +234,30 @@ const CounterToolSelect = () => {
                   </Option>
                 ))}
               </Select>
+
+              {/* Bouton pour choisir le dieu majeur de l'utilisateur */}
+              {userCivilization && (
+                <div style={{ marginTop: "10px" }}>
+                  <Button type="dashed" onClick={() => setCurrentStep(3)}>
+                    <FontAwesomeIcon icon={faPlus} /> {t("Ajouter votre dieu majeur")}
+                  </Button>
+                  {currentStep === 3 && (
+                    <Select
+                      style={{ width: "100%", marginTop: "10px" }}
+                      value={gods["user"] || undefined}
+                      onChange={(value) => handleGodChange("user", value)}
+                      placeholder={t("Sélectionner votre dieu majeur")}
+                    >
+                      <Option value="">{t("Sélectionner un dieu")}</Option>
+                      {filteredGodsForCiv(userCivilization).map((god) => (
+                        <Option key={god.id} value={god.id}>
+                          {god.name}
+                        </Option>
+                      ))}
+                    </Select>
+                  )}
+                </div>
+              )}
             </div>
 
             <Button
@@ -230,16 +268,17 @@ const CounterToolSelect = () => {
             >
               <FontAwesomeIcon icon={faCheckCircle} /> {t("Confirmer")}
             </Button>
-
-            <Button
-              type="link"
-              danger
-              onClick={skipSelectAndGoCounterTool}
-              style={{ marginTop: "20px" }}
-            >
-              <FontAwesomeIcon icon={faArrowRight} />{" "}
-              {t("Aller directement au Counter Tool")}
-            </Button>
+            <div>
+              <Button
+                type="link"
+                danger
+                onClick={skipSelectAndGoCounterTool}
+                style={{ marginTop: "20px" }}
+              >
+                <FontAwesomeIcon icon={faArrowRight} />{" "}
+                {t("Aller directement au Counter Tool")}
+              </Button>
+            </div>
           </Card>
         </Col>
       </Row>
