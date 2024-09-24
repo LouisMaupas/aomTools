@@ -1,0 +1,34 @@
+Ra : focuses on Camels and Chariots (and war elephant) = good age 3 +.
+	Bast - Villagers
+	Ptah - Technology
+
+	Sobek : buildings
+	Sekhmet : archers and siege weapons
+
+	Horus  : Infantry
+	Osiris : camel
+
+
+Set : 
+	Anubis : Infantry / myth units
+	Ptah : Technology
+
+	Nephthys : Priest
+	Sekhmet : archers and siege weapons
+
+	Horus : Infantry
+	Thoth : Migdol units
+
+
+Isis :
+	Anubis - Infantry and myth units
+	Bast - Villagers
+
+
+ 	Sobek* - Buildings
+ 	Nephthys - Priests
+
+	Osiris - Camel Riders
+ 	Thoth - Migdol Stronghold units
+
+
