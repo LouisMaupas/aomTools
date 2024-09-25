@@ -20,7 +20,7 @@ Set : focuses on scoots and archers
 	Thoth : Migdol units
 
 
-Isis :
+Isis : focuses on economy and technology.
 	Anubis - Infantry and myth units
 	Bast - Villagers
 
