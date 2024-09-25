@@ -9,7 +9,7 @@ Ra : focuses on Camels and Chariots (and war elephant) = good age 3 +.
 	Osiris : camel
 
 
-Set : 
+Set : focuses on scoots and archers
 	Anubis : Infantry / myth units
 	Ptah : Technology
 
